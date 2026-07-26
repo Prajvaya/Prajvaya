@@ -69,7 +69,7 @@ export const Header: React.FC = () => {
           : "py-5 bg-transparent border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between lg:-translate-x-16">
         {/* Brand Logo & Name */}
         <a
           href="#home"

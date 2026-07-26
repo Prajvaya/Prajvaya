@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
       id="home"
       className="relative min-h-screen flex items-center py-20 pl-6 pr-12 md:pl-12 md:pr-20 lg:pr-28 bg-transparent select-none z-10 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center lg:-translate-x-16">
         {/* Left Column: Premium Headline Text & Actions */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           {/* Sanskrit Floating Motto Tag */}
