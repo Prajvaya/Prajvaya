@@ -69,7 +69,7 @@ export const Header: React.FC = () => {
           : "py-5 bg-transparent border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between lg:-translate-x-16">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Brand Logo & Name */}
         <a
           href="#home"
@@ -123,13 +123,6 @@ export const Header: React.FC = () => {
           </div>
 
           <AudioControl />
-
-          <div className="flex items-center gap-2 select-none border border-gold/20 px-3 py-1.5 rounded-full bg-cream-dark/30 dark:bg-earth-light/45">
-            <span className="h-[6px] w-[6px] rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-outfit text-[9px] font-semibold tracking-[0.2em] text-charcoal/80 dark:text-cream/80">
-              SYS: ONLINE
-            </span>
-          </div>
         </div>
 
         {/* Mobile menu trigger */}
