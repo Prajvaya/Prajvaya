@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { CardTilt } from "./CardTilt";
-import { Leaf, AlertTriangle, ShieldAlert } from "lucide-react";
+import { BookOpen, Heart, Cpu, Leaf, Users } from "lucide-react";
 
 interface Pillar {
   title: string;
@@ -14,36 +14,58 @@ interface Pillar {
 
 const PILLARS: Pillar[] = [
   {
-    title: "Physical Pollution",
+    title: "Timeless Wisdom",
+    icon: <BookOpen className="text-gold" size={24} />,
+    subtitle: "Bringing ancient knowledge into modern life.",
+    items: [
+      "Scriptural analysis & translation",
+      "Daily routines & dinacharya",
+      "Grounded, timeless worldview",
+      "Ancestral life principles",
+    ],
+  },
+  {
+    title: "Human Well-being",
+    icon: <Heart className="text-rose-500" size={24} />,
+    subtitle: "Supporting emotional, mental, and physical growth.",
+    items: [
+      "Mindfulness & attention tools",
+      "Stress & anxiety reduction",
+      "Emotional resilience logs",
+      "Physical health harmony",
+    ],
+  },
+  {
+    title: "Purposeful Technology",
+    icon: <Cpu className="text-indigo-600 dark:text-indigo-400" size={24} />,
+    subtitle: "Building AI and digital tools that empower instead of distract.",
+    items: [
+      "Notification-free design layouts",
+      "Private, local-first AI",
+      "Attention agency boundaries",
+      "Intention-first user interfaces",
+    ],
+  },
+  {
+    title: "Sustainable Living",
     icon: <Leaf className="text-emerald-600 dark:text-emerald-400" size={24} />,
-    subtitle: "The degradation of our material habitats.",
+    subtitle: "Encouraging balanced lifestyles inspired by nature.",
     items: [
-      "Plastic waste accumulation",
-      "Unsustainable consumer products",
-      "Accelerating resource depletion",
-      "Systemic environmental damage",
+      "Zero-waste circular habits",
+      "Local resource optimization",
+      "Eco-harmonious workflows",
+      "Regenerative space planning",
     ],
   },
   {
-    title: "Digital Pollution",
-    icon: <ShieldAlert className="text-gold" size={24} />,
-    subtitle: "The cluttering of our cognitive spaces.",
+    title: "Community & Learning",
+    icon: <Users className="text-blue-500" size={24} />,
+    subtitle: "Creating spaces where people grow together.",
     items: [
-      "Addictive infinite scrolling",
-      "Constant notification overload",
-      "Ethically unguided AI misuse",
-      "Attention fragmentation & clutter",
-    ],
-  },
-  {
-    title: "Human Pollution",
-    icon: <AlertTriangle className="text-rose-500" size={24} />,
-    subtitle: "The disruption of our social and mental health.",
-    items: [
-      "Chronic stress & anxiety",
-      "Unchecked hyper-consumerism",
-      "Growing alienation & isolation",
-      "Loss of traditions & nature bond",
+      "Knowledge sharing circles",
+      "Real-world local workshops",
+      "Collaborative skill building",
+      "Cooperative network nodes",
     ],
   },
 ];
@@ -51,7 +73,7 @@ const PILLARS: Pillar[] = [
 export const ThreePillars: React.FC = () => {
   return (
     <section
-      id="pillars"
+      id="pillar"
       className="relative py-24 px-6 md:px-12 bg-cream-dark/10 dark:bg-forest-light/5 border-t border-gold/10 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
@@ -61,23 +83,64 @@ export const ThreePillars: React.FC = () => {
             Prajvaya Pillars
           </span>
           <h2 className="font-cinzel text-3xl sm:text-4xl font-bold tracking-wide text-charcoal dark:text-cream leading-tight">
-            The Three Pollutions We Combat
+            Our Core Pillars
           </h2>
           <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 mt-4 leading-relaxed">
-            Our mission extends beyond typical green sustainability. We aim to purge physical environments, 
-            digital frameworks, and human consciousness of systemic clutter.
+            We structure our work around five core pillars that weave timeless Indian wisdom with modern tech to improve human well-being.
           </p>
         </div>
 
-        {/* Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {PILLARS.map((pillar, idx) => (
+        {/* Pillars Grid - 5 items layout */}
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-8 max-w-6xl mx-auto">
+          {PILLARS.slice(0, 3).map((pillar, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, delay: idx * 0.15 }}
+              className="md:col-span-2"
+            >
+              <CardTilt className="h-full p-8 flex flex-col items-start min-h-[380px]">
+                {/* Icon wrapper */}
+                <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-gold/10 border border-gold/25 mb-6">
+                  {pillar.icon}
+                </div>
+
+                {/* Card Title */}
+                <h3 className="font-cinzel text-xl font-bold text-charcoal dark:text-cream mb-2 leading-snug">
+                  {pillar.title}
+                </h3>
+
+                {/* Subtitle */}
+                <p className="font-outfit text-xs text-charcoal/60 dark:text-cream/60 mb-6 leading-normal font-light">
+                  {pillar.subtitle}
+                </p>
+
+                {/* List items */}
+                <ul className="space-y-3.5 mt-auto w-full">
+                  {pillar.items.map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2.5 font-outfit text-sm text-charcoal/80 dark:text-cream/90"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-gold mt-2 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardTilt>
+            </motion.div>
+          ))}
+
+          {PILLARS.slice(3, 5).map((pillar, idx) => (
+            <motion.div
+              key={idx + 3}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: (idx + 3) * 0.15 }}
+              className="md:col-span-3"
             >
               <CardTilt className="h-full p-8 flex flex-col items-start min-h-[380px]">
                 {/* Icon wrapper */}

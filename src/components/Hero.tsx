@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center py-20 px-6 md:px-12 bg-transparent select-none z-10"
+      className="relative min-h-screen flex items-center py-20 pl-6 pr-12 md:pl-12 md:pr-20 lg:pr-28 bg-transparent select-none z-10 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Left Column: Premium Headline Text & Actions */}
@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
               transition={{ duration: 1.0, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              We are rebuilding
+              Ancient Wisdom.
             </motion.span>
             <motion.span
               initial={{ y: 25, opacity: 0 }}
@@ -49,7 +49,7 @@ export const Hero: React.FC = () => {
               transition={{ duration: 1.0, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              the future using the
+              Modern Solutions
             </motion.span>
             <motion.span
               initial={{ y: 25, opacity: 0 }}
@@ -57,7 +57,7 @@ export const Hero: React.FC = () => {
               transition={{ duration: 1.0, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="block text-gold font-semibold relative mt-1"
             >
-              wisdom of the past.
+              for Modern Humanity.
               <span className="absolute left-0 bottom-1 w-full h-[2px] bg-gold/20 rounded-full" />
             </motion.span>
           </h1>
@@ -69,9 +69,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 1.2, delay: 1.0 }}
             className="font-outfit text-sm sm:text-base md:text-lg text-charcoal/80 dark:text-cream/90 max-w-xl mt-6 leading-relaxed font-light"
           >
-            The world doesn&apos;t need more technology. It needs better systems.
-            At Prajvaya, we revive timeless practices and combine them
-            with thoughtful innovation to eliminate physical and digital pollution.
+            Prajvaya bridges timeless Indian heritage and modern technology, creating practical, sustainable solutions to restore harmony, mental clarity, and purpose in an increasingly complex world.
           </motion.p>
 
           {/* Action CTAs */}
@@ -90,15 +88,45 @@ export const Hero: React.FC = () => {
             </button>
 
             <button
-              onClick={() => handleScrollTo("story")}
+              onClick={() => handleScrollTo("vision")}
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 border border-gold/30 hover:border-gold text-charcoal dark:text-cream bg-cream/30 dark:bg-earth/30 hover:bg-gold/5 backdrop-blur-md font-outfit text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 transform hover:scale-[1.03] active:scale-95 cursor-pointer"
             >
               Discover Our Vision
             </button>
           </motion.div>
+
+          {/* Quick Links to New Sections */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 1.6 }}
+            className="flex flex-wrap items-center gap-3 mt-8 font-outfit text-[11px] font-semibold uppercase tracking-widest text-charcoal/70 dark:text-cream/70 animate-pulse"
+          >
+            <span className="text-gold">Explore:</span>
+            <button
+              onClick={() => handleScrollTo("problems")}
+              className="hover:text-gold border-b border-dashed border-charcoal/30 dark:border-cream/30 hover:border-gold pb-0.5 cursor-pointer transition-colors"
+            >
+              Problems We Solve
+            </button>
+            <span className="opacity-40">•</span>
+            <button
+              onClick={() => handleScrollTo("helps")}
+              className="hover:text-gold border-b border-dashed border-charcoal/30 dark:border-cream/30 hover:border-gold pb-0.5 cursor-pointer transition-colors"
+            >
+              How We Help
+            </button>
+            <span className="opacity-40">•</span>
+            <button
+              onClick={() => handleScrollTo("ecosystem")}
+              className="hover:text-gold border-b border-dashed border-charcoal/30 dark:border-cream/30 hover:border-gold pb-0.5 cursor-pointer transition-colors"
+            >
+              Future Ecosystem
+            </button>
+          </motion.div>
         </div>
 
-        {/* Right Column: Premium Forest Illustration Card with Parallax Zoom */}
+        {/* Right Column: Premium Illustration Card with Parallax Zoom */}
         <div className="lg:col-span-5 flex justify-center w-full">
           <motion.div
             initial={{ scale: 1.05, opacity: 0 }}
@@ -107,8 +135,8 @@ export const Hero: React.FC = () => {
             className="relative overflow-hidden rounded-3xl border border-gold/20 shadow-[0_20px_50px_rgba(0,0,0,0.6)] aspect-[4/5] w-full max-w-sm sm:max-w-md bg-charcoal"
           >
             <img
-              src="/assets/hero_forest_bg.png"
-              alt="Ancient Forest Wisdom"
+              src="/assets/2.png"
+              alt="Ancient Wisdom"
               className="w-full h-full object-cover object-center pointer-events-none select-none"
             />
             {/* Subtle Vignette Gradient Overlay */}

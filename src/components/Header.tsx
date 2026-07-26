@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
       setScrolled(window.scrollY > 50);
 
       // Section highlighters
-      const sections = ["home", "story", "philosophy", "pillars", "how", "focus", "projects", "swadeshi", "founders", "contact"];
+      const sections = ["home", "vision", "philosophy", "problems", "helps", "ecosystem", "pillar", "timeline", "core-initiatives", "roadmap", "projects", "swadeshi", "founders", "contact"];
       const scrollPos = window.scrollY + 200;
 
       for (const section of sections) {
@@ -38,11 +38,12 @@ export const Header: React.FC = () => {
 
   const navLinks = [
     { label: "Home", href: "#home", id: "home" },
-    { label: "Vision", href: "#story", id: "story" },
+    { label: "Vision", href: "#vision", id: "vision" },
     { label: "Philosophy", href: "#philosophy", id: "philosophy" },
-    { label: "Pillars", href: "#pillars", id: "pillars" },
-    { label: "Timeline", href: "#how", id: "how" },
-    { label: "Focus", href: "#focus", id: "focus" },
+    { label: "Pillars", href: "#pillar", id: "pillar" },
+    { label: "Timeline", href: "#timeline", id: "timeline" },
+    { label: "Core Initiatives", href: "#core-initiatives", id: "core-initiatives" },
+    { label: "Roadmap", href: "#roadmap", id: "roadmap" },
     { label: "Projects", href: "#projects", id: "projects" },
     { label: "Swadeshi", href: "#swadeshi", id: "swadeshi" },
     { label: "Founders", href: "#founders", id: "founders" },

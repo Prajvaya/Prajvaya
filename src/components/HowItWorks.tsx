@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { BookOpen, PencilRuler, Construction, HeartHandshake } from "lucide-react";
+import { BookOpen, Users, AlertTriangle, Sparkles, Cpu, Brain, Compass, Heart } from "lucide-react";
 
 interface TimelineNode {
   step: string;
@@ -15,67 +15,91 @@ interface TimelineNode {
 const TIMELINE_NODES: TimelineNode[] = [
   {
     step: "01",
-    title: "Research",
-    description: "Deep archeological and literature study of forgotten traditional practices, indigenous technologies, and historical sustainability patterns.",
+    title: "Ancient Wisdom",
+    description: "Humanity thrived by living in complete harmony with natural laws, guided by deep introspective science and ancestral insights.",
     icon: <BookOpen className="text-gold" size={20} />,
-    bullets: ["Deconstruct ancient architectures", "Audit traditional material workflows", "Study community cohesion dynamics"],
+    bullets: ["Scriptural insights", "Harmony with natural cycles", "Self-mastery frameworks"],
   },
   {
     step: "02",
-    title: "Design",
-    description: "Adapt forgotten wisdom for modern applications, synthesizing ancient wisdom with clean, robust modern software and hardware paradigms.",
-    icon: <PencilRuler className="text-gold" size={20} />,
-    bullets: ["Zero-Trust encryption models", "Organic material science integration", "Stress-reducing UX/UI layouts"],
+    title: "Generations of Knowledge",
+    description: "Centuries of local traditions, oral histories, and sustainable craftsmanship passed down to keep community bonds strong.",
+    icon: <Users className="text-gold" size={20} />,
+    bullets: ["Traditional check-dams", "Local agricultural logs", "Inter-generational values"],
   },
   {
     step: "03",
-    title: "Build",
-    description: "Construct local, sovereign products, physical systems, and community groups, compile software codebases, and deploy hardware layers.",
-    icon: <Construction className="text-gold" size={20} />,
-    bullets: ["Decentralized messaging platforms", "Indigenous IoT drone nodes", "Mindful tech micro-collectives"],
+    title: "Modern Challenges",
+    description: "Industrial expansion and hyper-digitization created cognitive overload, isolation, burnout, and ecological separation.",
+    icon: <AlertTriangle className="text-gold" size={20} />,
+    bullets: ["Constant digital noise", "Stress & emotional fatigue", "Resource exploitation"],
   },
   {
     step: "04",
-    title: "Impact",
-    description: "Real-world manifestation of healthier people, cleaner physical environments, quieter digital minds, and remembered systems.",
-    icon: <HeartHandshake className="text-gold" size={20} />,
-    bullets: ["Reduced plastic dependency", "Decluttered digital spaces", "Resilient local economies"],
+    title: "Birth of Prajvaya",
+    description: "A convergence of engineers, creators, and researchers uniting to bring timeless Indian wisdom back into daily practical life.",
+    icon: <Sparkles className="text-gold" size={20} />,
+    bullets: ["Uniting tech & heritage", "Core vision formulation", "Decentralized foundations"],
+  },
+  {
+    step: "05",
+    title: "Building Meaningful Technology",
+    description: "Architecting software platforms and local hardware that prioritize user attention agency, security, and digital wellness.",
+    icon: <Cpu className="text-gold" size={20} />,
+    bullets: ["Zero-telemetry layouts", "Mindful design interfaces", "Sovereign local nodes"],
+  },
+  {
+    step: "06",
+    title: "AI Companion & Digital Ecosystem",
+    description: "Creating an emotionally intelligent, private AI assistant and wisdom archive to make classical knowledge useful in daily life.",
+    icon: <Brain className="text-gold" size={20} />,
+    bullets: ["Empathetic conversations", "Vedic intelligence model", "Wisdom database sync"],
+  },
+  {
+    step: "07",
+    title: "Global Community",
+    description: "Expanding collaborative local circles and tool-sharing registries, helping people interact face-to-face and grow together.",
+    icon: <Compass className="text-gold" size={20} />,
+    bullets: ["Local circular networks", "Interactive bootcamps", "Mindful living events"],
+  },
+  {
+    step: "08",
+    title: "A Future Rooted in Wisdom",
+    description: "A worldwide ecosystem where technology and wisdom empower humanity to lead balanced, purposeful, and nature-connected lives.",
+    icon: <Heart className="text-gold" size={20} />,
+    bullets: ["Healthier digital minds", "Sustainable local communities", "Harmonious daily living"],
   },
 ];
 
 export const HowItWorks: React.FC = () => {
   return (
     <section
-      id="how"
+      id="timeline"
       className="relative py-24 px-6 md:px-12 bg-transparent overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="max-w-2xl mx-auto text-center mb-20">
           <span className="font-outfit text-xs font-semibold tracking-[0.25em] text-gold uppercase mb-3 block">
-            Methodology
+            The Journey
           </span>
           <h2 className="font-cinzel text-3xl sm:text-4xl font-bold tracking-wide text-charcoal dark:text-cream leading-tight">
-            How Prajvaya Works
+            Humanity&apos;s Journey
           </h2>
           <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 mt-4 leading-relaxed">
-            We follow a rigorous sequence to bridge ancestral longevity patterns with tomorrow&apos;s 
-            high-performance architectures.
+            From the depths of ancient alignment, through modern complexity, into a wisdom-guided digital future.
           </p>
         </div>
 
         {/* Timeline Grid */}
-        <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Background Connector Line (Desktop) */}
-          <div className="hidden md:block absolute top-[52px] left-[5%] right-[5%] h-[1px] bg-gradient-to-r from-gold/10 via-gold/45 to-gold/10 z-0" />
-
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 gap-y-16">
           {TIMELINE_NODES.map((node, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: idx * 0.15 }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
               className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left group"
             >
               {/* Animated Node Circle */}
@@ -85,7 +109,7 @@ export const HowItWorks: React.FC = () => {
 
               {/* Step Counter Indicator */}
               <span className="font-cinzel text-[10px] font-bold text-gold tracking-widest uppercase mb-1">
-                Phase {node.step}
+                Step {node.step}
               </span>
 
               {/* Title */}
@@ -94,7 +118,7 @@ export const HowItWorks: React.FC = () => {
               </h3>
 
               {/* Description */}
-              <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 mb-6 leading-relaxed font-light">
+              <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 mb-6 leading-relaxed font-light min-h-[72px]">
                 {node.description}
               </p>
 

@@ -9,6 +9,9 @@ import { Hero } from "@/components/Hero";
 import { Storytelling } from "@/components/Storytelling";
 import { Philosophy } from "@/components/Philosophy";
 import { ThreePillars } from "@/components/ThreePillars";
+import { ProblemsWeSolve } from "@/components/ProblemsWeSolve";
+import { HowPrajvayaHelps } from "@/components/HowPrajvayaHelps";
+import { FutureEcosystem } from "@/components/FutureEcosystem";
 import { HowItWorks } from "@/components/HowItWorks";
 import { MissionMetrics } from "@/components/MissionMetrics";
 import { FocusAreas } from "@/components/FocusAreas";
@@ -63,7 +66,7 @@ const SLIDES = [
 
 const RitualOverlays: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const { startAudio } = useAudio();
-  const [subScene, setSubScene] = useState<"intro" | "slideshow" | "book">("intro");
+  const [subScene, setSubScene] = useState<"intro" | "slideshow" | "book">("book");
   const [introOut, setIntroOut] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [bookOpened, setBookOpened] = useState(false);
@@ -279,22 +282,27 @@ export default function Home() {
         ) : (
           <div id="web-content" className="visible-web relative w-full flex flex-col min-h-screen z-10">
             <Header />
-            <main className="flex-grow">
-              <Hero />
-              <Storytelling />
-              <Philosophy />
-              <ThreePillars />
-              <HowItWorks />
-              <MissionMetrics />
-              <FocusAreas />
-              <WhyNow />
-              <TimelineRoadmap />
-              <Projects />
-              <Swadeshi />
-              <Founders />
-              <Contact />
-            </main>
-            <Footer />
+            <div className="flex-grow flex flex-col w-full">
+              <main className="flex-grow">
+                <Hero />
+                <Storytelling />
+                <Philosophy />
+                <ProblemsWeSolve />
+                <HowPrajvayaHelps />
+                <FutureEcosystem />
+                <ThreePillars />
+                <HowItWorks />
+                <MissionMetrics />
+                <FocusAreas />
+                <WhyNow />
+                <TimelineRoadmap />
+                <Projects />
+                <Swadeshi />
+                <Founders />
+                <Contact />
+              </main>
+              <Footer />
+            </div>
           </div>
         )}
       </AudioProvider>

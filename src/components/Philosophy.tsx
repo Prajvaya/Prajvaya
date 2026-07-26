@@ -13,7 +13,7 @@ export const Philosophy: React.FC = () => {
       <div className="max-w-4xl mx-auto text-center flex flex-col items-center relative z-10">
         {/* Editorial Subtitle */}
         <span className="font-outfit text-xs font-semibold tracking-[0.25em] text-gold uppercase mb-6">
-          Core Belief
+          The Confluence
         </span>
 
         {/* Decorative Quote Icon */}
@@ -21,7 +21,7 @@ export const Philosophy: React.FC = () => {
 
         {/* Philosophy Main Title */}
         <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-semibold tracking-wide text-charcoal dark:text-cream leading-tight mb-8">
-          Our Philosophy
+          Ancient Principles, Modern Paradigms
         </h2>
 
         {/* Paragraph Blocks */}
@@ -33,7 +33,7 @@ export const Philosophy: React.FC = () => {
             transition={{ duration: 1.0 }}
             className="font-cinzel text-lg sm:text-xl md:text-2xl text-gold-light dark:text-gold leading-relaxed italic"
           >
-            &ldquo;We do not believe old means outdated. We believe forgotten wisdom is humanity&apos;s greatest untapped technology.&rdquo;
+            &ldquo;Ancient knowledge should not remain locked in books or historical archives—it must become practical, accessible, and active in modern everyday life.&rdquo;
           </motion.p>
 
           <motion.div
@@ -51,10 +51,10 @@ export const Philosophy: React.FC = () => {
             transition={{ duration: 1.0, delay: 0.3 }}
             className="font-outfit text-base sm:text-lg text-charcoal/80 dark:text-cream/80 leading-relaxed font-light"
           >
-            Every civilization in history survived by understanding nature rather than fighting it. 
-            We traded decades of sustainable practices for seconds of digital gratification. 
-            Our mission is to build modern hardware, software, and community systems that respect these 
-            timeless principles while solving today&apos;s challenges.
+            Prajvaya bridges the gap between historical wisdom and daily modern action. We build tools that make 
+            ancient insights practical for the digital era, focusing on deep empathy, conscious living, and continuous 
+            learning. By engineering in harmony with nature, we foster responsible innovation that prioritizes human 
+            well-being over empty consumption.
           </motion.p>
         </div>
       </div>

@@ -43,7 +43,7 @@ export const Contact: React.FC = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [logs, setLogs] = useState<string[]>([
-    "> terminal initialized. waiting for client payload inputs...",
+    "> terminal initialized. waiting to register early supporter payload...",
   ]);
   const [isTransmitting, setIsTransmitting] = useState(false);
   const logScreenRef = useRef<HTMLDivElement | null>(null);
@@ -69,11 +69,11 @@ export const Contact: React.FC = () => {
     setIsTransmitting(true);
     setLogs([]);
 
-    await addLogLine("> initiating transmission sequence...", 100);
-    await addLogLine(`> prajvaya --connect --target mailto:prajvaya@gmail.com`, 300);
-    await addLogLine("> ESTABLISHING SECURE CHANNELS...", 400);
-    await addLogLine(`> AUTHENTICATING SENDER: [${name.toUpperCase()}]`, 400);
-    await addLogLine(`> TRANSMITTING COGNITIVE PAYLOAD PACKET... 0%`, 500);
+    await addLogLine("> initiating pioneer registration sequence...", 100);
+    await addLogLine(`> prajvaya --register-supporter --identity "${name.toUpperCase()}"`, 300);
+    await addLogLine("> ESTABLISHING SECURE CONVERGENCE CHANNELS...", 400);
+    await addLogLine(`> VERIFYING SECURITY ENDPOINT: [${email.toUpperCase()}]`, 400);
+    await addLogLine(`> SYNCING COGNITIVE CONSCIOUSNESS PACKET... 0%`, 500);
 
     // Progress Simulation
     for (let percent = 25; percent <= 100; percent += 25) {
@@ -81,7 +81,7 @@ export const Contact: React.FC = () => {
         setTimeout(() => {
           setLogs((prev) => {
             const next = [...prev];
-            next[next.length - 1] = `> TRANSMITTING COGNITIVE PAYLOAD PACKET... ${percent}%`;
+            next[next.length - 1] = `> SYNCING COGNITIVE CONSCIOUSNESS PACKET... ${percent}%`;
             return next;
           });
           resolve();
@@ -89,12 +89,12 @@ export const Contact: React.FC = () => {
       });
     }
 
-    await addLogLine("> SIGNAL EMITTED SUCCESSFULLY.", 200);
+    await addLogLine("> WELCOME TO THE COHORT. SIGNAL COMMITTED.", 200);
     await addLogLine(
-      '> TRANSMISSION LOGGED: "Knowledge creates possibility. Determination creates reality."',
+      `> SYSTEM LOGGED: "Knowledge creates possibility. Determination creates reality. Together we rise."`,
       400
     );
-    await addLogLine("> session closed. status: stable.", 300);
+    await addLogLine("> registration sequence complete. status: active supporter.", 300);
 
     // Reset inputs
     setName("");
@@ -112,14 +112,14 @@ export const Contact: React.FC = () => {
         {/* Left Side Info Panel */}
         <div className="flex flex-col justify-center">
           <span className="font-outfit text-xs font-semibold tracking-[0.25em] text-gold uppercase mb-3 block">
-            Signal Uplink
+            Join the Pioneer Cohort
           </span>
           <h2 className="font-cinzel text-3xl sm:text-4xl font-bold tracking-wide text-charcoal dark:text-cream leading-tight">
-            Communication Hub
+            Become an Early Supporter
           </h2>
           <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 mt-5 leading-relaxed font-light">
-            Initiate a secure connection packet. Transmit your project details, academic inquiries, 
-            or synergistic proposals directly to our repository coordinates.
+            Prajvaya is a community-driven movement. Register below to become an early supporter, 
+            participate in alpha-testing our upcoming mindful apps, or join our local circular ecology circles.
           </p>
 
           {/* Contact coordinates list */}

@@ -97,10 +97,10 @@ export const Footer: React.FC = () => {
             </li>
             <li>
               <a
-                href="#story"
+                href="#vision"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleScrollTo("story");
+                  handleScrollTo("vision");
                 }}
                 className="hover:text-gold transition-colors duration-300"
               >

@@ -15,43 +15,43 @@ const STORY_STEPS: StoryStep[] = [
   {
     title: "Traditional Life & Nature",
     category: "past",
-    description: "For generations, humanity lived in sync with natural cycles, respecting limits and borrowing from the Earth rather than stealing from it.",
+    description: "Indian heritage outlines a lifestyle in sync with natural cycles. We adapt these ecological frameworks for modern urban living.",
     icon: <Leaf className="text-emerald-700 dark:text-emerald-400" size={20} />,
   },
   {
     title: "Community & Craftsmanship",
     category: "past",
-    description: "Systems were local. Products were built by hand to last a lifetime. Families and neighborhoods bonded over shared, physical labor.",
+    description: "Timeless local coordination patterns are rebuilt to foster resilient neighborhood networks and support circular local trade.",
     icon: <Hammer className="text-amber-700 dark:text-amber-400" size={20} />,
   },
   {
     title: "Physical Pollution",
     category: "present",
-    description: "Industrial expansion brought disposable goods, plastic accumulation, resource depletion, and systemic environmental decay.",
+    description: "Pioneering green architectures and circular product design to reclaim pure water, clean soil, and sustainable spaces.",
     icon: <AlertTriangle className="text-rose-600 dark:text-rose-400" size={20} />,
   },
   {
     title: "Digital Addiction",
     category: "present",
-    description: "The digital space was commoditized. Infinite scrolls, notification clutter, attention mining, and cognitive overload disrupted mental peace.",
+    description: "Designing mindful user interfaces and notification-free platforms that restore focus and mental agency.",
     icon: <Cpu className="text-red-500" size={20} />,
   },
   {
     title: "Modern Disconnection",
     category: "present",
-    description: "Stress, consumerism, and isolation rose. We traded physical presence and age-old wisdom for screen-lit convenience.",
+    description: "Replacing screen-lit isolation with authentic, real-world community meetings and shared growth spaces.",
     icon: <Brain className="text-violet-600 dark:text-violet-400" size={20} />,
   },
   {
     title: "Prajvaya & Forgotten Wisdom",
     category: "future",
-    description: "We revive ancient practices and combine them with conscious software systems to clean both physical landscapes and digital minds.",
+    description: "Transforming ancient shastras into functional, modern digital utilities and physical tools for everyday life.",
     icon: <Compass className="text-gold" size={20} />,
   },
   {
     title: "A Harmonious Future",
     category: "future",
-    description: "Empowered communities, sustainable living circles, local hardware, and sovereign decentralized applications rebuilding our world.",
+    description: "A worldwide ecosystem where technology and wisdom empower humanity to lead balanced, purposeful, and nature-connected lives.",
     icon: <Heart className="text-teal-600 dark:text-teal-400" size={20} />,
   },
 ];
@@ -59,22 +59,20 @@ const STORY_STEPS: StoryStep[] = [
 export const Storytelling: React.FC = () => {
   return (
     <section
-      id="story"
+      id="vision"
       className="relative py-24 px-6 md:px-12 bg-cream-dark/15 dark:bg-forest-light/5 border-y border-gold/10"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-24">
         {/* Sticky Left Editorial Side */}
         <div className="lg:col-span-2 flex flex-col justify-start lg:sticky lg:top-32 lg:h-[calc(100vh-200px)]">
           <span className="font-outfit text-xs font-semibold tracking-[0.25em] text-gold uppercase mb-3">
-            Our Journey
+            Ancestral Roots
           </span>
           <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide text-charcoal dark:text-cream leading-tight">
-            We forgot what already worked.
+            Reclaiming What Already Worked
           </h2>
           <p className="font-outfit text-base text-charcoal/70 dark:text-cream/80 mt-6 leading-relaxed">
-            In our rush to engineer more, we discarded systems that had sustained humanity for millennia. 
-            We replaced community ties with notifications, and organic materials with synthetic waste. 
-            Prajvaya is the path back—and forward.
+            Prajvaya is building a future where timeless Indian wisdom and modern technology work together to solve real-world challenges. Rather than simply preserving traditions, we focus on engineering practical solutions that cultivate healthier minds, foster stronger communities, enable sustainable living, and restore meaningful human connections in a hyper-digital era.
           </p>
 
           {/* Color Indicators */}

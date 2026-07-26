@@ -14,11 +14,11 @@ export const WhyNow: React.FC = () => {
             The Urgency
           </span>
           <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide text-charcoal dark:text-cream leading-tight">
-            Why Now?
+            The Urgency of Alignment
           </h2>
           <div className="h-[2px] w-20 bg-gold mt-6 mb-8" />
           <p className="font-cinzel text-lg md:text-xl text-gold-light dark:text-gold italic leading-relaxed">
-            &ldquo;Humanity has more technology than ever before. Yet we experience more pollution, stress, distraction, and isolation.&rdquo;
+            &ldquo;Humanity has more processing power than ever before. Yet we experience unprecedented distraction, isolation, and burnout. It is time to realign with natural rhythms.&rdquo;
           </p>
         </div>
 
