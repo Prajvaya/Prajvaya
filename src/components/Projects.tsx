@@ -139,14 +139,9 @@ export const Projects: React.FC = () => {
           className="flex justify-center mt-16"
         >
           <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              const el = document.getElementById("contact");
-              if (el) {
-                el.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
+            href="https://forms.gle/PtnM67mhoHyVqSCn6"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3.5 bg-gold hover:bg-gold-light text-charcoal-dark font-outfit text-xs font-bold tracking-widest uppercase rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-[1px] cursor-pointer"
           >
             Join as Contributor

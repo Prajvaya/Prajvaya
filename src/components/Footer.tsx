@@ -49,12 +49,14 @@ export const Footer: React.FC = () => {
           >
             Join Prajvaya
           </button>
-          <button
-            onClick={() => handleScrollTo("contact")}
-            className="w-full sm:w-auto px-7 py-3.5 border border-gold/30 hover:border-gold text-charcoal dark:text-cream bg-cream/35 dark:bg-forest/35 hover:bg-gold/5 backdrop-blur-md font-outfit text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 transform hover:-translate-y-[1px] cursor-pointer"
+          <a
+            href="https://forms.gle/PtnM67mhoHyVqSCn6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-7 py-3.5 border border-gold/30 hover:border-gold text-charcoal dark:text-cream bg-cream/35 dark:bg-forest/35 hover:bg-gold/5 backdrop-blur-md font-outfit text-xs font-bold tracking-widest uppercase rounded-full transition-all duration-300 transform hover:-translate-y-[1px] cursor-pointer text-center inline-block"
           >
             Become a Contributor
-          </button>
+          </a>
         </div>
       </div>
 
