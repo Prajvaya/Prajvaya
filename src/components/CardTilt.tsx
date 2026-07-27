@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 
-interface CardTiltProps {
+interface CardTiltProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   maxTilt?: number; // Maximum tilt angle in degrees
@@ -12,6 +12,7 @@ export const CardTilt: React.FC<CardTiltProps> = ({
   children,
   className = "",
   maxTilt = 7,
+  ...props
 }) => {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
@@ -64,6 +65,7 @@ export const CardTilt: React.FC<CardTiltProps> = ({
       onMouseLeave={handleMouseLeave}
       className={`relative overflow-hidden rounded-2xl border border-gold/15 bg-cream-dark/30 dark:bg-forest-light/30 backdrop-blur-md smooth-transition shadow-lg ${className}`}
       style={tiltStyle}
+      {...props}
     >
       {/* Glare Overlay */}
       <div
