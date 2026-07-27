@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local scratch/test scripts (may contain API keys)
+scratch/
+
+# local library files
+library/
