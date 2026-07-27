@@ -99,7 +99,7 @@ export const Header: React.FC = () => {
           : "py-5 bg-transparent border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="w-full px-6 md:px-12 flex items-center justify-between">
         {/* Brand Logo & Name */}
         <a
           href="#home"
@@ -216,10 +216,7 @@ export const Header: React.FC = () => {
             ))}
           </ul>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-gold/10">
-            <div className="font-yatra text-sm text-gold select-none">
-              विजयाय बुद्धिः
-            </div>
+          <div className="flex flex-wrap items-center justify-end gap-4 pt-4 border-t border-gold/10 w-full">
             
             {/* Mobile Auth Actions */}
             <div className="flex items-center gap-3">
