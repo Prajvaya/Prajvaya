@@ -104,7 +104,7 @@ export const Header: React.FC = () => {
         <a
           href="#home"
           onClick={(e) => handleLinkClick(e, "#home")}
-          className="flex items-center gap-3 group select-none cursor-pointer"
+          className="flex items-center group select-none cursor-pointer"
         >
           <div className="flex flex-col">
             <span className="font-cinzel text-base font-bold tracking-[0.2em] text-charcoal dark:text-cream leading-tight">
@@ -142,11 +142,6 @@ export const Header: React.FC = () => {
 
         {/* Telemetry and Controls */}
         <div className="hidden sm:flex items-center gap-5">
-          {/* Sanskrit Telemetry */}
-          <div className="font-yatra text-[13px] text-gold/80 dark:text-gold/90 px-3 border-r border-gold/20 select-none">
-            विजयाय बुद्धिः
-          </div>
-
           <AudioControl />
 
           {/* Dynamic Session Actions */}
