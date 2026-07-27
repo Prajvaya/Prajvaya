@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { AudioProvider, useAudio } from "@/components/AudioDrone";
 import { CanvasBackground } from "@/components/CanvasBackground";
 import { LoadingProvider } from "@/components/SectionLoading";
@@ -66,49 +67,57 @@ const SLIDES = [
 
 const RitualOverlays: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const { startAudio } = useAudio();
-  const [subScene, setSubScene] = useState<"intro" | "slideshow" | "book">("book");
+  const [subScene, setSubScene] = useState<"intro" | "logo" | "video" | "book">("intro");
   const [introOut, setIntroOut] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [logoPhase, setLogoPhase] = useState<"idle" | "zoomIn" | "zoomOut">("idle");
   const [bookOpened, setBookOpened] = useState(false);
   const [bookFadeOut, setBookFadeOut] = useState(false);
 
-  // Scene 1: Welcome Intro Text Delay
+  // 1. Welcome Intro Screen Timing
   useEffect(() => {
     if (subScene !== "intro") return;
     const introTimer = setTimeout(() => {
       setIntroOut(true);
-      // Wait for blur transition (1.2s) before showing slideshow
-      const showSlidesTimer = setTimeout(() => {
-        setSubScene("slideshow");
-      }, 1200);
-      return () => clearTimeout(showSlidesTimer);
-    }, 3800); // 3.8s welcome screen
+      const nextTimer = setTimeout(() => {
+        setSubScene("logo");
+      }, 1000);
+      return () => clearTimeout(nextTimer);
+    }, 2800); // 2.8s intro before fade out
 
     return () => clearTimeout(introTimer);
   }, [subScene]);
 
-  // Scene 1.5: Slideshow player logic
+  // 2. Logo Zoom In and Out Timing
   useEffect(() => {
-    if (subScene !== "slideshow") return;
+    if (subScene !== "logo") return;
+    setLogoPhase("zoomIn");
 
-    const slideTimer = setInterval(() => {
-      setCurrentSlide((prev) => {
-        if (prev === SLIDES.length - 1) {
-          clearInterval(slideTimer);
-          // Transitions to the book cover stage
-          setTimeout(() => {
-            setSubScene("book");
-          }, 1000);
-          return prev;
-        }
-        return prev + 1;
-      });
-    }, 3600); // 3.6s per slide
+    const zoomOutTimer = setTimeout(() => {
+      setLogoPhase("zoomOut");
+    }, 1800); // Zoom in for 1.8s, then zoom out
 
-    return () => clearInterval(slideTimer);
+    const nextTimer = setTimeout(() => {
+      setSubScene("video");
+    }, 3200); // Move to video stage after 3.2s total
+
+    return () => {
+      clearTimeout(zoomOutTimer);
+      clearTimeout(nextTimer);
+    };
   }, [subScene]);
 
-  // Scene 2: Book Cover Open handler
+  // 3. Clean Video Reveal Timing
+  useEffect(() => {
+    if (subScene !== "video") return;
+
+    const nextTimer = setTimeout(() => {
+      setSubScene("book");
+    }, 3500); // Reveal video for 3.5s, then proceed to the book portal
+
+    return () => clearTimeout(nextTimer);
+  }, [subScene]);
+
+  // 4. Portal Entry Handler
   const handleBookClick = () => {
     if (bookOpened) return;
     setBookOpened(true);
@@ -130,56 +139,60 @@ const RitualOverlays: React.FC<{ onComplete: () => void }> = ({ onComplete }) =>
           className={`stage active ${introOut ? "intro-stage-out" : ""}`}
         >
           <div className="intro-content">
-            <h1 className="intro-title" id="intro-title-text">
+            <h1 className="intro-title font-cinzel text-cream tracking-[0.25em] text-3xl sm:text-4xl md:text-5xl font-bold uppercase animate-pulse">
               WELCOME TO PRAJVAYA
             </h1>
-            <p className="intro-subtitle" id="intro-subtitle-text">
+            <p className="intro-subtitle font-outfit text-xs text-gold uppercase tracking-[0.2em] mt-3">
               Victory Through Intellect
             </p>
           </div>
         </div>
       )}
 
-      {/* SCENE 1.5: COSMIC HISTORY SLIDESHOW JOURNEY */}
-      {subScene === "slideshow" && (
-        <div className="fixed inset-0 z-[1000] bg-transparent flex flex-col justify-between p-8 text-cream select-none overflow-hidden">
-          {/* Top Bar: Progress Indicator & Skip */}
-          <div className="relative z-10 flex items-center justify-between w-full max-w-6xl mx-auto pt-6">
-            <div className="flex gap-2.5 items-center">
-              {SLIDES.map((_, idx) => (
-                <div
-                  key={idx}
-                  className="h-[3px] rounded-full transition-all duration-500"
-                  style={{
-                    width: idx === currentSlide ? "40px" : "15px",
-                    backgroundColor: idx === currentSlide ? "#c29d66" : "rgba(194,157,102,0.25)"
-                  }}
-                />
-              ))}
-            </div>
-            <button
-              onClick={() => setSubScene("book")}
-              className="px-6 py-2 border border-gold/30 hover:border-gold text-gold text-xs font-semibold tracking-widest uppercase rounded-full bg-charcoal-dark/40 hover:bg-gold/15 smooth-transition cursor-pointer"
-            >
-              Skip Intro
-            </button>
-          </div>
-
-          {/* Center: Small translucent narrative box telling about Prajvaya */}
-          <div className="relative z-10 w-full max-w-lg mx-auto p-8 rounded-2xl border border-gold/25 bg-charcoal-dark/65 backdrop-blur-lg shadow-[0_20px_50px_rgba(0,0,0,0.6)] text-center my-auto">
-            <span className="font-cinzel text-xs font-bold text-gold uppercase tracking-[0.25em] mb-2.5 block animate-pulse">
-              {SLIDES[currentSlide].title}
-            </span>
-            <h2 className="font-cinzel text-lg sm:text-xl font-bold tracking-wide text-cream mb-4">
-              {SLIDES[currentSlide].subtitle}
+      {/* SCENE 1.3: BRAND LOGO ZOOM IN / ZOOM OUT */}
+      {subScene === "logo" && (
+        <div className="fixed inset-0 z-[1000] bg-earth-dark flex items-center justify-center p-6 select-none overflow-hidden">
+          <motion.div
+            initial={{ scale: 0.3, opacity: 0, filter: "blur(10px)" }}
+            animate={
+              logoPhase === "zoomIn"
+                ? { scale: 1.15, opacity: 1, filter: "blur(0px)" }
+                : { scale: 0.65, opacity: 0, filter: "blur(15px)" }
+            }
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center gap-4"
+          >
+            <img
+              src="/assets/logo.png"
+              alt="Prajvaya Logo"
+              className="h-28 w-28 md:h-36 md:w-36 object-contain"
+            />
+            <h2 className="font-cinzel text-sm tracking-[0.35em] text-cream uppercase mt-2">
+              PRAJVAYA
             </h2>
-            <p className="font-outfit text-xs sm:text-sm text-cream/90 leading-relaxed font-light">
-              {SLIDES[currentSlide].description}
-            </p>
-          </div>
+          </motion.div>
+        </div>
+      )}
 
-          {/* Bottom Spacer to center the box vertically */}
-          <div className="h-16" />
+      {/* SCENE 1.6: CLEAN BACKGROUND VIDEO REVEAL */}
+      {subScene === "video" && (
+        <div className="fixed inset-0 z-[1000] bg-transparent flex flex-col items-center justify-center p-6 select-none overflow-hidden">
+          {/* Dark solid layer fades out to transition into the background video */}
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute inset-0 bg-earth-dark pointer-events-none"
+          />
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: [0, 0.75, 0], y: 0 }}
+            transition={{ duration: 3.0, times: [0, 0.5, 1], ease: "easeInOut" }}
+            className="relative z-10 text-center font-outfit text-[10px] text-gold uppercase tracking-[0.3em] font-semibold bg-charcoal-dark/45 backdrop-blur-md px-5 py-2.5 rounded-full border border-gold/10"
+          >
+            SYSTEM HANDSHAKE... CONNECTING COHORT NODE
+          </motion.div>
         </div>
       )}
 
