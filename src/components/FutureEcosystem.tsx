@@ -139,24 +139,39 @@ export const FutureEcosystem: React.FC = () => {
               transition={{ duration: 0.8, delay: (idx + 3) * 0.15 }}
               className="md:col-span-3"
             >
-              <CardTilt className="h-full p-8 flex flex-col items-start min-h-[280px] relative border border-gold/10 hover:border-gold/25 shadow-sm">
+              <CardTilt 
+                onClick={() => {
+                  if (item.title === "Community Platform") {
+                    window.open("https://chat.whatsapp.com/HS6dVyedqtAKvGlkVjQSdJ", "_blank", "noopener,noreferrer");
+                  }
+                }}
+                className={`h-full p-8 flex flex-col items-start min-h-[280px] relative border border-gold/10 hover:border-gold/25 shadow-sm ${
+                  item.title === "Community Platform" ? "cursor-pointer hover:bg-gold/5 group/community" : ""
+                }`}
+              >
                 {item.badge && (
                   <span className="absolute top-4 right-4 bg-gold/10 border border-gold/30 text-gold text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md animate-pulse">
                     {item.badge}
                   </span>
                 )}
-                <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-gold/10 border border-gold/25 mb-6">
+                <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-gold/10 border border-gold/25 mb-6 group-hover/community:border-gold/50 transition-colors">
                   {item.icon}
                 </div>
                 <span className="font-outfit text-[9px] font-bold text-gold uppercase tracking-widest mb-1.5">
                   {item.tagline}
                 </span>
-                <h3 className="font-cinzel text-xl font-bold text-charcoal dark:text-cream mb-4 leading-snug">
+                <h3 className="font-cinzel text-xl font-bold text-charcoal dark:text-cream mb-4 leading-snug group-hover/community:text-gold transition-colors">
                   {item.title}
                 </h3>
                 <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 leading-relaxed font-light">
                   {item.description}
                 </p>
+
+                {item.title === "Community Platform" && (
+                  <span className="mt-auto pt-6 font-outfit text-[10px] font-bold tracking-widest uppercase text-gold hover:underline flex items-center gap-1">
+                    Join Community <X className="rotate-45" size={10} />
+                  </span>
+                )}
               </CardTilt>
             </motion.div>
           ))}
