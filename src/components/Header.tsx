@@ -106,11 +106,6 @@ export const Header: React.FC = () => {
           onClick={(e) => handleLinkClick(e, "#home")}
           className="flex items-center gap-3 group select-none cursor-pointer"
         >
-          <img
-            src="/assets/logo.png"
-            alt="PRAJVAYA Logo"
-            className="h-9 w-9 object-contain group-hover:scale-105 smooth-transition"
-          />
           <div className="flex flex-col">
             <span className="font-cinzel text-base font-bold tracking-[0.2em] text-charcoal dark:text-cream leading-tight">
               PRAJVAYA
