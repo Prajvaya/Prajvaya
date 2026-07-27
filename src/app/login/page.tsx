@@ -285,7 +285,7 @@ export default function Login() {
                   Verify Account
                 </h2>
                 <p className="font-outfit text-xs text-cream/70 font-light">
-                  A verification OTP code has been logged to your inbox.
+                  A verification OTP code has been logged to your inbox. <strong className="text-gold block mt-1">(If it doesn&apos;t arrive in 1 minute, please check your Spam/Junk folder!)</strong>
                 </p>
               </div>
 
