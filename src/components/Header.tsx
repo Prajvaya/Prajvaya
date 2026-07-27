@@ -4,12 +4,42 @@ import React, { useState, useEffect } from "react";
 import { AudioControl } from "./AudioDrone";
 import { Menu, X } from "lucide-react";
 import { useLoading } from "./SectionLoading";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const Header: React.FC = () => {
   const { triggerLoading } = useLoading();
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [user, setUser] = useState<{ name: string; email: string; role: string } | null>(null);
+
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const res = await fetch("/api/auth/session");
+        const data = await res.json();
+        if (data.user) {
+          setUser(data.user);
+        }
+      } catch (err) {
+        // No session found
+      }
+    };
+    checkSession();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      setUser(null);
+      router.refresh();
+      router.push("/");
+    } catch (err) {
+      console.error("Logout failed", err);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,6 +153,41 @@ export const Header: React.FC = () => {
           </div>
 
           <AudioControl />
+
+          {/* Dynamic Session Actions */}
+          <div className="flex items-center gap-4">
+            {user ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="font-outfit text-[11px] font-bold tracking-widest uppercase text-gold hover:text-gold-light smooth-transition"
+                >
+                  Console
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-1.5 bg-rose-950/20 hover:bg-rose-900/40 border border-rose-500/20 hover:border-rose-500 text-rose-300 font-outfit text-[11px] font-bold tracking-widest uppercase rounded-full smooth-transition cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="font-outfit text-[11px] font-bold tracking-widest uppercase text-cream/70 hover:text-gold smooth-transition"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register"
+                  className="px-4 py-1.5 border border-gold/30 hover:border-gold text-gold font-outfit text-[11px] font-bold tracking-widest uppercase rounded-full bg-gold/5 smooth-transition"
+                >
+                  Register
+                </Link>
+              </>
+            )}
+          </div>
         </div>
 
         {/* Mobile menu trigger */}
@@ -165,11 +230,46 @@ export const Header: React.FC = () => {
             <div className="font-yatra text-sm text-gold select-none">
               विजयाय बुद्धिः
             </div>
-            <div className="flex items-center gap-2 select-none border border-gold/20 px-3 py-1.5 rounded-full bg-cream-dark/30 dark:bg-earth-light/45">
-              <span className="h-[6px] w-[6px] rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-outfit text-[9px] font-semibold tracking-[0.2em] text-charcoal/80 dark:text-cream/80">
-                SYS: ONLINE
-              </span>
+            
+            {/* Mobile Auth Actions */}
+            <div className="flex items-center gap-3">
+              {user ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="font-outfit text-xs font-bold tracking-widest uppercase text-gold py-1"
+                  >
+                    Console
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      handleLogout();
+                    }}
+                    className="px-4 py-1.5 bg-rose-950/20 border border-rose-500/20 text-rose-300 font-outfit text-xs font-bold tracking-widest uppercase rounded-full cursor-pointer"
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="font-outfit text-xs font-bold tracking-widest uppercase text-charcoal/80 dark:text-cream/80 py-1"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/register"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="px-4 py-1.5 border border-gold/30 text-gold font-outfit text-xs font-bold tracking-widest uppercase rounded-full bg-gold/5"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

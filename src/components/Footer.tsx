@@ -7,6 +7,9 @@ import { useLoading } from "./SectionLoading";
 export const Footer: React.FC = () => {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState("");
+  const [otpVerificationMode, setOtpVerificationMode] = useState(false);
+  const [otpInput, setOtpInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { triggerLoading } = useLoading();
 
@@ -19,11 +22,58 @@ export const Footer: React.FC = () => {
     });
   };
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail) return;
-    setNewsletterStatus("Uplink successful. Welcome.");
-    setNewsletterEmail("");
+    setNewsletterStatus("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setNewsletterStatus(data.error || "Failed to subscribe.");
+      } else {
+        setNewsletterStatus(data.message || "OTP code sent!");
+        setOtpVerificationMode(true);
+      }
+    } catch (err) {
+      setNewsletterStatus("Network error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOtpVerifySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!otpInput) return;
+    setNewsletterStatus("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/newsletter/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: newsletterEmail, token: otpInput }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setNewsletterStatus(data.error || "Verification failed.");
+      } else {
+        setNewsletterStatus(data.message || "Subscription confirmed.");
+        setOtpVerificationMode(false);
+        setNewsletterEmail("");
+        setOtpInput("");
+      }
+    } catch (err) {
+      setNewsletterStatus("Network error occurred.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -163,27 +213,61 @@ export const Footer: React.FC = () => {
           <p className="font-outfit text-xs text-charcoal/60 dark:text-cream/70 leading-relaxed font-light mb-4">
             Receive updates on our research archives, prototype launches, and community nodes.
           </p>
-          <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-            <input
-              type="email"
-              value={newsletterEmail}
-              onChange={(e) => setNewsletterEmail(e.target.value)}
-              className="bg-cream-dark/30 dark:bg-earth-light/35 border border-gold/15 px-3 py-2 rounded-lg font-outfit text-xs text-charcoal dark:text-cream outline-none focus:border-gold/50 flex-grow min-w-0"
-              placeholder="Enter email coordinate..."
-              required
-            />
-            <button
-              type="submit"
-              className="p-2.5 bg-gold hover:bg-gold-light text-charcoal-dark rounded-lg flex items-center justify-center cursor-pointer transition-all duration-300 active:scale-95"
-              aria-label="Subscribe"
-            >
-              <Send size={12} />
-            </button>
-          </form>
+          {!otpVerificationMode ? (
+            <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+              <input
+                type="email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                className="bg-cream-dark/30 dark:bg-earth-light/35 border border-gold/15 px-3 py-2 rounded-lg font-outfit text-xs text-charcoal dark:text-cream outline-none focus:border-gold/50 flex-grow min-w-0"
+                placeholder="Enter email coordinate..."
+                disabled={loading}
+                required
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="p-2.5 bg-gold hover:bg-gold-light text-charcoal-dark rounded-lg flex items-center justify-center cursor-pointer transition-all duration-300 active:scale-95 disabled:opacity-50"
+                aria-label="Subscribe"
+              >
+                <Send size={12} />
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleOtpVerifySubmit} className="flex flex-col gap-2">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={otpInput}
+                  onChange={(e) => setOtpInput(e.target.value.replace(/\D/g, ""))}
+                  maxLength={6}
+                  className="bg-cream-dark/30 dark:bg-earth-light/35 border border-gold/15 px-3 py-2 rounded-lg font-outfit text-xs text-charcoal dark:text-cream outline-none focus:border-gold/50 text-center tracking-[0.25em] flex-grow min-w-0"
+                  placeholder="Enter 6-digit OTP..."
+                  disabled={loading}
+                  required
+                />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="px-4 bg-gold hover:bg-gold-light text-charcoal-dark rounded-lg flex items-center justify-center cursor-pointer text-xs font-bold font-outfit transition-all duration-300 active:scale-95 disabled:opacity-50"
+                >
+                  Verify
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={() => { setOtpVerificationMode(false); setNewsletterStatus(""); }}
+                className="text-left font-outfit text-[10px] text-gold hover:underline mt-1 cursor-pointer bg-transparent border-none"
+              >
+                Change email coordinate
+              </button>
+            </form>
+          )}
+
           {newsletterStatus && (
-            <span className="font-outfit text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block mt-2.5">
+            <p className="font-outfit text-[11px] text-gold mt-2 font-medium">
               {newsletterStatus}
-            </span>
+            </p>
           )}
         </div>
       </div>
