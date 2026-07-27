@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CardTilt } from "./CardTilt";
-import { Sparkles, BookOpen, Heart, Users, School } from "lucide-react";
+import { Sparkles, BookOpen, Heart, Users, School, X } from "lucide-react";
 
 interface EcosystemItem {
   title: string;
@@ -48,6 +48,19 @@ const ECOSYSTEM: EcosystemItem[] = [
 ];
 
 export const FutureEcosystem: React.FC = () => {
+  const [showGitaPdf, setShowGitaPdf] = useState(false);
+
+  useEffect(() => {
+    if (showGitaPdf) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showGitaPdf]);
+
   return (
     <section
       id="ecosystem"
@@ -94,9 +107,45 @@ export const FutureEcosystem: React.FC = () => {
                 <h3 className="font-cinzel text-xl font-bold text-charcoal dark:text-cream mb-4 leading-snug">
                   {item.title}
                 </h3>
-                <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 leading-relaxed font-light">
-                  {item.description}
-                </p>
+                
+                {item.title === "Wisdom Library" ? (
+                  <div className="w-full flex flex-col gap-4">
+                    <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 leading-relaxed font-light">
+                      {item.description}
+                    </p>
+                    
+                    {/* Visual Gita Cover */}
+                    <div 
+                      onClick={() => setShowGitaPdf(true)} 
+                      className="w-full relative rounded-xl overflow-hidden border border-gold/20 cursor-pointer group/gita aspect-[4/5] shadow-md"
+                    >
+                      <img 
+                        src="/assets/gita_cover.png" 
+                        alt="Bhagavad Gita Book" 
+                        className="w-full h-full object-cover group-hover/gita:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark/60 via-transparent to-transparent opacity-80 group-hover/gita:opacity-40 transition-opacity" />
+                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-cream">
+                        <span className="font-cinzel text-xs font-bold tracking-widest uppercase drop-shadow-md">
+                          Gita PDF Active
+                        </span>
+                        <BookOpen size={14} className="text-gold animate-pulse" />
+                      </div>
+                    </div>
+
+                    <button 
+                      onClick={() => setShowGitaPdf(true)}
+                      className="w-full py-3 bg-gold hover:bg-gold-light text-charcoal-dark font-outfit text-xs font-bold tracking-widest uppercase rounded-full flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all duration-300 transform active:scale-95"
+                    >
+                      <BookOpen size={13} />
+                      <span>Read Bhagwad Gita</span>
+                    </button>
+                  </div>
+                ) : (
+                  <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 leading-relaxed font-light">
+                    {item.description}
+                  </p>
+                )}
               </CardTilt>
             </motion.div>
           ))}
@@ -133,6 +182,34 @@ export const FutureEcosystem: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Bhagavad Gita PDF Viewer Overlay */}
+      {showGitaPdf && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8 bg-charcoal-dark/90 backdrop-blur-md">
+          {/* Close / Cross button */}
+          <button
+            onClick={() => setShowGitaPdf(false)}
+            className="absolute top-6 right-6 z-[10000] p-3 rounded-full bg-charcoal border border-gold/30 text-gold hover:bg-gold hover:text-charcoal-dark smooth-transition cursor-pointer shadow-lg"
+            aria-label="Close PDF"
+          >
+            <X size={20} />
+          </button>
+          
+          {/* PDF Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            className="relative w-full max-w-5xl h-[85vh] bg-charcoal border border-gold/25 rounded-2xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.8)]"
+          >
+            <iframe
+              src="/library/The-Bhagavad-Gita.pdf"
+              className="w-full h-full border-none"
+              title="The Bhagavad Gita"
+            />
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 };
