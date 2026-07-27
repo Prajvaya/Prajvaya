@@ -141,7 +141,7 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Telemetry and Controls */}
-        <div className="hidden sm:flex items-center gap-5">
+        <div className="hidden sm:flex items-center gap-5 lg:ml-8">
           <AudioControl />
 
           {/* Dynamic Session Actions */}
