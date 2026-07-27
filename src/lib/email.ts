@@ -202,7 +202,14 @@ export const templates = {
     <p>Hello ${name},</p>
     <p>Thank you for joining <strong>Prajvaya</strong>. We are thrilled to welcome you to our cohort.</p>
     <p>Prajvaya operates at the intersection of classical Indian wisdom and modern systems engineering. We believe technology should respect human attention, heal digital minds, restore community bonds, and align with natural laws. By verifying your account, you are now officially part of this cohort.</p>
-    <div style="text-align: center;">
+    
+    <div style="margin: 30px 0; padding: 20px; background-color: rgba(194, 157, 102, 0.05); border: 1px solid rgba(194, 157, 102, 0.15); border-radius: 12px; text-align: center;">
+      <p style="margin-top: 0; color: #dec095; font-weight: bold; font-size: 15px; font-family: 'Cinzel', serif;">Become a Contributor 🤝</p>
+      <p style="font-size: 13px; margin-bottom: 20px; color: #fbf9f4;">If you registered to be a contributor, click the link below to join the official Contributors Group on WhatsApp to sync with the team:</p>
+      <a href="https://chat.whatsapp.com/BbSPzaUTtws9OJpU5JqcaA" class="btn" style="margin: 0; display: inline-block;" target="_blank">Join Contributors Group</a>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;">
       <a href="https://prajvaya.com" class="btn" target="_blank">Access Portal</a>
     </div>
     <p>Feel free to reach out to us at <a href="mailto:prajvaya@gmail.com" style="color: #dec095;">prajvaya@gmail.com</a> for any collaborative queries.</p>
