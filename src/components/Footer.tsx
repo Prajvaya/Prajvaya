@@ -10,6 +10,38 @@ export const Footer: React.FC = () => {
   const [otpVerificationMode, setOtpVerificationMode] = useState(false);
   const [otpInput, setOtpInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resendCooldown, setResendCooldown] = useState(0);
+
+  React.useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (resendCooldown > 0) {
+      timer = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [resendCooldown]);
+
+  const handleResendNewsletterOtp = async () => {
+    setNewsletterStatus("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/auth/resend-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: newsletterEmail, type: "subscribe" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setNewsletterStatus(data.error || "Failed to resend OTP.");
+      } else {
+        setNewsletterStatus(data.message || "New OTP dispatched successfully.");
+        setResendCooldown(30);
+      }
+    } catch (err) {
+      setNewsletterStatus("Failed to resend OTP. Connection error.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const { triggerLoading } = useLoading();
 
@@ -254,13 +286,23 @@ export const Footer: React.FC = () => {
                   Verify
                 </button>
               </div>
-              <button
-                type="button"
-                onClick={() => { setOtpVerificationMode(false); setNewsletterStatus(""); }}
-                className="text-left font-outfit text-[10px] text-gold hover:underline mt-1 cursor-pointer bg-transparent border-none"
-              >
-                Change email coordinate
-              </button>
+              <div className="flex justify-between items-center mt-1">
+                <button
+                  type="button"
+                  onClick={() => { setOtpVerificationMode(false); setNewsletterStatus(""); }}
+                  className="text-left font-outfit text-[10px] text-cream/60 hover:text-gold hover:underline cursor-pointer bg-transparent border-none"
+                >
+                  Change email
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResendNewsletterOtp}
+                  disabled={loading || resendCooldown > 0}
+                  className="text-right font-outfit text-[10px] text-gold hover:text-gold-light hover:underline cursor-pointer disabled:opacity-50 disabled:no-underline bg-transparent border-none font-bold"
+                >
+                  {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend OTP"}
+                </button>
+              </div>
             </form>
           )}
 

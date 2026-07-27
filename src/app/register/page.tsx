@@ -24,6 +24,39 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const [resendCooldown, setResendCooldown] = useState(0);
+
+  React.useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (resendCooldown > 0) {
+      timer = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [resendCooldown]);
+
+  const handleResendOtp = async () => {
+    setError("");
+    setSuccessMsg("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/auth/resend-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: formData.email, type: "verify" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Failed to resend OTP.");
+      } else {
+        setSuccessMsg(data.message || "New OTP dispatched successfully.");
+        setResendCooldown(30);
+      }
+    } catch (err) {
+      setError("Failed to resend OTP. Connection error.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -336,13 +369,23 @@ export default function Register() {
                 </button>
               </form>
 
-              <button
-                type="button"
-                onClick={() => setStep("register")}
-                className="mt-6 font-outfit text-xs text-gold hover:underline font-bold cursor-pointer"
-              >
-                Back to Registration
-              </button>
+              <div className="flex justify-between items-center mt-6">
+                <button
+                  type="button"
+                  onClick={() => setStep("register")}
+                  className="font-outfit text-xs text-cream/60 hover:text-gold hover:underline font-bold cursor-pointer"
+                >
+                  Back to Register
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResendOtp}
+                  disabled={loading || resendCooldown > 0}
+                  className="font-outfit text-xs text-gold hover:text-gold-light hover:underline font-bold cursor-pointer disabled:opacity-50 disabled:no-underline"
+                >
+                  {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend OTP"}
+                </button>
+              </div>
             </motion.div>
           )}
 
