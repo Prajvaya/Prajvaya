@@ -2,12 +2,6 @@ import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
 
-const SMTP_HOST = process.env.SMTP_HOST || "";
-const SMTP_PORT = parseInt(process.env.SMTP_PORT || "587", 10);
-const SMTP_USER = process.env.SMTP_USER || "";
-const SMTP_PASS = process.env.SMTP_PASS || "";
-const SMTP_FROM = process.env.SMTP_FROM || '"Prajvaya" <noreply@prajvaya.com>';
-
 // Helper to log emails locally when SMTP is not configured.
 const logEmailLocally = async (to: string, subject: string, html: string) => {
   const dirPath = path.join(process.cwd(), "scratch", "emails");
@@ -29,20 +23,26 @@ ${html}`;
 };
 
 export const sendEmail = async (to: string, subject: string, html: string): Promise<boolean> => {
-  if (SMTP_HOST && SMTP_USER && SMTP_PASS) {
+  const host = process.env.SMTP_HOST || "";
+  const port = parseInt(process.env.SMTP_PORT || "587", 10);
+  const user = process.env.SMTP_USER || "";
+  const pass = process.env.SMTP_PASS || "";
+  const from = process.env.SMTP_FROM || '"Prajvaya" <noreply@prajvaya.com>';
+
+  if (host && user && pass) {
     try {
       const transporter = nodemailer.createTransport({
-        host: SMTP_HOST,
-        port: SMTP_PORT,
-        secure: SMTP_PORT === 465,
+        host,
+        port,
+        secure: port === 465,
         auth: {
-          user: SMTP_USER,
-          password: SMTP_PASS,
+          user,
+          pass,
         },
       } as any);
 
       await transporter.sendMail({
-        from: SMTP_FROM,
+        from,
         to,
         subject,
         html,
