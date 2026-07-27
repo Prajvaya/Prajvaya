@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { CardTilt } from "./CardTilt";
 import { Sparkles, BookOpen, Heart, Users, School, X } from "lucide-react";
@@ -18,8 +18,7 @@ const ECOSYSTEM: EcosystemItem[] = [
     title: "AI Companion",
     icon: <Sparkles className="text-gold" size={24} />,
     tagline: "Vedic Intelligence",
-    description: "A private, offline-first digital companion that helps individuals align their daily routines with ancient wisdom and mindfulness.",
-    badge: "Coming Soon",
+    description: "A private, interactive digital companion that helps individuals align their daily routines with ancient wisdom and mindfulness.",
   },
   {
     title: "Wisdom Library",
@@ -50,9 +49,30 @@ const ECOSYSTEM: EcosystemItem[] = [
 export const FutureEcosystem: React.FC = () => {
   const [showLibraryModal, setShowLibraryModal] = useState(false);
   const [showGitaPdf, setShowGitaPdf] = useState(false);
+  
+  // AI Companion Chat States
+  const [showChatModal, setShowChatModal] = useState(false);
+  const [chatMessages, setChatMessages] = useState<Array<{ sender: "user" | "ai"; content: string }>>([
+    {
+      sender: "ai",
+      content: "Welcome to Prajvaya! 🌱\n\nI'm your Prajvaya AI Companion. I can help you explore sustainable living, understand our mission, answer questions about environmental conservation, traditional wisdom, digital wellbeing, and guide you through the Prajvaya platform.\n\nHow can I assist you today?"
+    }
+  ]);
+  const [chatInput, setChatInput] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
+  
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  // Auto Scroll Chat Messages
   useEffect(() => {
-    if (showLibraryModal || showGitaPdf) {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chatMessages, chatLoading]);
+
+  // Lock scrolling when overlays are active
+  useEffect(() => {
+    if (showLibraryModal || showGitaPdf || showChatModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -60,7 +80,39 @@ export const FutureEcosystem: React.FC = () => {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [showLibraryModal, showGitaPdf]);
+  }, [showLibraryModal, showGitaPdf, showChatModal]);
+
+  // Chat message sender logic
+  const handleSendMessage = async (customMessage?: string) => {
+    const textToSend = customMessage || chatInput.trim();
+    if (!textToSend || chatLoading) return;
+
+    // Add user message
+    const updatedMessages = [...chatMessages, { sender: "user" as const, content: textToSend }];
+    setChatMessages(updatedMessages);
+    setChatInput("");
+    setChatLoading(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: updatedMessages }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to get response.");
+      }
+      setChatMessages(prev => [...prev, { sender: "ai" as const, content: data.reply }]);
+    } catch (err) {
+      setChatMessages(prev => [
+        ...prev,
+        { sender: "ai" as const, content: "I apologize, but I am currently having trouble connecting to the cohort nodes. Please check your network connection and try again." }
+      ]);
+    } finally {
+      setChatLoading(false);
+    }
+  };
 
   return (
     <section
@@ -97,10 +149,12 @@ export const FutureEcosystem: React.FC = () => {
                 onClick={() => {
                   if (item.title === "Wisdom Library") {
                     setShowLibraryModal(true);
+                  } else if (item.title === "AI Companion") {
+                    setShowChatModal(true);
                   }
                 }}
                 className={`h-full p-8 flex flex-col items-start min-h-[300px] relative border border-gold/10 hover:border-gold/25 shadow-sm ${
-                  item.title === "Wisdom Library" ? "cursor-pointer hover:bg-gold/5 group/library" : ""
+                  item.title === "Wisdom Library" || item.title === "AI Companion" ? "cursor-pointer hover:bg-gold/5 group/interactive" : ""
                 }`}
               >
                 {item.badge && (
@@ -108,13 +162,13 @@ export const FutureEcosystem: React.FC = () => {
                     {item.badge}
                   </span>
                 )}
-                <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-gold/10 border border-gold/25 mb-6 group-hover/library:border-gold/50 transition-colors">
+                <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-gold/10 border border-gold/25 mb-6 group-hover/interactive:border-gold/50 transition-colors">
                   {item.icon}
                 </div>
                 <span className="font-outfit text-[9px] font-bold text-gold uppercase tracking-widest mb-1.5">
                   {item.tagline}
                 </span>
-                <h3 className="font-cinzel text-xl font-bold text-charcoal dark:text-cream mb-4 leading-snug group-hover/library:text-gold transition-colors">
+                <h3 className="font-cinzel text-xl font-bold text-charcoal dark:text-cream mb-4 leading-snug group-hover/interactive:text-gold transition-colors">
                   {item.title}
                 </h3>
                 <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 leading-relaxed font-light">
@@ -124,6 +178,11 @@ export const FutureEcosystem: React.FC = () => {
                 {item.title === "Wisdom Library" && (
                   <span className="mt-auto pt-6 font-outfit text-[10px] font-bold tracking-widest uppercase text-gold hover:underline flex items-center gap-1">
                     Enter Archive <X className="rotate-45" size={10} />
+                  </span>
+                )}
+                {item.title === "AI Companion" && (
+                  <span className="mt-auto pt-6 font-outfit text-[10px] font-bold tracking-widest uppercase text-gold hover:underline flex items-center gap-1">
+                    Chat Now <X className="rotate-45" size={10} />
                   </span>
                 )}
               </CardTilt>
@@ -295,6 +354,120 @@ export const FutureEcosystem: React.FC = () => {
               className="w-full h-full border-none"
               title="The Bhagavad Gita"
             />
+          </motion.div>
+        </div>
+      )}
+
+      {/* Prajvaya AI Companion Chat Modal */}
+      {showChatModal && (
+        <div className="fixed inset-0 z-[9998] flex items-center justify-center p-4 bg-charcoal-dark/95 backdrop-blur-md">
+          {/* Close button */}
+          <button
+            onClick={() => setShowChatModal(false)}
+            className="absolute top-6 right-6 z-[10000] p-3 rounded-full bg-charcoal border border-gold/30 text-gold hover:bg-gold hover:text-charcoal-dark smooth-transition cursor-pointer shadow-lg"
+            aria-label="Close Chat"
+          >
+            <X size={20} />
+          </button>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            className="w-full max-w-xl bg-charcoal border border-gold/20 rounded-3xl overflow-hidden flex flex-col h-[85vh] shadow-[0_25px_60px_rgba(0,0,0,0.8)]"
+          >
+            {/* Chat Header */}
+            <div className="flex items-center gap-3 p-6 border-b border-gold/15 bg-charcoal-dark/40">
+              <div className="h-10 w-10 rounded-xl flex items-center justify-center bg-gold/10 border border-gold/25">
+                <Sparkles className="text-gold" size={20} />
+              </div>
+              <div className="flex flex-col text-left">
+                <h3 className="font-cinzel text-lg font-bold text-cream">
+                  Prajvaya AI
+                </h3>
+                <span className="font-outfit text-[10px] font-bold text-gold uppercase tracking-wider">
+                  Official Cohort Companion
+                </span>
+              </div>
+            </div>
+
+            {/* Messages Scroll Area */}
+            <div className="flex-grow overflow-y-auto p-6 space-y-4 flex flex-col bg-charcoal/20">
+              {chatMessages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`flex flex-col max-w-[85%] ${
+                    msg.sender === "user" ? "self-end items-end" : "self-start items-start"
+                  }`}
+                >
+                  <div
+                    className={`rounded-2xl px-4 py-3 font-outfit text-sm leading-relaxed whitespace-pre-line ${
+                      msg.sender === "user"
+                        ? "bg-gold/10 border border-gold/30 text-cream rounded-tr-none text-right"
+                        : "bg-charcoal-dark/60 border border-gold/10 text-cream/90 rounded-tl-none text-left"
+                    }`}
+                  >
+                    {msg.content}
+                  </div>
+                </div>
+              ))}
+              
+              {chatLoading && (
+                <div className="self-start flex flex-col items-start max-w-[85%] animate-pulse">
+                  <div className="bg-charcoal-dark/60 border border-gold/10 rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-1">
+                    <span className="h-2 w-2 rounded-full bg-gold animate-bounce" />
+                    <span className="h-2 w-2 rounded-full bg-gold animate-bounce [animation-delay:0.2s]" />
+                    <span className="h-2 w-2 rounded-full bg-gold animate-bounce [animation-delay:0.4s]" />
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Quick Prompts Panel */}
+            <div className="px-6 py-3 border-t border-gold/10 bg-charcoal-dark/20 flex flex-wrap gap-2 justify-center">
+              {[
+                { label: "About Prajvaya", query: "Tell me about Prajvaya's mission" },
+                { label: "Digital Wellbeing", query: "How to reduce digital pollution?" },
+                { label: "Traditional Farming", query: "What is traditional circular farming?" },
+                { label: "Yoga & Breathing", query: "Recommend a healthy mindfulness routine" },
+              ].map((p, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSendMessage(p.query)}
+                  disabled={chatLoading}
+                  className="px-3 py-1.5 border border-gold/20 hover:border-gold text-cream/70 hover:text-gold font-outfit text-[10px] font-bold tracking-wider uppercase rounded-full bg-charcoal/30 hover:bg-gold/5 smooth-transition cursor-pointer disabled:opacity-50"
+                >
+                  {p.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Chat Input Bar */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendMessage();
+              }}
+              className="p-4 border-t border-gold/15 bg-charcoal-dark/40 flex gap-2.5 items-center"
+            >
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                placeholder="Ask your companion..."
+                disabled={chatLoading}
+                className="w-full bg-charcoal/40 border border-gold/15 focus:border-gold/50 text-cream rounded-full py-3 px-5 font-outfit text-sm outline-none transition-all placeholder:text-cream/35"
+                required
+              />
+              <button
+                type="submit"
+                disabled={chatLoading || !chatInput.trim()}
+                className="h-11 w-11 rounded-full bg-gold hover:bg-gold-light text-charcoal-dark flex items-center justify-center shrink-0 shadow-md cursor-pointer transition-all active:scale-95 disabled:opacity-50"
+              >
+                <Sparkles size={16} />
+              </button>
+            </form>
           </motion.div>
         </div>
       )}
