@@ -77,6 +77,24 @@ export const WISDOM_BOOKS: Book[] = [
             explanation: "It advises focusing entirely on input and duty while remaining detached from future results."
           }
         ]
+      },
+      {
+        id: "gita_ch3",
+        chapterNumber: 3,
+        title: "The Yoga of Action (Karma Yoga)",
+        sanskritTitle: "कर्मयोग",
+        summary: "Why action is necessary for all living beings, and how selfless work converts daily activity into spiritual growth.",
+        estimatedReadTimeMinutes: 18,
+        content: `Arjuna asks: "If knowledge is superior to action, why do you urge me to engage in this terrible conflict?"\n\nKrishna replies: "No one can remain even for a moment without performing action. The biological body itself requires action to survive. But work performed as a sacrifice (*Yajna*) for the collective good does not create psychological bondage."\n\n"Do your duty efficiently, for action is superior to inaction. The universe itself is kept in motion through mutual interdependence (*Prakriti cycle*). Just as rain nourishes crops, and crops nourish beings, your work should contribute to the world wheel (*Lokasangraha*)."\n\nWork without selfish desire cleanses the mind and turns daily labor into a meditative practice.`,
+        keyLessons: [
+          "Inaction causes stagnation; disciplined work builds mental strength.",
+          "Lokasangraha: Direct your personal talents toward uplifting the broader community.",
+          "Selfless service purifies the ego and eliminates internal conflict."
+        ],
+        reflectionQuestions: [
+          "In what way does your daily job or routine serve the broader community?",
+          "How can you perform one mundane chore today as a selfless contribution?"
+        ]
       }
     ]
   },
@@ -86,7 +104,7 @@ export const WISDOM_BOOKS: Book[] = [
     sanskritTitle: "पतञ्जलि योगसूत्राणि",
     author: "Sage Patanjali",
     category: "Indian Wisdom",
-    coverImage: "",
+    coverImage: "/assets/covers/patanjali_yoga.png",
     description: "The foundational text of classical Raja Yoga detailing the eight-limbed path (Ashtanga Yoga) to master the mind stream.",
     historicalContext: "Cataloged around 400 CE, compiling oral meditative traditions into 196 terse aphorisms (sutras).",
     publicDomainLicense: "Public Domain",
@@ -110,6 +128,23 @@ export const WISDOM_BOOKS: Book[] = [
         reflectionQuestions: [
           "When your mind is agitated, can you step back and observe the thought as an observer?"
         ]
+      },
+      {
+        id: "yoga_ch2",
+        chapterNumber: 2,
+        title: "On Practice & The Eight Limbs (Sadhana Pada)",
+        sanskritTitle: "साधनापाद",
+        summary: "Patanjali outlines Kriya Yoga (action yoga) and the eight limbs of self-realization.",
+        estimatedReadTimeMinutes: 18,
+        content: `**Sutra 2.29**: *Yama niyamasana pranayama pratyahara dharana dhyana samadhayo ashtavangani*\n"The eight limbs of Yoga are: Yamas (ethical restraints), Niyamas (personal observances), Asana (posture), Pranayama (breath regulation), Pratyahara (sensory withdrawal), Dharana (concentration), Dhyana (meditation), and Samadhi (absorption)."\n\nPatanjali emphasizes that spiritual growth is not an abstract theory but a systematic science. The **Yamas** (non-violence, truthfulness, non-stealing, celibacy/continence, non-possessiveness) build moral purity, while **Niyamas** (cleanliness, contentment, austerity, self-study, surrender) establish inner discipline.`,
+        keyLessons: [
+          "Ethics (Yama/Niyama) form the necessary foundation before meditation.",
+          "Asana provides steady comfort for physical endurance.",
+          "Pranayama regulates the nervous system and calms mental chatter."
+        ],
+        reflectionQuestions: [
+          "Which of the 5 Yamas (Non-violence, Truth, Non-stealing, Continence, Non-greed) needs the most focus in your daily life?"
+        ]
       }
     ]
   },
@@ -119,7 +154,7 @@ export const WISDOM_BOOKS: Book[] = [
     sanskritTitle: "अर्थशास्त्रम्",
     author: "Chanakya (Kautilya)",
     category: "Indian Wisdom",
-    coverImage: "",
+    coverImage: "/assets/covers/arthashastra.png",
     description: "The ancient Indian treatise on statecraft, economic policy, leadership ethics, strategic management, and public governance.",
     historicalContext: "Authored by Kautilya around 300 BCE during the establishment of the Mauryan Empire.",
     publicDomainLicense: "Public Domain",
@@ -142,6 +177,23 @@ export const WISDOM_BOOKS: Book[] = [
         ],
         reflectionQuestions: [
           "How do you ensure your personal ego does not override the collective good of your team?"
+        ]
+      },
+      {
+        id: "artha_ch2",
+        chapterNumber: 2,
+        title: "Economic Management & Treasury Protection",
+        sanskritTitle: "कोषसंरक्षणम्",
+        summary: "Sustainable revenue generation, avoiding waste, and protecting community wealth.",
+        estimatedReadTimeMinutes: 16,
+        content: `Kautilya explains that all public works, security, and welfare projects depend upon sound treasury management. Wealth should be generated ethically without over-taxing citizens or depleting natural reserves.\n\n"Just as fruit is gathered from a tree when ripe, so revenue should be collected from the state when due, without causing hardship to citizens." Wastefulness and corruption are condemned as economic sabotage.`,
+        keyLessons: [
+          "Financial sustainability enables long-term independence and public welfare.",
+          "Avoid wasteful expenditure and manage resources with foresight.",
+          "Ethics in financial dealings builds institutional trust."
+        ],
+        reflectionQuestions: [
+          "How can you optimize your personal or business finances to eliminate unnecessary waste?"
         ]
       }
     ]
@@ -176,6 +228,23 @@ export const WISDOM_BOOKS: Book[] = [
         reflectionQuestions: [
           "What practical habit can you start today to build long-term personal resilience?"
         ]
+      },
+      {
+        id: "niti_ch2",
+        chapterNumber: 2,
+        title: "Wisdom in Speech & Association",
+        sanskritTitle: "वाणी शुद्धिः",
+        summary: "The power of truthful speech and avoiding toxic company.",
+        estimatedReadTimeMinutes: 14,
+        content: `Silence is better than speech when words serve only to incite malice. Speak truth that is beneficial, agreeable, and non-injurious.\n\n"Do not reveal what you have thought upon doing, but by wise counsel keep it secret, being determined to carry it into execution."\n\nLearning without practice is like food without digestion—it turns into poison. Put your knowledge into daily action.`,
+        keyLessons: [
+          "Keep strategic plans quiet until execution is complete.",
+          "Practice mindful speech: beneficial, truthful, and peaceful.",
+          "Application converts passive knowledge into practical wisdom."
+        ],
+        reflectionQuestions: [
+          "Have you been sharing your plans prematurely instead of executing them quietly?"
+        ]
       }
     ]
   },
@@ -185,7 +254,7 @@ export const WISDOM_BOOKS: Book[] = [
     sanskritTitle: "ईशावास्याद्युपनिषदः",
     author: "Vedic Rishis",
     category: "Indian Wisdom",
-    coverImage: "",
+    coverImage: "/assets/covers/upanishads.png",
     description: "The mystical culmination of the Vedas exploring ultimate reality (Brahman), consciousness, and ecological oneness.",
     historicalContext: "Philosophical dialogues composed between 800 and 500 BCE laying the bedrock of Vedanta.",
     publicDomainLicense: "Public Domain",
@@ -208,6 +277,23 @@ export const WISDOM_BOOKS: Book[] = [
         ],
         reflectionQuestions: [
           "How does viewing nature as an interconnected living system change your consumption habits?"
+        ]
+      },
+      {
+        id: "up_kena",
+        chapterNumber: 2,
+        title: "Kena Upanishad: By Whom is the Mind Directed?",
+        sanskritTitle: "केनोपनिषत्",
+        summary: "Inquiring into the ultimate source of thought, speech, and perception.",
+        estimatedReadTimeMinutes: 14,
+        content: `*Keneshitam patati preshitam manah?*\n"By whom impelled does the mind fly to its target? By whom directed does the breath move? By whom willed do people utter speech?"\n\nThe teacher answers: "It is the Ear of the ear, the Mind of the mind, the Speech of the speech, the Life of the life. That which cannot be comprehended by the mind, but by which the mind itself is comprehended—know That alone as Brahman, not this which people worship here."`,
+        keyLessons: [
+          "Consciousness is the foundational observer underlying all mental activity.",
+          "True wisdom is recognizing the limitations of verbal definitions.",
+          "Self-inquiry (Atma-Vichara) reveals deep inner tranquility."
+        ],
+        reflectionQuestions: [
+          "Who is the silent observer witnessing your thoughts right now?"
         ]
       }
     ]
@@ -242,6 +328,23 @@ export const WISDOM_BOOKS: Book[] = [
         reflectionQuestions: [
           "How do you react when unexpected disruptions derail your personal plans?"
         ]
+      },
+      {
+        id: "ram_sundara",
+        chapterNumber: 2,
+        title: "Sundara Kanda: Courage & Devotion of Hanuman",
+        sanskritTitle: "सुन्दरकाण्डम्",
+        summary: "Hanuman's leap across the ocean through unwavering courage and humility.",
+        estimatedReadTimeMinutes: 22,
+        content: `Faced with the vast ocean separating the search party from Lanka, Hanuman remembers his hidden inner strength. Encouraged by Jambavan, he expands his vision, takes a mighty leap, overcoming obstacles through intelligence, strength, and devotion.\n\nUpon finding Sita in the Ashoka Vatika, Hanuman delivers Rama's ring with profound humility, offering hope and reassurance that justice will prevail.`,
+        keyLessons: [
+          "Inner strength often lies dormant until awakened by noble purpose.",
+          "Overcome formidable obstacles through combined intelligence and courage.",
+          "True capability is accompanied by deep humility."
+        ],
+        reflectionQuestions: [
+          "What self-limiting belief is preventing you from taking a bold leap forward?"
+        ]
       }
     ]
   },
@@ -274,6 +377,23 @@ export const WISDOM_BOOKS: Book[] = [
         ],
         reflectionQuestions: [
           "What is one impulsive habit you need to set firm boundaries around?"
+        ]
+      },
+      {
+        id: "mb_shanti",
+        chapterNumber: 2,
+        title: "Shanti Parva: Bhishma's Discourse on Governance & Peace",
+        sanskritTitle: "शान्तिपर्व",
+        summary: "Grandfather Bhishma instructs Yudhishthira on duty, justice, and self-realization.",
+        estimatedReadTimeMinutes: 25,
+        content: `Lying upon his bed of arrows, the dying patriarch Bhishma imparts supreme wisdom on statecraft, ethics, and liberation to King Yudhishthira:\n\n"There is no duty higher than truth. Truth is the bedrock of righteousness. A king should protect all subjects equally, as a mother protects her child, without partiality or hatred."`,
+        keyLessons: [
+          "Truth (*Satya*) is the foundation of all enduring peace and justice.",
+          "Compassionate impartiality builds public trust.",
+          "Wisdom must be shared for future generations."
+        ],
+        reflectionQuestions: [
+          "How can you uphold fairness and truth in your leadership or personal relationships?"
         ]
       }
     ]
@@ -308,6 +428,23 @@ export const WISDOM_BOOKS: Book[] = [
         reflectionQuestions: [
           "How does staying curious and humble expand your understanding of the world?"
         ]
+      },
+      {
+        id: "rv_purusha",
+        chapterNumber: 2,
+        title: "Purusha Sukta: The Cosmic Person & Unity of Life",
+        sanskritTitle: "पुरुष सूक्तम्",
+        summary: "The cosmos as a single living interconnected organism.",
+        estimatedReadTimeMinutes: 15,
+        content: `**Rig Veda 10.90**:\n"The Cosmic Being (*Purusha*) has a thousand heads, a thousand eyes, a thousand feet. Pervading the earth on every side, it extends beyond it."\n\n"From this Cosmic Person arose the sun, the moon, the winds, the seasons, and all living species." The Purusha Sukta conveys that humanity and nature are organic limbs of one universal body. Injuring any part of nature is injuring the collective self.`,
+        keyLessons: [
+          "All living beings are interconnected parts of one cosmic organism.",
+          "Harm to nature is harm to ourselves.",
+          "Live in reverence and gratitude for the earth's resources."
+        ],
+        reflectionQuestions: [
+          "How does viewing humanity as one family alter your daily empathy?"
+        ]
       }
     ]
   },
@@ -319,7 +456,7 @@ export const WISDOM_BOOKS: Book[] = [
     sanskritTitle: "धम्मपद",
     author: "Gautama Buddha",
     category: "Buddhism",
-    coverImage: "",
+    coverImage: "/assets/covers/dhammapada.png",
     description: "Verses of Truth on mindfulness, ethical conduct, self-mastery, and the elimination of mental suffering.",
     historicalContext: "Part of the Pali Tipitaka, compiling 423 ethical verses spoken by Gautama Buddha.",
     publicDomainLicense: "Public Domain",
@@ -342,6 +479,23 @@ export const WISDOM_BOOKS: Book[] = [
         ],
         reflectionQuestions: [
           "What negative thought loop have you been harboring that is bringing self-made suffering?"
+        ]
+      },
+      {
+        id: "dhamma_ch2",
+        chapterNumber: 2,
+        title: "Vigilance & Mindfulness (Appamada Vagga)",
+        sanskritTitle: "अपमादवग्गो",
+        summary: "Mindfulness is the path to the Deathless; unmindfulness is the path to death.",
+        estimatedReadTimeMinutes: 14,
+        content: `Mindfulness is the path to the Deathless; unmindfulness is the path to death. Those who are mindful do not die; those who are unmindful are as if already dead.\n\nBy effort, mindfulness, discipline, and self-control, let the wise person make for themselves an island which no flood can overwhelm.\n\nFoolish people indulge in heedlessness, but the wise person guards mindfulness as their greatest treasure.`,
+        keyLessons: [
+          "Mindfulness (*Appamada*) protects the mind against impulse and distraction.",
+          "Build an inner island of stability through daily practice.",
+          "Treat conscious attention as your most valuable asset."
+        ],
+        reflectionQuestions: [
+          "How many times today did your mind wander into passive scrolling or distraction?"
         ]
       }
     ]
@@ -457,7 +611,7 @@ export const WISDOM_BOOKS: Book[] = [
     sanskritTitle: "आत्मचिन्तनम्",
     author: "Marcus Aurelius",
     category: "World Philosophy",
-    coverImage: "",
+    coverImage: "/assets/covers/marcus_meditations.png",
     description: "Private journal entries of the Roman Emperor on Stoic discipline, duty, impermanence, and internal strength.",
     historicalContext: "Written between 161 and 180 CE while commanding military campaigns along the Danube river frontier.",
     publicDomainLicense: "Public Domain",
@@ -480,6 +634,23 @@ export const WISDOM_BOOKS: Book[] = [
         ],
         reflectionQuestions: [
           "How much time do you spend worrying about other people's opinions or behavior?"
+        ]
+      },
+      {
+        id: "marcus_b4",
+        chapterNumber: 2,
+        title: "Book 4: The Inner Retreat & Impermanence",
+        sanskritTitle: "आन्तरिकविश्रामः",
+        summary: "Retreat into your own soul; nowhere is quieter than your own mind.",
+        estimatedReadTimeMinutes: 15,
+        content: `People seek retreats for themselves—in the country, by the sea, or in the mountains. But this is unphilosophical, when you can at any moment retreat into your own soul. Nowhere can a person find a quieter or more untroubled retreat than in their own mind, especially if they have within themselves those thoughts which, when examined, bring immediate calm.\n\nRemember: time is a river, a violent current of events. No sooner is a thing brought to sight than it is swept away, and another takes its place, and this too will be swept away. Keep your principles simple and basic.`,
+        keyLessons: [
+          "Your mind is your ultimate peaceful sanctuary.",
+          "Accept impermanence: everything passing through life is temporary.",
+          "Keep your guiding moral principles simple."
+        ],
+        reflectionQuestions: [
+          "When stressed, do you know how to retreat into inner quietness for 2 minutes?"
         ]
       }
     ]

@@ -153,18 +153,23 @@ const DEFAULT_THEME = {
 export const BookCover: React.FC<BookCoverProps> = ({ book, className = "", showBadge = true }) => {
   const theme = BOOK_THEMES[book.id] || DEFAULT_THEME;
 
-  // Use actual image if it's the Gita and requested, else custom procedural art cover
-  if (book.id === "gita" && book.coverImage && book.coverImage.endsWith(".png")) {
+  // Use actual image if defined
+  if (book.coverImage && book.coverImage.trim() !== "") {
     return (
-      <div className={`relative w-full aspect-[4/5] rounded-xl overflow-hidden border border-gold/30 shadow-lg ${className}`}>
+      <div className={`relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-gold/30 shadow-xl ${className}`}>
         <img src={book.coverImage} alt={book.title} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark/90 via-transparent to-transparent opacity-80" />
-        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-cream">
-          <span className="font-cinzel text-[10px] font-bold uppercase tracking-wider text-gold">
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark/95 via-charcoal-dark/30 to-transparent opacity-90" />
+        
+        {/* Overlaid Title Info */}
+        <div className="absolute bottom-3 left-3 right-3 flex flex-col text-cream">
+          <span className="font-outfit text-[9px] font-bold uppercase tracking-widest text-gold mb-0.5">
             {book.category}
           </span>
-          <span className="font-outfit text-[10px] text-cream/70 font-light">
-            {book.totalEstReadMinutes} min read
+          <h4 className="font-cinzel text-xs font-bold text-cream leading-tight">
+            {book.title}
+          </h4>
+          <span className="font-outfit text-[10px] text-cream/70 font-light mt-0.5">
+            {book.totalEstReadMinutes}m read
           </span>
         </div>
       </div>
