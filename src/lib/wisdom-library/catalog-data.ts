@@ -1,6 +1,7 @@
 import { Book, DailyWisdom } from "./types";
 
 export const WISDOM_BOOKS: Book[] = [
+  // --- INDIAN WISDOM ---
   {
     id: "gita",
     title: "The Bhagavad Gita",
@@ -26,7 +27,7 @@ export const WISDOM_BOOKS: Book[] = [
         keyLessons: [
           "Recognize that moral dilemmas and emotional paralysis are natural human experiences.",
           "Avoid making major life decisions while in a state of high emotional overwhelm.",
-          "Seek grounding counsel when personal bias cloud your perception of duty."
+          "Seek grounding counsel when personal bias clouds your perception of duty."
         ],
         reflectionQuestions: [
           "What is one situation in your life where conflict between comfort and duty caused you indecision?",
@@ -76,24 +77,6 @@ export const WISDOM_BOOKS: Book[] = [
             explanation: "It advises focusing entirely on input and duty while remaining detached from future results."
           }
         ]
-      },
-      {
-        id: "gita_ch3",
-        chapterNumber: 3,
-        title: "The Yoga of Action (Karma Yoga)",
-        sanskritTitle: "कर्मयोग",
-        summary: "Why action is necessary for all living beings, and how selfless work converts daily activity into spiritual growth.",
-        estimatedReadTimeMinutes: 18,
-        content: `Arjuna asks: "If knowledge is superior to action, why do you urge me to engage in this terrible conflict?"\n\nKrishna replies: "No one can remain even for a moment without performing action. The biological body itself requires action to survive. But work performed as a sacrifice (*Yajna*) for the collective good does not create psychological bondage."\n\n"Do your duty efficiently, for action is superior to inaction. The universe itself is kept in motion through mutual interdependence (*Prakriti cycle*). Just as rain nourishes crops, and crops nourish beings, your work should contribute to the world wheel (*Lokasangraha*)."\n\nWork without selfish desire cleanses the mind and turns daily labor into a meditative practice.`,
-        keyLessons: [
-          "Inaction causes stagnation; disciplined work builds mental strength.",
-          "Lokasangraha: Direct your personal talents toward uplifting the broader community.",
-          "Selfless service purifies the ego and eliminates internal conflict."
-        ],
-        reflectionQuestions: [
-          "In what way does your daily job or routine serve the broader community?",
-          "How can you perform one mundane chore today as a selfless contribution?"
-        ]
       }
     ]
   },
@@ -103,7 +86,7 @@ export const WISDOM_BOOKS: Book[] = [
     sanskritTitle: "पतञ्जलि योगसूत्राणि",
     author: "Sage Patanjali",
     category: "Indian Wisdom",
-    coverImage: "/assets/gita_cover.png",
+    coverImage: "",
     description: "The foundational text of classical Raja Yoga detailing the eight-limbed path (Ashtanga Yoga) to master the mind stream.",
     historicalContext: "Cataloged around 400 CE, compiling oral meditative traditions into 196 terse aphorisms (sutras).",
     publicDomainLicense: "Public Domain",
@@ -131,12 +114,212 @@ export const WISDOM_BOOKS: Book[] = [
     ]
   },
   {
+    id: "arthashastra",
+    title: "Arthashastra",
+    sanskritTitle: "अर्थशास्त्रम्",
+    author: "Chanakya (Kautilya)",
+    category: "Indian Wisdom",
+    coverImage: "",
+    description: "The ancient Indian treatise on statecraft, economic policy, leadership ethics, strategic management, and public governance.",
+    historicalContext: "Authored by Kautilya around 300 BCE during the establishment of the Mauryan Empire.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.7,
+    audioAvailable: true,
+    totalEstReadMinutes: 140,
+    chapters: [
+      {
+        id: "artha_ch1",
+        chapterNumber: 1,
+        title: "Duties of a Leader & Self-Control",
+        sanskritTitle: "राजर्षिवृत्तम्",
+        summary: "A leader's primary duty is the happiness of the people; self-mastery precedes governance.",
+        estimatedReadTimeMinutes: 18,
+        content: `Kautilya lays down the immortal law of servant leadership:\n\n> *"In the happiness of his subjects lies the king's happiness; in their welfare his welfare. Whatever pleases himself he shall not consider as good, but whatever pleases his subjects he shall consider as good."*\n\nBefore managing an enterprise or a state, a leader must master the six internal enemies: lust, anger, greed, vanity, arrogance, and foolhardiness. A leader who cannot govern their own desires will inevitably cause the ruin of their institution.`,
+        keyLessons: [
+          "Leadership is service: prioritize the growth and wellbeing of your team.",
+          "Self-control (*Indriya-jaya*) is the bedrock of strategic decision-making.",
+          "Discipline in daily routines creates organizational stability."
+        ],
+        reflectionQuestions: [
+          "How do you ensure your personal ego does not override the collective good of your team?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "chanakya_niti",
+    title: "Chanakya Niti",
+    sanskritTitle: "चाणक्य नीति",
+    author: "Chanakya",
+    category: "Indian Wisdom",
+    coverImage: "",
+    description: "A pragmatic collection of aphorisms on life wisdom, human psychology, financial prudence, and strategic friendship.",
+    historicalContext: "Compiled ancient maxims attributed to Chanakya for practical success and moral living.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.8,
+    audioAvailable: true,
+    totalEstReadMinutes: 90,
+    chapters: [
+      {
+        id: "niti_ch1",
+        chapterNumber: 1,
+        title: "Prudence & Character",
+        sanskritTitle: "सद्गुणवर्णनम्",
+        summary: "Maxims on building unshakeable personal integrity and evaluating human character.",
+        estimatedReadTimeMinutes: 12,
+        content: `A man is great by deeds, not by birth. Just as a snake is dangerous regardless of its size, a toxic companion damages peace regardless of their status.\n\n"Test a servant while in the discharge of his duty, a relative in difficulty, a friend in adversity, and a wife in misfortune."\n\nSave wealth for times of calamity; do not think that wealthy people are exempt from disaster. True education is that which produces humility and practical competence.`,
+        keyLessons: [
+          "Actions and daily conduct define character, not titles or origin.",
+          "Financial discipline provides security against unpredictable crises.",
+          "Evaluate true friends by their presence during challenging times."
+        ],
+        reflectionQuestions: [
+          "What practical habit can you start today to build long-term personal resilience?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "upanishads",
+    title: "The Upanishads (Isha & Kena)",
+    sanskritTitle: "ईशावास्याद्युपनिषदः",
+    author: "Vedic Rishis",
+    category: "Indian Wisdom",
+    coverImage: "",
+    description: "The mystical culmination of the Vedas exploring ultimate reality (Brahman), consciousness, and ecological oneness.",
+    historicalContext: "Philosophical dialogues composed between 800 and 500 BCE laying the bedrock of Vedanta.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.9,
+    audioAvailable: true,
+    totalEstReadMinutes: 110,
+    chapters: [
+      {
+        id: "up_isha",
+        chapterNumber: 1,
+        title: "Isha Upanishad: All is Pervaded by Divine Consciousness",
+        sanskritTitle: "ईशावास्योपनिषत्",
+        summary: "Harmonizing worldly engagement with spiritual awareness.",
+        estimatedReadTimeMinutes: 15,
+        content: `**Verse 1**: *Isha vasyam idam sarvam yat kincha jagatyam jagat*\n"All this—whatever moves in this changing universe—is enveloped by the Divine. Enjoy the world through renunciation of possessiveness; do not covet anyone's wealth."\n\nThe Isha Upanishad presents the supreme ecological truth: everything in existence is interconnected within one continuous field of consciousness. When we treat nature or fellow human beings as mere commodities to exploit, we create self-destructive imbalance. Enjoy life deeply, but hold material possessions with a light, non-possessive grip.`,
+        keyLessons: [
+          "Recognize the inherent sacredness and interconnectedness of all life.",
+          "Practice non-possessive enjoyment (Tyaktena Bhunjitha).",
+          "Combine outer activity with inner spiritual reflection."
+        ],
+        reflectionQuestions: [
+          "How does viewing nature as an interconnected living system change your consumption habits?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "ramayana",
+    title: "The Valmiki Ramayana",
+    sanskritTitle: "वाल्मीकि रामायणम्",
+    author: "Sage Valmiki",
+    category: "Indian Wisdom",
+    coverImage: "",
+    description: "The epic journey of Rama exemplifying ideal duty, honor, devotion, leadership, and ethical endurance.",
+    historicalContext: "Ancient Sanskrit epic of 24,000 verses celebrating virtue and righteousness (Dharma).",
+    publicDomainLicense: "Public Domain",
+    rating: 4.9,
+    audioAvailable: true,
+    totalEstReadMinutes: 180,
+    chapters: [
+      {
+        id: "ram_ayodhya",
+        chapterNumber: 1,
+        title: "Ayodhya Kanda: The Honor of Promise",
+        sanskritTitle: "अयोध्याकाण्डम्",
+        summary: "Rama willingly accepts exile to uphold truth and honor his father's vow.",
+        estimatedReadTimeMinutes: 20,
+        content: `When informed that he must give up the throne and live in exile for fourteen years in the forest, Prince Rama's face does not lose its calm composure. He accepts the decision without resentment, anger, or blame.\n\n"Truth is the foundation of righteous governance. If a kingdom is built on broken vows, its prosperity is hollow. Duty to family and truth precedes personal ambition."\n\nSita and Lakshmana insist on accompanying Rama into the forest, demonstrating that true love and loyalty share both hardship and joy.`,
+        keyLessons: [
+          "Integrity means honoring promises even when personal sacrifice is required.",
+          "Emotional composure during unexpected turns of fate is the mark of true nobility.",
+          "Loyalty is proven in difficult times."
+        ],
+        reflectionQuestions: [
+          "How do you react when unexpected disruptions derail your personal plans?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "mahabharata",
+    title: "The Mahabharata",
+    sanskritTitle: "महाभारतम्",
+    author: "Maharsi Vyasa",
+    category: "Indian Wisdom",
+    coverImage: "",
+    description: "The grandest epic of human drama exploring political strategy, justice, karma, duty, and human complexity.",
+    historicalContext: "The longest epic poem in world literature containing 100,000 shlokas, including the Bhagavad Gita.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.9,
+    audioAvailable: true,
+    totalEstReadMinutes: 200,
+    chapters: [
+      {
+        id: "mb_sabha",
+        chapterNumber: 1,
+        title: "Sabha Parva: The Perils of Uncontrolled Impulse",
+        sanskritTitle: "सभापर्व",
+        summary: "How unchecked addiction and arrogance lead to catastrophic conflict.",
+        estimatedReadTimeMinutes: 22,
+        content: `In the Assembly Hall of Hastinapura, Yudhishthira succumbs to the addictive game of dice against the treacherous Shakuni. Step by step, driven by pride and impulse, he wagers away his kingdom, wealth, brothers, and freedom.\n\nThe Mahabharata serves as a stern psychological warning: even noble human beings can be destroyed when they let addictive impulses override rational intellect (*Buddhi*).`,
+        keyLessons: [
+          "Never engage in high-stakes decisions when driven by pride or emotion.",
+          "Addictive gambling or impulsive risk-taking clouds moral judgment.",
+          "Recognize warning signs before minor lapses turn into systemic collapse."
+        ],
+        reflectionQuestions: [
+          "What is one impulsive habit you need to set firm boundaries around?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "rig_veda",
+    title: "The Rig Veda (Selected Hymns)",
+    sanskritTitle: "ऋग्वेद सूक्तानि",
+    author: "Vedic Seers",
+    category: "Indian Wisdom",
+    coverImage: "",
+    description: "Hymns of creation, cosmic order (Rta), fire, light, and universal harmony from humanity's oldest literature.",
+    historicalContext: "Composed in early Vedic Sanskrit around 1500 BCE, preserving oral poetic chants.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.8,
+    audioAvailable: true,
+    totalEstReadMinutes: 100,
+    chapters: [
+      {
+        id: "rv_nasadiya",
+        chapterNumber: 1,
+        title: "Nasadiya Sukta: The Hymn of Creation",
+        sanskritTitle: "नासदीय सूक्तम्",
+        summary: "Profound philosophical questioning on the origin of existence.",
+        estimatedReadTimeMinutes: 12,
+        content: `**Rig Veda 10.129**:\n"Then was not non-existence nor existence: there was no realm of air, no sky beyond it. What covered it, and where? What was the shelter? Was water there, unfathomed depth of water?"\n\n"Who really knows? Who will here proclaim it? Whence was it produced? Whence is this creation? The Gods came afterwards, with the creation of this universe. Who then knows whence it has arisen?"\n\nThe Nasadiya Sukta demonstrates the supreme intellectual openness of Vedic seers—asking fundamental questions about cosmology with humility, reverence, and scientific curiosity.`,
+        keyLessons: [
+          "Embrace intellectual curiosity and honest questioning over dogmatic certainty.",
+          "Acknowledge the mystery and vastness of the cosmos.",
+          "Combine scientific inquiry with spiritual wonder."
+        ],
+        reflectionQuestions: [
+          "How does staying curious and humble expand your understanding of the world?"
+        ]
+      }
+    ]
+  },
+
+  // --- BUDDHISM ---
+  {
     id: "dhammapada",
     title: "The Dhammapada",
     sanskritTitle: "धम्मपद",
     author: "Gautama Buddha",
     category: "Buddhism",
-    coverImage: "/assets/gita_cover.png",
+    coverImage: "",
     description: "Verses of Truth on mindfulness, ethical conduct, self-mastery, and the elimination of mental suffering.",
     historicalContext: "Part of the Pali Tipitaka, compiling 423 ethical verses spoken by Gautama Buddha.",
     publicDomainLicense: "Public Domain",
@@ -164,12 +347,117 @@ export const WISDOM_BOOKS: Book[] = [
     ]
   },
   {
+    id: "diamond_sutra",
+    title: "The Diamond Sutra",
+    sanskritTitle: "वज्रच्छेदिका प्रज्ञापारमिता सूत्र",
+    author: "Mahayana Buddhist Tradition",
+    category: "Buddhism",
+    coverImage: "",
+    description: "The classic text on non-attachment, emptiness (Sunyata), and cutting through illusion like a diamond blade.",
+    historicalContext: "Translated into Chinese in 401 CE; the 868 CE block-printed copy is the world's oldest dated complete printed book.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.8,
+    audioAvailable: true,
+    totalEstReadMinutes: 75,
+    chapters: [
+      {
+        id: "diamond_ch1",
+        chapterNumber: 1,
+        title: "The Practice of Non-Abiding",
+        sanskritTitle: "अप्रतिष्ठितचित्तम्",
+        summary: "Giving and helping without attachment to self, receiver, or reward.",
+        estimatedReadTimeMinutes: 14,
+        content: `The Buddha taught Subhuti: "A Bodhisattva should practice generosity without abiding anywhere—without abiding in sights, sounds, smells, tastes, touches, or mental concepts. Why? Because when one practices generosity without attachment to signs, their merit is immeasurable like space."\n\n"So you should view all fleeting phenomena in this world:\n*As a tiny star, a mist, a bubble in a stream,\nAn autumn lightning flash, a flickering lamp, a phantom, and a dream.*"`,
+        keyLessons: [
+          "Help others quietly without needing public praise or ego validation.",
+          "Recognize the impermanent, fleeting nature of material possessions and fame.",
+          "Live fully in the present moment without clinging."
+        ],
+        reflectionQuestions: [
+          "What expectation can you let go of today to feel inner lightness?"
+        ]
+      }
+    ]
+  },
+
+  // --- JAIN PHILOSOPHY ---
+  {
+    id: "tattvartha_sutra",
+    title: "Tattvartha Sutra",
+    sanskritTitle: "तत्त्वार्थसूत्र",
+    author: "Acharya Umaswati",
+    category: "Jain Philosophy",
+    coverImage: "",
+    description: "The master text of Jain philosophy detailing non-violence (Ahimsa), non-possession (Aparigraha), and multi-sided truth (Anekantavada).",
+    historicalContext: "Authored around 200 CE, accepted by all Jain traditions as the definitive manual of reality and ethics.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.8,
+    audioAvailable: true,
+    totalEstReadMinutes: 85,
+    chapters: [
+      {
+        id: "jain_ch1",
+        chapterNumber: 1,
+        title: "Anekantavada & Parasparopagraho Jivanam",
+        sanskritTitle: "परस्परोपग्रहो जीवानाम्",
+        summary: "Mutual interdependence of all living beings and intellectual humility.",
+        estimatedReadTimeMinutes: 15,
+        content: `**Sutra 5.21**: *Parasparopagraho Jivanam*\n"All life is bound together by mutual support and interdependence."\n\nAcharya Umaswati articulates the fundamental Jain ethic: no living being exists in isolation. Our breath, water, food, and existence rely on millions of visible and microscopic life forms. Therefore, **Ahimsa** (non-harming in thought, word, and deed) is the highest practical responsibility.\n\nFurthermore, **Anekantavada** teaches that truth has infinite facets. Conflicts arise when people claim their partial perspective is the sole absolute truth. Respecting multiple viewpoints fosters peace.`,
+        keyLessons: [
+          "Parasparopagraho Jivanam: Honor ecological interdependence in your daily choices.",
+          "Anekantavada: Practice intellectual humility by listening to differing perspectives.",
+          "Aparigraha: Reduce unnecessary material clutter to cultivate peace."
+        ],
+        reflectionQuestions: [
+          "How can you practice non-violence in your speech during disagreement today?"
+        ]
+      }
+    ]
+  },
+
+  // --- SIKH LITERATURE ---
+  {
+    id: "japji_sahib",
+    title: "Japji Sahib",
+    sanskritTitle: "जपुजी साहिब",
+    author: "Guru Nanak Dev Ji",
+    category: "Sikh Literature",
+    coverImage: "",
+    description: "The foundational composition of Guru Nanak Dev Ji on divine oneness (Ik Onkar), truth, humility, and selfless service (Sewa).",
+    historicalContext: "Composed in the 15th century as the opening hymn of the Guru Granth Sahib.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.9,
+    audioAvailable: true,
+    totalEstReadMinutes: 70,
+    chapters: [
+      {
+        id: "jap_ch1",
+        chapterNumber: 1,
+        title: "Ik Onkar & The Way of Truth",
+        sanskritTitle: "ੴ सतिनामु",
+        summary: "Living in harmony with divine cosmic order (Hukam).",
+        estimatedReadTimeMinutes: 14,
+        content: `**Mool Mantar**:\n*Ik Onkar Satnam Karta Purakh Nirbhau Nirvair Akal Murat Ajuni Saibhang Gurprasad*\n"There is One Sovereign Divine Reality, Truth by Name, Creative Power, Without Fear, Without Enmity, Timeless Form, Unborn, Self-Existent."\n\nHow can one become truthful? How can the veil of illusion be torn away? By walking in harmony with the Divine Will (*Hukam*), as written in our very nature.\n\nTrue spiritual living requires **Kirat Karo** (honest labor), **Naam Japo** (remembrance of Divine Truth), and **Vand Chhako** (sharing earnings with those in need).`,
+        keyLessons: [
+          "Nirbhau & Nirvair: Live without fear and without hatred toward anyone.",
+          "Perform honest work and share resources generously with your community.",
+          "Surrender personal ego to align with universal truth."
+        ],
+        reflectionQuestions: [
+          "In what area of life can you replace fear or hostility with peaceful goodwill?"
+        ]
+      }
+    ]
+  },
+
+  // --- WORLD PHILOSOPHY ---
+  {
     id: "marcus_meditations",
     title: "Meditations",
-    sanskritTitle: "आत्मचिन्तनम् (Stoic Reflections)",
+    sanskritTitle: "आत्मचिन्तनम्",
     author: "Marcus Aurelius",
     category: "World Philosophy",
-    coverImage: "/assets/gita_cover.png",
+    coverImage: "",
     description: "Private journal entries of the Roman Emperor on Stoic discipline, duty, impermanence, and internal strength.",
     historicalContext: "Written between 161 and 180 CE while commanding military campaigns along the Danube river frontier.",
     publicDomainLicense: "Public Domain",
@@ -179,7 +467,7 @@ export const WISDOM_BOOKS: Book[] = [
     chapters: [
       {
         id: "marcus_b2",
-        chapterNumber: 2,
+        chapterNumber: 1,
         title: "Book 2: On Duty & Inner Citadel",
         sanskritTitle: "कर्तव्यम् च आन्तरिकदुर्गम्",
         summary: "Reminders on waking up to serve, ignoring petty slights, and keeping the soul untainted.",
@@ -192,6 +480,140 @@ export const WISDOM_BOOKS: Book[] = [
         ],
         reflectionQuestions: [
           "How much time do you spend worrying about other people's opinions or behavior?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "enchiridion",
+    title: "Enchiridion (The Stoic Handbook)",
+    sanskritTitle: "स्टोइक मार्गदर्शिका",
+    author: "Epictetus",
+    category: "World Philosophy",
+    coverImage: "",
+    description: "A manual of Stoic ethical advice on mastering desire, handling adversity, and controlling what is within our power.",
+    historicalContext: "Compiled by his student Arrian around 125 CE from Epictetus's oral lectures.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.8,
+    audioAvailable: true,
+    totalEstReadMinutes: 65,
+    chapters: [
+      {
+        id: "ep_ch1",
+        chapterNumber: 1,
+        title: "What is in Our Power vs What is Not",
+        sanskritTitle: "स्वाधीनता च पराधीनता",
+        summary: "The fundamental dichotomy of control.",
+        estimatedReadTimeMinutes: 10,
+        content: `Some things are in our control and others not. Things in our control are opinion, pursuit, desire, aversion, and, in a word, whatever are our own actions. Things not in our control are body, property, reputation, command, and, in one word, whatever are not our own actions.\n\nThe things in our control are by nature free, unrestrained, unhindered; but those not in our control are weak, slavish, restrained, belonging to others. Remember, then, that if you suppose that things which are slavish by nature are also free, you will be hindered.`,
+        keyLessons: [
+          "Categorize every problem: Is this within my direct control or not?",
+          "Invest 100% of your energy in your thoughts, character, and choices.",
+          "Accept external events with graceful equanimity."
+        ],
+        reflectionQuestions: [
+          "What is one external event you are trying to control that is causing you unnecessary stress?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "confucius_analects",
+    title: "The Analects of Confucius",
+    sanskritTitle: "論語 (कन्फ्यूशियस सूत्राणि)",
+    author: "Confucius (Kong Fuzi)",
+    category: "World Philosophy",
+    coverImage: "",
+    description: "Classical Chinese discourses on benevolence (Ren), filial piety, ritual harmony (Li), and ethical leadership.",
+    historicalContext: "Compiled by disciples during the Warring States period (c. 475–221 BCE).",
+    publicDomainLicense: "Public Domain",
+    rating: 4.7,
+    audioAvailable: true,
+    totalEstReadMinutes: 105,
+    chapters: [
+      {
+        id: "conf_ch1",
+        chapterNumber: 1,
+        title: "On Virtue & Moral Character",
+        sanskritTitle: "仁 (Ren)",
+        summary: "Cultivating empathy, self-reflection, and social harmony.",
+        estimatedReadTimeMinutes: 14,
+        content: `The Master said: "Is it not a pleasure to learn and frequently review what you have learned? Is it not delightful to have friends coming from distant lands? Is one not a noble person if they remain unruffled when unrecognized by others?"\n\n"Do not do to others what you would not want done to yourself."\n\nA noble person (*Junzi*) seeks self-improvement; a shallow person seeks demands on others. When you see a worthy person, endeavor to emulate them. When you see an unworthy person, examine your own inner character.`,
+        keyLessons: [
+          "The Silver Rule: Treat others as you wish to be treated.",
+          "Continuous self-examination is key to character growth.",
+          "True nobility comes from internal virtue, not wealth or status."
+        ],
+        reflectionQuestions: [
+          "How often do you examine your own mistakes before blaming others?"
+        ]
+      }
+    ]
+  },
+  {
+    id: "tao_te_ching",
+    title: "Tao Te Ching",
+    sanskritTitle: "道德經 (लाओत्से मार्गः)",
+    author: "Lao Tzu",
+    category: "World Philosophy",
+    coverImage: "",
+    description: "The classic on the Way (Tao), natural flow, effortless action (Wu Wei), and gentle simplicity.",
+    historicalContext: "Composed in ancient China around 6th century BCE.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.9,
+    audioAvailable: true,
+    totalEstReadMinutes: 80,
+    chapters: [
+      {
+        id: "tao_ch1",
+        chapterNumber: 1,
+        title: "The Nameless Tao & Wu Wei",
+        sanskritTitle: "無爲 (Wu Wei)",
+        summary: "Flowing with natural laws without forcing outcomes.",
+        estimatedReadTimeMinutes: 12,
+        content: `The Tao that can be spoken is not the eternal Tao. The name that can be named is not the eternal name.\n\nWater is fluid, soft, and yielding. But water will wear away rock, which is rigid and cannot yield. As a rule, whatever is fluid, soft, and yielding will overcome whatever is rigid and hard.\n\nPractice **Wu Wei** (effortless action): work with natural rhythms rather than forcing outcomes against the grain. Be like water—nourish all things without striving.`,
+        keyLessons: [
+          "Wu Wei: Accomplish tasks by yielding and moving with natural momentum.",
+          "Simplicity, patience, and compassion are your greatest treasures.",
+          "Rigidity leads to breakage; flexibility leads to endurance."
+        ],
+        reflectionQuestions: [
+          "Where in your life are you pushing too hard instead of flowing with patience?"
+        ]
+      }
+    ]
+  },
+
+  // --- SPIRITUAL CLASSICS ---
+  {
+    id: "gibran_prophet",
+    title: "The Prophet",
+    sanskritTitle: "पैगम्बरः (खलील जिब्रान)",
+    author: "Kahlil Gibran",
+    category: "Spiritual Classics",
+    coverImage: "",
+    description: "Poetic prose essays on love, marriage, work, joy, sorrow, freedom, and friendship.",
+    historicalContext: "Published in 1923, translated into over 100 languages as a timeless masterpiece of wisdom poetry.",
+    publicDomainLicense: "Public Domain",
+    rating: 4.9,
+    audioAvailable: true,
+    totalEstReadMinutes: 90,
+    chapters: [
+      {
+        id: "gibran_ch1",
+        chapterNumber: 1,
+        title: "On Love, Work & Giving",
+        sanskritTitle: "प्रेम च कार्यम्",
+        summary: "Work is love made visible.",
+        estimatedReadTimeMinutes: 14,
+        content: `Then Almitra said, Speak to us of Love. And he raised his head and looked upon the people, and there fell a stillness upon them.\n\n"When love beckons to you, follow him, though his ways are hard and steep. And when his wings enfold you yield to him, though the sword hidden among his pinions may wound you."\n\nAnd what is it to work with love?\nIt is to weave the cloth with threads drawn from your heart, even as if your beloved were to wear that cloth. Work is love made visible.`,
+        keyLessons: [
+          "Work is love made visible: pour heart and care into whatever you build.",
+          "Give freely without keeping score.",
+          "Joy and sorrow are inseparable companions in human experience."
+        ],
+        reflectionQuestions: [
+          "How can you bring a spirit of love and care into your work today?"
         ]
       }
     ]

@@ -9,11 +9,9 @@ import {
   BookMarked, 
   Sparkles, 
   X, 
-  Volume2, 
   Star, 
   Clock, 
   ShieldCheck, 
-  ArrowRight,
   Filter
 } from "lucide-react";
 import { Book, BookCategory } from "@/lib/wisdom-library/types";
@@ -21,6 +19,7 @@ import { WISDOM_BOOKS, DAILY_WISDOM_TODAY } from "@/lib/wisdom-library/catalog-d
 import { EbookReaderView } from "./EbookReaderView";
 import { WisdomGraphModal } from "./WisdomGraphModal";
 import { PersonalJournalDrawer } from "./PersonalJournalDrawer";
+import { BookCover } from "./BookCover";
 
 interface WisdomLibraryModalProps {
   isOpen: boolean;
@@ -63,7 +62,15 @@ export const WisdomLibraryModal: React.FC<WisdomLibraryModalProps> = ({ isOpen, 
     return matchesCat && matchesSearch;
   });
 
-  const categories = ["All", "Indian Wisdom", "Buddhism", "World Philosophy"];
+  const categories = [
+    "All", 
+    "Indian Wisdom", 
+    "Buddhism", 
+    "Jain Philosophy", 
+    "Sikh Literature", 
+    "World Philosophy", 
+    "Spiritual Classics"
+  ];
 
   return (
     <>
@@ -143,7 +150,7 @@ export const WisdomLibraryModal: React.FC<WisdomLibraryModalProps> = ({ isOpen, 
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1 rounded-full font-outfit text-xs font-semibold whitespace-nowrap smooth-transition cursor-pointer border ${
+                  className={`px-3 py-1 rounded-full font-outfit text-xs font-semibold whitespace-nowrap smooth-transition cursor-pointer border ${
                     selectedCategory === cat
                       ? "bg-gold text-charcoal-dark border-gold font-bold shadow-md"
                       : "bg-charcoal/40 text-cream/70 border-gold/15 hover:border-gold/40"
@@ -187,7 +194,7 @@ export const WisdomLibraryModal: React.FC<WisdomLibraryModalProps> = ({ isOpen, 
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-cinzel text-base font-bold text-cream">
-                  Public Domain Classical Archive ({filteredBooks.length})
+                  Public Domain Classical Archive ({filteredBooks.length} Masterworks)
                 </h3>
                 <span className="font-outfit text-[10px] text-emerald-400 font-bold uppercase tracking-widest flex items-center gap-1">
                   <ShieldCheck size={14} /> Verified Open Access
@@ -201,25 +208,12 @@ export const WisdomLibraryModal: React.FC<WisdomLibraryModalProps> = ({ isOpen, 
                     className="p-5 rounded-2xl bg-charcoal-dark/70 border border-gold/15 hover:border-gold/40 smooth-transition flex flex-col justify-between group/card shadow-md"
                   >
                     <div>
-                      {/* Book Cover Placeholder Container */}
+                      {/* Distinct Book Cover Component */}
                       <div 
                         onClick={() => setActiveBook(b)}
-                        className="w-full aspect-[4/5] rounded-xl overflow-hidden border border-gold/20 relative cursor-pointer mb-4 group-hover/card:scale-[1.02] transition-transform duration-500 shadow-md bg-charcoal-dark"
+                        className="cursor-pointer mb-4 group-hover/card:scale-[1.02] transition-transform duration-300"
                       >
-                        <img
-                          src={b.coverImage}
-                          alt={b.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark/90 via-transparent to-transparent opacity-80" />
-                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-cream">
-                          <span className="font-cinzel text-[10px] font-bold uppercase tracking-wider text-gold">
-                            {b.category}
-                          </span>
-                          <span className="font-outfit text-[10px] text-cream/70 flex items-center gap-1">
-                            <Clock size={10} /> {b.totalEstReadMinutes}m
-                          </span>
-                        </div>
+                        <BookCover book={b} />
                       </div>
 
                       <h4 className="font-cinzel text-base font-bold text-cream group-hover/card:text-gold transition-colors">
