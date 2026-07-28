@@ -83,8 +83,7 @@ export const FocusAreas: React.FC = () => {
     if (id === "ai_companion") setIsAiModalOpen(true);
     if (id === "wisdom_library") setIsLibraryModalOpen(true);
     if (id === "privacy_community") {
-      const target = document.querySelector("#swadeshi");
-      if (target) target.scrollIntoView({ behavior: "smooth" });
+      window.open("https://chat.whatsapp.com/HS6dVyedqtAKvGlkVjQSdJ", "_blank", "noopener,noreferrer");
     }
   };
 
