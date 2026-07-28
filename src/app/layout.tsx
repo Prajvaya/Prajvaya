@@ -38,7 +38,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Subhajit Ghosh" }, { name: "Survi Mukherjee" }],
   icons: {
-    icon: "/assets/logo.png",
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/assets/logo.png", type: "image/png" }
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/icon.png"
   },
 };
 
