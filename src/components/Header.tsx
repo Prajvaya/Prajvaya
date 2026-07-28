@@ -79,19 +79,19 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Home", href: "#home", id: "home" },
-    { label: "Vision", href: "#vision", id: "vision" },
-    { label: "Philosophy", href: "#philosophy", id: "philosophy" },
-    { label: "Ecosystem", href: "#ecosystem", id: "ecosystem" },
-    { label: "Pillars", href: "#pillar", id: "pillar" },
-    { label: "Timeline", href: "#timeline", id: "timeline" },
-    { label: "Core Initiatives", href: "#core-initiatives", id: "core-initiatives" },
-    { label: "Roadmap", href: "#roadmap", id: "roadmap" },
-    { label: "Projects", href: "#projects", id: "projects" },
-    { label: "Swadeshi", href: "#swadeshi", id: "swadeshi" },
-    { label: "Founders", href: "#founders", id: "founders" },
-    { label: "Terminal", href: "#contact", id: "contact" },
+  const allNavLinks = [
+    { label: "Home", href: "#home", id: "home", primary: true },
+    { label: "Vision", href: "#vision", id: "vision", primary: true },
+    { label: "Philosophy", href: "#philosophy", id: "philosophy", primary: false },
+    { label: "Ecosystem", href: "#ecosystem", id: "ecosystem", primary: true },
+    { label: "Pillars", href: "#pillar", id: "pillar", primary: false },
+    { label: "Timeline", href: "#timeline", id: "timeline", primary: false },
+    { label: "Initiatives", href: "#core-initiatives", id: "core-initiatives", primary: true },
+    { label: "Roadmap", href: "#roadmap", id: "roadmap", primary: false },
+    { label: "Projects", href: "#projects", id: "projects", primary: true },
+    { label: "Swadeshi", href: "#swadeshi", id: "swadeshi", primary: true },
+    { label: "Founders", href: "#founders", id: "founders", primary: false },
+    { label: "Terminal", href: "#contact", id: "contact", primary: true },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -107,10 +107,10 @@ export const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 border-b ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
         scrolled
-          ? "py-2.5 bg-cream/85 dark:bg-earth/90 backdrop-blur-xl shadow-sm border-gold/15"
-          : "py-4 bg-transparent border-transparent"
+          ? "py-2.5 bg-cream/90 dark:bg-earth/95 backdrop-blur-xl shadow-md border-gold/20"
+          : "py-3 bg-earth-dark/40 backdrop-blur-md border-gold/10"
       }`}
     >
       <div className="w-full px-4 md:px-8 xl:px-10 flex items-center justify-between">
@@ -118,9 +118,11 @@ export const Header: React.FC = () => {
         <a
           href="#home"
           onClick={(e) => handleLinkClick(e, "#home")}
-          className="flex items-center gap-2 group select-none cursor-pointer shrink-0"
+          className="flex items-center gap-2.5 group select-none cursor-pointer shrink-0"
         >
-          <img src="/assets/logo.png" alt="Prajvaya Logo" className="h-8 w-8 object-contain drop-shadow-sm" />
+          <div className="h-8 w-8 rounded-full overflow-hidden border border-gold/30 p-0.5 bg-gold/5 flex items-center justify-center shrink-0">
+            <img src="/assets/logo.png" alt="Prajvaya Logo" className="h-full w-full object-contain" />
+          </div>
           <div className="flex flex-col">
             <span className="font-cinzel text-sm font-extrabold tracking-[0.18em] text-charcoal dark:text-cream leading-tight">
               PRAJVAYA
@@ -131,18 +133,18 @@ export const Header: React.FC = () => {
           </div>
         </a>
 
-        {/* Desktop Navigation Links (Tightened gaps & font size for multi-link fit) */}
-        <nav className="hidden lg:flex items-center gap-2 xl:gap-4">
-          <ul className="flex items-center gap-2.5 xl:gap-4">
-            {navLinks.map((link) => (
-              <li key={link.id}>
+        {/* Desktop Navigation Links (Responsive display for laptops vs widescreen) */}
+        <nav className="hidden lg:flex items-center gap-2 xl:gap-3.5">
+          <ul className="flex items-center gap-2 xl:gap-3.5">
+            {allNavLinks.map((link) => (
+              <li key={link.id} className={link.primary ? "block" : "hidden xl:block"}>
                 <a
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
                   className={`font-outfit text-[11px] xl:text-xs font-semibold tracking-wider uppercase transition-colors duration-300 relative py-1 hover:text-gold ${
                     activeSection === link.id
                       ? "text-gold"
-                      : "text-charcoal/70 dark:text-cream/70"
+                      : "text-charcoal/80 dark:text-cream/80"
                   }`}
                 >
                   {link.label}
@@ -156,11 +158,11 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Telemetry and Controls */}
-        <div className="hidden sm:flex items-center gap-3 xl:gap-4 lg:ml-2 shrink-0">
+        <div className="hidden sm:flex items-center gap-2.5 xl:gap-3 lg:ml-2 shrink-0">
           <AudioControl />
 
           {/* Dynamic Session Actions */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             {user ? (
               <>
                 <Link
@@ -180,13 +182,13 @@ export const Header: React.FC = () => {
               <>
                 <Link
                   href="/login"
-                  className="font-outfit text-[10px] xl:text-[11px] font-bold tracking-wider uppercase text-cream/70 hover:text-gold smooth-transition whitespace-nowrap"
+                  className="font-outfit text-[10px] xl:text-[11px] font-bold tracking-wider uppercase text-cream/80 hover:text-gold smooth-transition whitespace-nowrap"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="px-3 py-1 border border-gold/30 hover:border-gold text-gold font-outfit text-[10px] xl:text-[11px] font-bold tracking-wider uppercase rounded-full bg-gold/5 smooth-transition whitespace-nowrap"
+                  className="px-3 py-1 border border-gold/30 hover:border-gold text-gold font-outfit text-[10px] xl:text-[11px] font-bold tracking-wider uppercase rounded-full bg-gold/10 hover:bg-gold hover:text-charcoal-dark smooth-transition whitespace-nowrap shadow-sm"
                 >
                   Register
                 </Link>
@@ -214,7 +216,7 @@ export const Header: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-[100%] left-0 right-0 border-b border-gold/15 bg-cream/95 dark:bg-forest/98 backdrop-blur-xl transition-all duration-300 py-6 px-8 flex flex-col gap-6 shadow-xl">
           <ul className="flex flex-col gap-4">
-            {navLinks.map((link) => (
+            {allNavLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={link.href}
