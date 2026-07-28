@@ -46,7 +46,20 @@ export const Header: React.FC = () => {
       setScrolled(window.scrollY > 50);
 
       // Section highlighters
-      const sections = ["home", "vision", "philosophy", "problems", "helps", "ecosystem", "pillar", "timeline", "core-initiatives", "roadmap", "projects", "swadeshi", "founders", "contact"];
+      const sections = [
+        "home", 
+        "vision", 
+        "philosophy", 
+        "ecosystem", 
+        "pillar", 
+        "timeline", 
+        "core-initiatives", 
+        "roadmap", 
+        "projects", 
+        "swadeshi", 
+        "founders", 
+        "contact"
+      ];
       const scrollPos = window.scrollY + 200;
 
       for (const section of sections) {
@@ -70,6 +83,7 @@ export const Header: React.FC = () => {
     { label: "Home", href: "#home", id: "home" },
     { label: "Vision", href: "#vision", id: "vision" },
     { label: "Philosophy", href: "#philosophy", id: "philosophy" },
+    { label: "Ecosystem", href: "#ecosystem", id: "ecosystem" },
     { label: "Pillars", href: "#pillar", id: "pillar" },
     { label: "Timeline", href: "#timeline", id: "timeline" },
     { label: "Core Initiatives", href: "#core-initiatives", id: "core-initiatives" },
@@ -217,7 +231,6 @@ export const Header: React.FC = () => {
           </ul>
 
           <div className="flex flex-wrap items-center justify-end gap-4 pt-4 border-t border-gold/10 w-full">
-            
             {/* Mobile Auth Actions */}
             <div className="flex items-center gap-3">
               {user ? (
@@ -251,7 +264,7 @@ export const Header: React.FC = () => {
                   <Link
                     href="/register"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="px-4 py-1.5 border border-gold/30 text-gold font-outfit text-xs font-bold tracking-widest uppercase rounded-full bg-gold/5"
+                    className="px-4 py-1.5 border border-gold/30 hover:border-gold text-gold font-outfit text-xs font-bold tracking-widest uppercase rounded-full bg-gold/5 smooth-transition"
                   >
                     Register
                   </Link>

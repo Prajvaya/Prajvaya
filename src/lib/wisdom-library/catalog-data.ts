@@ -43,7 +43,7 @@ export const WISDOM_BOOKS: Book[] = [
               "He wanted to surrender to the enemy"
             ],
             correctIndex: 1,
-            explanation: "Arjuna suffered from 'Vishada' (despondency) caused by the moral crisis of fighting his own kinsmen."
+            explanation: "Arjuna suffered from Vishada (despondency) caused by the moral crisis of fighting his own kinsmen."
           }
         ]
       },
@@ -54,7 +54,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "सांख्ययोग",
         summary: "Krishna reveals the eternal nature of the Self (Atman) and the master principle of Nishkama Karma (detached duty).",
         estimatedReadTimeMinutes: 20,
-        content: `Lord Krishna speaks to the despairing Arjuna with firm clarity: "The wise grieve neither for the living nor for the dead. Never was there a time when I did not exist, nor you, nor all these kings; nor in the future shall any of us cease to be."\n\n"Just as the embodied soul continuously passes, in this body, from childhood to youth to old age, so the soul passes into another body at death. The calm person is not bewildered by these."\n\nKrishna then introduces the immortal formula for action: **Karmanye vadhikaraste ma phaleshu kadachana** (Chapter 2, Verse 47).\n\n"You have a right performing your prescribed duty, but never to the fruits of action. Never let the fruits of action be your motive, nor let your attachment be to inaction. Perform your work steadfast in Yoga, abandoning attachment, and staying balanced in success and failure."\n\nA person of steady wisdom (*Stithaprajna*) is not agitated by sorrow, nor enticed by pleasure. They control their senses through mindfulness and remain tranquil under all circumstances.`,
+        content: `Lord Krishna speaks to the despairing Arjuna with firm clarity: "The wise grieve neither for the living nor for the dead. Never was there a time when I did not exist, nor you, nor all these kings; nor in the future shall any of us cease to be."\n\n"Just as the embodied soul continuously passes, in this body, from childhood to youth to old age, so the soul passes into another body at death. The calm person is not bewildered by these."\n\nKrishna then introduces the immortal formula for action: Karmanye vadhikaraste ma phaleshu kadachana (Chapter 2, Verse 47).\n\n"You have a right performing your prescribed duty, but never to the fruits of action. Never let the fruits of action be your motive, nor let your attachment be to inaction. Perform your work steadfast in Yoga, abandoning attachment, and staying balanced in success and failure."\n\nA person of steady wisdom (Stithaprajna) is not agitated by sorrow, nor enticed by pleasure. They control their senses through mindfulness and remain tranquil under all circumstances.`,
         keyLessons: [
           "The core eternal Self (consciousness) is unaffected by surface changes, failures, or physical stress.",
           "Nishkama Karma: Dedicate 100% of your focus to effort; release outcome anxiety.",
@@ -85,7 +85,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "कर्मयोग",
         summary: "Why action is necessary for all living beings, and how selfless work converts daily activity into spiritual growth.",
         estimatedReadTimeMinutes: 18,
-        content: `Arjuna asks: "If knowledge is superior to action, why do you urge me to engage in this terrible conflict?"\n\nKrishna replies: "No one can remain even for a moment without performing action. The biological body itself requires action to survive. But work performed as a sacrifice (*Yajna*) for the collective good does not create psychological bondage."\n\n"Do your duty efficiently, for action is superior to inaction. The universe itself is kept in motion through mutual interdependence (*Prakriti cycle*). Just as rain nourishes crops, and crops nourish beings, your work should contribute to the world wheel (*Lokasangraha*)."\n\nWork without selfish desire cleanses the mind and turns daily labor into a meditative practice.`,
+        content: `Arjuna asks: "If knowledge is superior to action, why do you urge me to engage in this terrible conflict?"\n\nKrishna replies: "No one can remain even for a moment without performing action. The biological body itself requires action to survive. But work performed as a sacrifice (Yajna) for the collective good does not create psychological bondage."\n\n"Do your duty efficiently, for action is superior to inaction. The universe itself is kept in motion through mutual interdependence (Prakriti cycle). Just as rain nourishes crops, and crops nourish beings, your work should contribute to the world wheel (Lokasangraha)."\n\nWork without selfish desire cleanses the mind and turns daily labor into a meditative practice.`,
         keyLessons: [
           "Inaction causes stagnation; disciplined work builds mental strength.",
           "Lokasangraha: Direct your personal talents toward uplifting the broader community.",
@@ -119,7 +119,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "समाधिपाद",
         summary: "Defines Yoga as the cessation of mental fluctuations (Chitta Vritti Nirodha).",
         estimatedReadTimeMinutes: 15,
-        content: `**Sutra 1.2**: *Yogas chitta vritti nirodhah*\n"Yoga is the stillness of the modifications of the mind stream."\n\n**Sutra 1.3**: *Tada drashtuh svarupe vasthanam*\n"Then the Seer abides in its true nature."\n\nPatanjali explains that the mind constantly creates ripples (*Vrittis*) through right knowledge, misconception, imagination, sleep, and memory. When we mistake ourselves for these mental ripples, we suffer. Through steady practice (*Abhyasa*) and non-attachment (*Vairagya*), the mind stream becomes crystal clear like a still lake.`,
+        content: `Sutra 1.2: Yogas chitta vritti nirodhah\n"Yoga is the stillness of the modifications of the mind stream."\n\nSutra 1.3: Tada drashtuh svarupe vasthanam\n"Then the Seer abides in its true nature."\n\nPatanjali explains that the mind constantly creates ripples (Vrittis) through right knowledge, misconception, imagination, sleep, and memory. When we mistake ourselves for these mental ripples, we suffer. Through steady practice (Abhyasa) and non-attachment (Vairagya), the mind stream becomes crystal clear like a still lake.`,
         keyLessons: [
           "You are the observer of your thoughts, not the thoughts themselves.",
           "Abhyasa: Consistency in practice over a long period with devotion brings mental stability.",
@@ -136,7 +136,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "साधनापाद",
         summary: "Patanjali outlines Kriya Yoga (action yoga) and the eight limbs of self-realization.",
         estimatedReadTimeMinutes: 18,
-        content: `**Sutra 2.29**: *Yama niyamasana pranayama pratyahara dharana dhyana samadhayo ashtavangani*\n"The eight limbs of Yoga are: Yamas (ethical restraints), Niyamas (personal observances), Asana (posture), Pranayama (breath regulation), Pratyahara (sensory withdrawal), Dharana (concentration), Dhyana (meditation), and Samadhi (absorption)."\n\nPatanjali emphasizes that spiritual growth is not an abstract theory but a systematic science. The **Yamas** (non-violence, truthfulness, non-stealing, celibacy/continence, non-possessiveness) build moral purity, while **Niyamas** (cleanliness, contentment, austerity, self-study, surrender) establish inner discipline.`,
+        content: `Sutra 2.29: Yama niyamasana pranayama pratyahara dharana dhyana samadhayo ashtavangani\n"The eight limbs of Yoga are: Yamas (ethical restraints), Niyamas (personal observances), Asana (posture), Pranayama (breath regulation), Pratyahara (sensory withdrawal), Dharana (concentration), Dhyana (meditation), and Samadhi (absorption)."\n\nPatanjali emphasizes that spiritual growth is not an abstract theory but a systematic science. The Yamas (non-violence, truthfulness, non-stealing, continence, non-possessiveness) build moral purity, while Niyamas (cleanliness, contentment, austerity, self-study, surrender) establish inner discipline.`,
         keyLessons: [
           "Ethics (Yama/Niyama) form the necessary foundation before meditation.",
           "Asana provides steady comfort for physical endurance.",
@@ -169,10 +169,10 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "राजर्षिवृत्तम्",
         summary: "A leader's primary duty is the happiness of the people; self-mastery precedes governance.",
         estimatedReadTimeMinutes: 18,
-        content: `Kautilya lays down the immortal law of servant leadership:\n\n> *"In the happiness of his subjects lies the king's happiness; in their welfare his welfare. Whatever pleases himself he shall not consider as good, but whatever pleases his subjects he shall consider as good."*\n\nBefore managing an enterprise or a state, a leader must master the six internal enemies: lust, anger, greed, vanity, arrogance, and foolhardiness. A leader who cannot govern their own desires will inevitably cause the ruin of their institution.`,
+        content: `Kautilya lays down the immortal law of servant leadership:\n\n> "In the happiness of his subjects lies the king's happiness; in their welfare his welfare. Whatever pleases himself he shall not consider as good, but whatever pleases his subjects he shall consider as good."\n\nBefore managing an enterprise or a state, a leader must master the six internal enemies: lust, anger, greed, vanity, arrogance, and foolhardiness. A leader who cannot govern their own desires will inevitably cause the ruin of their institution.`,
         keyLessons: [
           "Leadership is service: prioritize the growth and wellbeing of your team.",
-          "Self-control (*Indriya-jaya*) is the bedrock of strategic decision-making.",
+          "Self-control (Indriya-jaya) is the bedrock of strategic decision-making.",
           "Discipline in daily routines creates organizational stability."
         ],
         reflectionQuestions: [
@@ -269,7 +269,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "ईशावास्योपनिषत्",
         summary: "Harmonizing worldly engagement with spiritual awareness.",
         estimatedReadTimeMinutes: 15,
-        content: `**Verse 1**: *Isha vasyam idam sarvam yat kincha jagatyam jagat*\n"All this—whatever moves in this changing universe—is enveloped by the Divine. Enjoy the world through renunciation of possessiveness; do not covet anyone's wealth."\n\nThe Isha Upanishad presents the supreme ecological truth: everything in existence is interconnected within one continuous field of consciousness. When we treat nature or fellow human beings as mere commodities to exploit, we create self-destructive imbalance. Enjoy life deeply, but hold material possessions with a light, non-possessive grip.`,
+        content: `Verse 1: Isha vasyam idam sarvam yat kincha jagatyam jagat\n"All this—whatever moves in this changing universe—is enveloped by the Divine. Enjoy the world through renunciation of possessiveness; do not covet anyone's wealth."\n\nThe Isha Upanishad presents the supreme ecological truth: everything in existence is interconnected within one continuous field of consciousness. When we treat nature or fellow human beings as mere commodities to exploit, we create self-destructive imbalance. Enjoy life deeply, but hold material possessions with a light, non-possessive grip.`,
         keyLessons: [
           "Recognize the inherent sacredness and interconnectedness of all life.",
           "Practice non-possessive enjoyment (Tyaktena Bhunjitha).",
@@ -286,7 +286,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "केनोपनिषत्",
         summary: "Inquiring into the ultimate source of thought, speech, and perception.",
         estimatedReadTimeMinutes: 14,
-        content: `*Keneshitam patati preshitam manah?*\n"By whom impelled does the mind fly to its target? By whom directed does the breath move? By whom willed do people utter speech?"\n\nThe teacher answers: "It is the Ear of the ear, the Mind of the mind, the Speech of the speech, the Life of the life. That which cannot be comprehended by the mind, but by which the mind itself is comprehended—know That alone as Brahman, not this which people worship here."`,
+        content: `Keneshitam patati preshitam manah?\n"By whom impelled does the mind fly to its target? By whom directed does the breath move? By whom willed do people utter speech?"\n\nThe teacher answers: "It is the Ear of the ear, the Mind of the mind, the Speech of the speech, the Life of the life. That which cannot be comprehended by the mind, but by which the mind itself is comprehended—know That alone as Brahman, not this which people worship here."`,
         keyLessons: [
           "Consciousness is the foundational observer underlying all mental activity.",
           "True wisdom is recognizing the limitations of verbal definitions.",
@@ -369,7 +369,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "सभापर्व",
         summary: "How unchecked addiction and arrogance lead to catastrophic conflict.",
         estimatedReadTimeMinutes: 22,
-        content: `In the Assembly Hall of Hastinapura, Yudhishthira succumbs to the addictive game of dice against the treacherous Shakuni. Step by step, driven by pride and impulse, he wagers away his kingdom, wealth, brothers, and freedom.\n\nThe Mahabharata serves as a stern psychological warning: even noble human beings can be destroyed when they let addictive impulses override rational intellect (*Buddhi*).`,
+        content: `In the Assembly Hall of Hastinapura, Yudhishthira succumbs to the addictive game of dice against the treacherous Shakuni. Step by step, driven by pride and impulse, he wagers away his kingdom, wealth, brothers, and freedom.\n\nThe Mahabharata serves as a stern psychological warning: even noble human beings can be destroyed when they let addictive impulses override rational intellect (Buddhi).`,
         keyLessons: [
           "Never engage in high-stakes decisions when driven by pride or emotion.",
           "Addictive gambling or impulsive risk-taking clouds moral judgment.",
@@ -388,7 +388,7 @@ export const WISDOM_BOOKS: Book[] = [
         estimatedReadTimeMinutes: 25,
         content: `Lying upon his bed of arrows, the dying patriarch Bhishma imparts supreme wisdom on statecraft, ethics, and liberation to King Yudhishthira:\n\n"There is no duty higher than truth. Truth is the bedrock of righteousness. A king should protect all subjects equally, as a mother protects her child, without partiality or hatred."`,
         keyLessons: [
-          "Truth (*Satya*) is the foundation of all enduring peace and justice.",
+          "Truth (Satya) is the foundation of all enduring peace and justice.",
           "Compassionate impartiality builds public trust.",
           "Wisdom must be shared for future generations."
         ],
@@ -419,7 +419,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "नासदीय सूक्तम्",
         summary: "Profound philosophical questioning on the origin of existence.",
         estimatedReadTimeMinutes: 12,
-        content: `**Rig Veda 10.129**:\n"Then was not non-existence nor existence: there was no realm of air, no sky beyond it. What covered it, and where? What was the shelter? Was water there, unfathomed depth of water?"\n\n"Who really knows? Who will here proclaim it? Whence was it produced? Whence is this creation? The Gods came afterwards, with the creation of this universe. Who then knows whence it has arisen?"\n\nThe Nasadiya Sukta demonstrates the supreme intellectual openness of Vedic seers—asking fundamental questions about cosmology with humility, reverence, and scientific curiosity.`,
+        content: `Rig Veda 10.129:\n"Then was not non-existence nor existence: there was no realm of air, no sky beyond it. What covered it, and where? What was the shelter? Was water there, unfathomed depth of water?"\n\n"Who really knows? Who will here proclaim it? Whence was it produced? Whence is this creation? The Gods came afterwards, with the creation of this universe. Who then knows whence it has arisen?"\n\nThe Nasadiya Sukta demonstrates the supreme intellectual openness of Vedic seers—asking fundamental questions about cosmology with humility, reverence, and scientific curiosity.`,
         keyLessons: [
           "Embrace intellectual curiosity and honest questioning over dogmatic certainty.",
           "Acknowledge the mystery and vastness of the cosmos.",
@@ -436,7 +436,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "पुरुष सूक्तम्",
         summary: "The cosmos as a single living interconnected organism.",
         estimatedReadTimeMinutes: 15,
-        content: `**Rig Veda 10.90**:\n"The Cosmic Being (*Purusha*) has a thousand heads, a thousand eyes, a thousand feet. Pervading the earth on every side, it extends beyond it."\n\n"From this Cosmic Person arose the sun, the moon, the winds, the seasons, and all living species." The Purusha Sukta conveys that humanity and nature are organic limbs of one universal body. Injuring any part of nature is injuring the collective self.`,
+        content: `Rig Veda 10.90:\n"The Cosmic Being (Purusha) has a thousand heads, a thousand eyes, a thousand feet. Pervading the earth on every side, it extends beyond it."\n\n"From this Cosmic Person arose the sun, the moon, the winds, the seasons, and all living species." The Purusha Sukta conveys that humanity and nature are organic limbs of one universal body. Injuring any part of nature is injuring the collective self.`,
         keyLessons: [
           "All living beings are interconnected parts of one cosmic organism.",
           "Harm to nature is harm to ourselves.",
@@ -490,7 +490,7 @@ export const WISDOM_BOOKS: Book[] = [
         estimatedReadTimeMinutes: 14,
         content: `Mindfulness is the path to the Deathless; unmindfulness is the path to death. Those who are mindful do not die; those who are unmindful are as if already dead.\n\nBy effort, mindfulness, discipline, and self-control, let the wise person make for themselves an island which no flood can overwhelm.\n\nFoolish people indulge in heedlessness, but the wise person guards mindfulness as their greatest treasure.`,
         keyLessons: [
-          "Mindfulness (*Appamada*) protects the mind against impulse and distraction.",
+          "Mindfulness (Appamada) protects the mind against impulse and distraction.",
           "Build an inner island of stability through daily practice.",
           "Treat conscious attention as your most valuable asset."
         ],
@@ -521,7 +521,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "अप्रतिष्ठितचित्तम्",
         summary: "Giving and helping without attachment to self, receiver, or reward.",
         estimatedReadTimeMinutes: 14,
-        content: `The Buddha taught Subhuti: "A Bodhisattva should practice generosity without abiding anywhere—without abiding in sights, sounds, smells, tastes, touches, or mental concepts. Why? Because when one practices generosity without attachment to signs, their merit is immeasurable like space."\n\n"So you should view all fleeting phenomena in this world:\n*As a tiny star, a mist, a bubble in a stream,\nAn autumn lightning flash, a flickering lamp, a phantom, and a dream.*"`,
+        content: `The Buddha taught Subhuti: "A Bodhisattva should practice generosity without abiding anywhere—without abiding in sights, sounds, smells, tastes, touches, or mental concepts. Why? Because when one practices generosity without attachment to signs, their merit is immeasurable like space."\n\n"So you should view all fleeting phenomena in this world:\nAs a tiny star, a mist, a bubble in a stream,\nAn autumn lightning flash, a flickering lamp, a phantom, and a dream."`,
         keyLessons: [
           "Help others quietly without needing public praise or ego validation.",
           "Recognize the impermanent, fleeting nature of material possessions and fame.",
@@ -556,7 +556,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "परस्परोपग्रहो जीवानाम्",
         summary: "Mutual interdependence of all living beings and intellectual humility.",
         estimatedReadTimeMinutes: 15,
-        content: `**Sutra 5.21**: *Parasparopagraho Jivanam*\n"All life is bound together by mutual support and interdependence."\n\nAcharya Umaswati articulates the fundamental Jain ethic: no living being exists in isolation. Our breath, water, food, and existence rely on millions of visible and microscopic life forms. Therefore, **Ahimsa** (non-harming in thought, word, and deed) is the highest practical responsibility.\n\nFurthermore, **Anekantavada** teaches that truth has infinite facets. Conflicts arise when people claim their partial perspective is the sole absolute truth. Respecting multiple viewpoints fosters peace.`,
+        content: `Sutra 5.21: Parasparopagraho Jivanam\n"All life is bound together by mutual support and interdependence."\n\nAcharya Umaswati articulates the fundamental Jain ethic: no living being exists in isolation. Our breath, water, food, and existence rely on millions of visible and microscopic life forms. Therefore, Ahimsa (non-harming in thought, word, and deed) is the highest practical responsibility.\n\nFurthermore, Anekantavada teaches that truth has infinite facets. Conflicts arise when people claim their partial perspective is the sole absolute truth. Respecting multiple viewpoints fosters peace.`,
         keyLessons: [
           "Parasparopagraho Jivanam: Honor ecological interdependence in your daily choices.",
           "Anekantavada: Practice intellectual humility by listening to differing perspectives.",
@@ -591,7 +591,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "ੴ सतिनामु",
         summary: "Living in harmony with divine cosmic order (Hukam).",
         estimatedReadTimeMinutes: 14,
-        content: `**Mool Mantar**:\n*Ik Onkar Satnam Karta Purakh Nirbhau Nirvair Akal Murat Ajuni Saibhang Gurprasad*\n"There is One Sovereign Divine Reality, Truth by Name, Creative Power, Without Fear, Without Enmity, Timeless Form, Unborn, Self-Existent."\n\nHow can one become truthful? How can the veil of illusion be torn away? By walking in harmony with the Divine Will (*Hukam*), as written in our very nature.\n\nTrue spiritual living requires **Kirat Karo** (honest labor), **Naam Japo** (remembrance of Divine Truth), and **Vand Chhako** (sharing earnings with those in need).`,
+        content: `Mool Mantar:\nIk Onkar Satnam Karta Purakh Nirbhau Nirvair Akal Murat Ajuni Saibhang Gurprasad\n"There is One Sovereign Divine Reality, Truth by Name, Creative Power, Without Fear, Without Enmity, Timeless Form, Unborn, Self-Existent."\n\nHow can one become truthful? How can the veil of illusion be torn away? By walking in harmony with the Divine Will (Hukam), as written in our very nature.\n\nTrue spiritual living requires Kirat Karo (honest labor), Naam Japo (remembrance of Divine Truth), and Vand Chhako (sharing earnings with those in need).`,
         keyLessons: [
           "Nirbhau & Nirvair: Live without fear and without hatred toward anyone.",
           "Perform honest work and share resources generously with your community.",
@@ -709,7 +709,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "仁 (Ren)",
         summary: "Cultivating empathy, self-reflection, and social harmony.",
         estimatedReadTimeMinutes: 14,
-        content: `The Master said: "Is it not a pleasure to learn and frequently review what you have learned? Is it not delightful to have friends coming from distant lands? Is one not a noble person if they remain unruffled when unrecognized by others?"\n\n"Do not do to others what you would not want done to yourself."\n\nA noble person (*Junzi*) seeks self-improvement; a shallow person seeks demands on others. When you see a worthy person, endeavor to emulate them. When you see an unworthy person, examine your own inner character.`,
+        content: `The Master said: "Is it not a pleasure to learn and frequently review what you have learned? Is it not delightful to have friends coming from distant lands? Is one not a noble person if they remain unruffled when unrecognized by others?"\n\n"Do not do to others what you would not want done to yourself."\n\nA noble person (Junzi) seeks self-improvement; a shallow person seeks demands on others. When you see a worthy person, endeavor to emulate them. When you see an unworthy person, examine your own inner character.`,
         keyLessons: [
           "The Silver Rule: Treat others as you wish to be treated.",
           "Continuous self-examination is key to character growth.",
@@ -742,7 +742,7 @@ export const WISDOM_BOOKS: Book[] = [
         sanskritTitle: "無爲 (Wu Wei)",
         summary: "Flowing with natural laws without forcing outcomes.",
         estimatedReadTimeMinutes: 12,
-        content: `The Tao that can be spoken is not the eternal Tao. The name that can be named is not the eternal name.\n\nWater is fluid, soft, and yielding. But water will wear away rock, which is rigid and cannot yield. As a rule, whatever is fluid, soft, and yielding will overcome whatever is rigid and hard.\n\nPractice **Wu Wei** (effortless action): work with natural rhythms rather than forcing outcomes against the grain. Be like water—nourish all things without striving.`,
+        content: `The Tao that can be spoken is not the eternal Tao. The name that can be named is not the eternal name.\n\nWater is fluid, soft, and yielding. But water will wear away rock, which is rigid and cannot yield. As a rule, whatever is fluid, soft, and yielding will overcome whatever is rigid and hard.\n\nPractice Wu Wei (effortless action): work with natural rhythms rather than forcing outcomes against the grain. Be like water—nourish all things without striving.`,
         keyLessons: [
           "Wu Wei: Accomplish tasks by yielding and moving with natural momentum.",
           "Simplicity, patience, and compassion are your greatest treasures.",
