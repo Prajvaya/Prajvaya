@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CardTilt } from "./CardTilt";
-import { Sparkles, BookOpen, Leaf, School, Users, ShieldCheck, ArrowRight } from "lucide-react";
+import { Sparkles, BookOpen, Users, Leaf, School, ShieldCheck, ArrowRight } from "lucide-react";
 import { PrajvayaAIModal } from "./PrajvayaAIModal";
 import { WisdomLibraryModal } from "./wisdom-library/WisdomLibraryModal";
 
@@ -43,11 +43,22 @@ const FOCUS_AREAS: FocusArea[] = [
     actionLabel: "Explore Wisdom Library"
   },
   {
+    id: "privacy_community",
+    title: "Swadeshi Community Platform",
+    icon: <Users className="text-purple-400" size={24} />,
+    tagline: "100% Local & Sovereign Data",
+    mission: "Facilitating notification-free, privacy-sovereign digital spaces where user data remains strictly stored on device in local memory without third-party tracking, surveillance, or cloud lock-in.",
+    badge: "LIVE NOW • LOCAL PRIVACY",
+    badgeStyle: "bg-purple-500/10 border-purple-400/40 text-purple-300 animate-pulse",
+    stats: ["Zero Third-Party APIs", "Client-Side Memory", "Digital Sovereignty"],
+    actionLabel: "View Community Blueprint"
+  },
+  {
     id: "sustainable_living",
     title: "Prakriti Sustainable Living",
     icon: <Leaf className="text-emerald-400" size={24} />,
     tagline: "Regenerative Daily Lifestyles",
-    mission: "Translating Vedic ecological principles and rainwater/resource conservation practices into modern domestic habits, eco-conscious habit trackers, and zero-waste daily routines.",
+    mission: "Translating Vedic ecological principles and resource conservation practices into modern domestic habits, eco-conscious habit trackers, and zero-waste daily routines.",
     badge: "ACTIVE INITIATIVE",
     badgeStyle: "bg-emerald-500/10 border-emerald-400/30 text-emerald-300",
     stats: ["Zero Waste Habits", "Eco-Systemic Living", "Resource Conservation"]
@@ -61,16 +72,6 @@ const FOCUS_AREAS: FocusArea[] = [
     badge: "EXPANDING MODULES",
     badgeStyle: "bg-sky-500/10 border-sky-400/30 text-sky-300",
     stats: ["Systems Thinking", "Emotional Resilience", "Philosophical Logic"]
-  },
-  {
-    id: "privacy_community",
-    title: "Swadeshi Privacy & Community",
-    icon: <ShieldCheck className="text-purple-400" size={24} />,
-    tagline: "100% Local & Sovereign Data",
-    mission: "Facilitating notification-free, privacy-sovereign digital spaces where user data remains strictly stored on device in localStorage without third-party AI dependencies or surveillance.",
-    badge: "CORE ARCHITECTURE",
-    badgeStyle: "bg-purple-500/10 border-purple-400/30 text-purple-300",
-    stats: ["Zero Third-Party APIs", "Client-Side Storage", "Digital Sovereignty"]
   }
 ];
 
@@ -81,6 +82,10 @@ export const FocusAreas: React.FC = () => {
   const handleActionClick = (id: string) => {
     if (id === "ai_companion") setIsAiModalOpen(true);
     if (id === "wisdom_library") setIsLibraryModalOpen(true);
+    if (id === "privacy_community") {
+      const target = document.querySelector("#swadeshi");
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -92,19 +97,19 @@ export const FocusAreas: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
           <span className="font-outfit text-xs font-semibold tracking-[0.25em] text-gold uppercase block">
-            Core Initiatives • Recent Updates
+            Core Initiatives • Live Updates
           </span>
           <h2 className="font-cinzel text-3xl sm:text-4xl font-extrabold tracking-wide text-charcoal dark:text-cream leading-tight">
-            Prajvaya Ecosystem Initiatives
+            Prajvaya Core Initiatives
           </h2>
           <p className="font-outfit text-sm text-charcoal/70 dark:text-cream/80 leading-relaxed font-light">
-            We structure Prajvaya around five core operational pillars. Each initiative combines ancient Indian socio-environmental wisdom with modern, self-contained AI engineering and distraction-free design.
+            Our operational initiatives bring together AI innovation, timeless Indian philosophy, and data sovereignty. Explore the live platforms and active projects below.
           </p>
         </div>
 
-        {/* Focus Grid - Top Row (2 Primary Live Ecosystem Pillars) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-8">
-          {FOCUS_AREAS.slice(0, 2).map((area, idx) => (
+        {/* Top Featured Row: 3 Primary Live Pillars (AI Companion, Wisdom Library, Community Platform) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
+          {FOCUS_AREAS.slice(0, 3).map((area, idx) => (
             <motion.div
               key={area.id}
               initial={{ opacity: 0, y: 20 }}
@@ -112,14 +117,14 @@ export const FocusAreas: React.FC = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
             >
-              <CardTilt className="h-full p-8 flex flex-col justify-between border border-gold/30 bg-charcoal/40 dark:bg-forest/60 backdrop-blur-md rounded-3xl shadow-xl hover:shadow-gold/10 transition-all duration-300 relative group/card">
+              <CardTilt className="h-full p-6 sm:p-8 flex flex-col justify-between border border-gold/30 bg-charcoal/40 dark:bg-forest/60 backdrop-blur-md rounded-3xl shadow-xl hover:shadow-gold/10 transition-all duration-300 relative group/card">
                 <div>
-                  {/* Top Badge */}
+                  {/* Top Badge & Icon */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="h-12 w-12 rounded-2xl flex items-center justify-center bg-gold/10 border border-gold/30">
                       {area.icon}
                     </div>
-                    <span className={`text-[10px] font-bold font-outfit uppercase tracking-widest px-3 py-1 rounded-full border ${area.badgeStyle}`}>
+                    <span className={`text-[9px] font-bold font-outfit uppercase tracking-widest px-3 py-1 rounded-full border ${area.badgeStyle}`}>
                       {area.badge}
                     </span>
                   </div>
@@ -130,7 +135,7 @@ export const FocusAreas: React.FC = () => {
                   </span>
 
                   {/* Title */}
-                  <h3 className="font-cinzel text-xl font-bold text-charcoal dark:text-cream mb-3 leading-snug">
+                  <h3 className="font-cinzel text-lg font-bold text-charcoal dark:text-cream mb-3 leading-snug">
                     {area.title}
                   </h3>
 
@@ -139,10 +144,10 @@ export const FocusAreas: React.FC = () => {
                     {area.mission}
                   </p>
 
-                  {/* Highlights / Features list */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Feature Pills */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
                     {area.stats.map((st, sIdx) => (
-                      <span key={sIdx} className="font-outfit text-[10px] px-2.5 py-1 rounded-lg bg-black/30 border border-gold/15 text-gold/90 font-medium">
+                      <span key={sIdx} className="font-outfit text-[9px] px-2.5 py-1 rounded-lg bg-black/30 border border-gold/15 text-gold/90 font-medium">
                         ✓ {st}
                       </span>
                     ))}
@@ -153,7 +158,7 @@ export const FocusAreas: React.FC = () => {
                 {area.actionLabel && (
                   <button
                     onClick={() => handleActionClick(area.id)}
-                    className="w-full py-3 px-6 rounded-xl bg-gold hover:bg-gold-light text-charcoal-dark font-outfit text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg smooth-transition cursor-pointer group-hover/card:scale-[1.02]"
+                    className="w-full py-3 px-4 rounded-xl bg-gold hover:bg-gold-light text-charcoal-dark font-outfit text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg smooth-transition cursor-pointer group-hover/card:scale-[1.02]"
                   >
                     <span>{area.actionLabel}</span>
                     <ArrowRight size={14} />
@@ -164,15 +169,15 @@ export const FocusAreas: React.FC = () => {
           ))}
         </div>
 
-        {/* Focus Grid - Bottom Row (3 Secondary Initiatives) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {FOCUS_AREAS.slice(2, 5).map((area, idx) => (
+        {/* Bottom Row: 2 Supporting Initiatives (Sustainable Living & Holistic Education) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {FOCUS_AREAS.slice(3, 5).map((area, idx) => (
             <motion.div
               key={area.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: (idx + 2) * 0.1 }}
+              transition={{ duration: 0.6, delay: (idx + 3) * 0.1 }}
             >
               <CardTilt className="h-full p-6 flex flex-col justify-between border border-gold/15 bg-charcoal/30 dark:bg-forest/40 backdrop-blur-md rounded-2xl shadow-sm hover:border-gold/30 transition-all duration-300">
                 <div>
