@@ -4,22 +4,26 @@ import path from "path";
 
 // Helper to log emails locally when SMTP is not configured.
 const logEmailLocally = async (to: string, subject: string, html: string) => {
-  const dirPath = path.join(process.cwd(), "scratch", "emails");
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
-  const fileName = `email_${Date.now()}_${to.replace(/[@.]/g, "_")}.html`;
-  const filePath = path.join(dirPath, fileName);
+  try {
+    const dirPath = path.join(process.cwd(), "scratch", "emails");
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+    const fileName = `email_${Date.now()}_${to.replace(/[@.]/g, "_")}.html`;
+    const filePath = path.join(dirPath, fileName);
 
-  const fileContent = `<!--
+    const fileContent = `<!--
 To: ${to}
 Subject: ${subject}
 Date: ${new Date().toISOString()}
 -->
 ${html}`;
 
-  await fs.promises.writeFile(filePath, fileContent, "utf-8");
-  console.log(`[Email Mock Log] Sent email to ${to}. Subject: "${subject}". Mock file: ${filePath}`);
+    await fs.promises.writeFile(filePath, fileContent, "utf-8");
+    console.log(`[Email Mock Log] Sent email to ${to}. Subject: "${subject}". Mock file: ${filePath}`);
+  } catch (err) {
+    console.log(`[Email Mock Log - Memory Fallback] Sent email to ${to}. Subject: "${subject}".`);
+  }
 };
 
 export const sendEmail = async (to: string, subject: string, html: string): Promise<boolean> => {
@@ -98,66 +102,68 @@ const baseTemplate = (title: string, contentHtml: string): string => `
       text-align: center;
       border-bottom: 1px solid rgba(194, 157, 102, 0.2);
     }
-    .header h1 {
-      color: #c29d66;
-      font-family: 'Cinzel', serif;
+    .brand-title {
+      font-family: 'Cinzel', Georgia, serif;
       font-size: 24px;
-      margin: 0;
+      font-weight: 700;
       letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-    .body {
-      padding: 40px;
       color: #fbf9f4;
-      line-height: 1.7;
+      margin: 0;
     }
-    .body p {
-      font-size: 14px;
-      margin: 0 0 20px 0;
-      font-weight: 300;
+    .brand-sub {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: #c29d66;
+      text-transform: uppercase;
+      margin-top: 4px;
     }
-    .otp-code {
-      display: inline-block;
-      letter-spacing: 0.25em;
+    .content {
+      padding: 40px;
+      color: #e5e5e5;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .heading {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 20px;
+      color: #c29d66;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+    .code-box {
+      background-color: #1c1c1c;
+      border: 1px border-gold/30;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin: 24px 0;
+    }
+    .code {
+      font-family: monospace;
       font-size: 32px;
       font-weight: 700;
-      color: #dec095;
-      background-color: rgba(194, 157, 102, 0.1);
-      border: 1px dashed rgba(194, 157, 102, 0.4);
-      padding: 10px 30px;
-      border-radius: 8px;
-      margin: 20px 0;
-      text-align: center;
+      letter-spacing: 0.25em;
+      color: #c29d66;
     }
     .btn {
       display: inline-block;
       background-color: #c29d66;
-      color: #1c1c1c !important;
+      color: #121212;
+      font-weight: 600;
+      font-size: 14px;
       text-decoration: none;
-      padding: 12px 30px;
-      border-radius: 9999px;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin: 20px 0;
-      transition: background-color 0.3s;
+      padding: 14px 28px;
+      border-radius: 8px;
+      margin-top: 20px;
     }
     .footer {
-      background-color: #0b1f13;
-      padding: 30px 40px;
+      background-color: #0d0d0d;
+      padding: 20px 40px;
       text-align: center;
-      font-size: 11px;
-      color: rgba(251, 249, 244, 0.6);
-      border-top: 1px solid rgba(194, 157, 102, 0.2);
-    }
-    .footer a {
-      color: #dec095;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    .footer a:hover {
-      text-decoration: underline;
+      font-size: 12px;
+      color: #888888;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
   </style>
 </head>
@@ -165,18 +171,14 @@ const baseTemplate = (title: string, contentHtml: string): string => `
   <div class="wrapper">
     <div class="container">
       <div class="header">
-        <h1>Prajvaya</h1>
+        <div class="brand-title">PRAJVAYA</div>
+        <div class="brand-sub">Victory through Intellect</div>
       </div>
-      <div class="body">
+      <div class="content">
         ${contentHtml}
       </div>
       <div class="footer">
-        <p>&copy; ${new Date().getFullYear()} Prajvaya. All rights reserved.</p>
-        <p>
-          <a href="https://prajvaya.com" target="_blank">Website</a> |
-          <a href="https://linkedin.com" target="_blank">LinkedIn</a> |
-          <a href="https://github.com" target="_blank">GitHub</a>
-        </p>
+        <p>© ${new Date().getFullYear()} Prajvaya AI Platform. Rebuilding the future with remembered wisdom.</p>
       </div>
     </div>
   </div>
@@ -185,105 +187,77 @@ const baseTemplate = (title: string, contentHtml: string): string => `
 `;
 
 export const templates = {
-  verificationCode: (name: string, code: string): string => baseTemplate(
-    "Verify Your Account",
+  verificationCode: (name: string, code: string) =>
+    baseTemplate(
+      "Verify Your Email",
+      `
+      <h2 class="heading">Welcome, ${name}</h2>
+      <p>Thank you for creating an account on the Prajvaya AI Platform. To complete your registration and verify your email address, please use the following 6-digit verification code:</p>
+      <div class="code-box">
+        <div class="code">${code}</div>
+      </div>
+      <p style="font-size: 13px; color: #aaaaaa;">This verification code will expire in 15 minutes. If you did not initiate this request, you can safely ignore this email.</p>
     `
-    <p>Dear ${name},</p>
-    <p>Thank you for initiating your registration with Prajvaya. To verify ownership of your email address, please use the following One-Time Password (OTP) verification code:</p>
-    <div style="text-align: center;">
-      <div class="otp-code">${code}</div>
-    </div>
-    <p>This verification code is valid for 15 minutes. If you did not make this request, you can safely ignore this email.</p>
-    `
-  ),
-  welcome: (name: string): string => baseTemplate(
-    "Welcome to Prajvaya 🌿",
-    `
-    <p>Hello ${name},</p>
-    <p>Thank you for joining <strong>Prajvaya</strong>. We are thrilled to welcome you to our cohort.</p>
-    <p>Prajvaya operates at the intersection of classical Indian wisdom and modern systems engineering. We believe technology should respect human attention, heal digital minds, restore community bonds, and align with natural laws. By verifying your account, you are now officially part of this cohort.</p>
-    
-    <div style="margin: 30px 0; padding: 20px; background-color: rgba(194, 157, 102, 0.05); border: 1px solid rgba(194, 157, 102, 0.15); border-radius: 12px; text-align: center;">
-      <p style="margin-top: 0; color: #dec095; font-weight: bold; font-size: 15px; font-family: 'Cinzel', serif;">Become a Contributor 🤝</p>
-      <p style="font-size: 13px; margin-bottom: 20px; color: #fbf9f4;">If you registered to be a contributor, click the link below to join the official Contributors Group on WhatsApp to sync with the team:</p>
-      <a href="https://chat.whatsapp.com/BbSPzaUTtws9OJpU5JqcaA" class="btn" style="margin: 0; display: inline-block;" target="_blank">Join Contributors Group</a>
-    </div>
+    ),
 
-    <div style="text-align: center; margin-bottom: 20px;">
-      <a href="https://prajvaya.com" class="btn" target="_blank">Access Portal</a>
-    </div>
-    <p>Feel free to reach out to us at <a href="mailto:prajvaya@gmail.com" style="color: #dec095;">prajvaya@gmail.com</a> for any collaborative queries.</p>
+  passwordReset: (name: string, code: string) =>
+    baseTemplate(
+      "Reset Your Password",
+      `
+      <h2 class="heading">Password Reset Request</h2>
+      <p>Hello ${name}, we received a request to reset your password for your Prajvaya account. Use the code below to complete the reset:</p>
+      <div class="code-box">
+        <div class="code">${code}</div>
+      </div>
+      <p style="font-size: 13px; color: #aaaaaa;">This code will expire in 15 minutes. If you did not request a password reset, please secure your account immediately.</p>
     `
-  ),
-  adminNewUser: (name: string, email: string, date: string): string => baseTemplate(
-    "New User Registered",
+    ),
+
+  passwordResetCode: (code: string) =>
+    baseTemplate(
+      "Reset Your Password",
+      `
+      <h2 class="heading">Password Reset Request</h2>
+      <p>We received a request to reset your password for your Prajvaya account. Use the code below to complete the reset:</p>
+      <div class="code-box">
+        <div class="code">${code}</div>
+      </div>
+      <p style="font-size: 13px; color: #aaaaaa;">This code will expire in 15 minutes. If you did not request a password reset, please secure your account immediately.</p>
     `
-    <p><strong>System Log Alert: New User Registered</strong></p>
-    <hr style="border: 0; border-top: 1px solid rgba(194,157,102,0.2); margin: 20px 0;" />
-    <table style="width: 100%; font-size: 13px; color: #fbf9f4;">
-      <tr>
-        <td style="width: 35%; padding: 8px 0; color: #c29d66;"><strong>Name:</strong></td>
-        <td style="padding: 8px 0;">${name}</td>
-      </tr>
-      <tr>
-        <td style="padding: 8px 0; color: #c29d66;"><strong>Email:</strong></td>
-        <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #dec095;">${email}</a></td>
-      </tr>
-      <tr>
-        <td style="padding: 8px 0; color: #c29d66;"><strong>Timestamp:</strong></td>
-        <td style="padding: 8px 0;">${date}</td>
-      </tr>
-    </table>
+    ),
+
+  newsletterVerify: (code: string) =>
+    baseTemplate(
+      "Confirm Subscription",
+      `
+      <h2 class="heading">Confirm Your Subscription</h2>
+      <p>Thank you for subscribing to the Prajvaya Journal. Use the code below to verify your email:</p>
+      <div class="code-box">
+        <div class="code">${code}</div>
+      </div>
     `
-  ),
-  newsletterVerify: (code: string): string => baseTemplate(
-    "Confirm Your Subscription",
+    ),
+
+  welcome: (name: string) =>
+    baseTemplate(
+      "Welcome to Prajvaya",
+      `
+      <h2 class="heading">Account Verified</h2>
+      <p>Hello ${name}, your Prajvaya account is now fully active! You have complete access to the Prajvaya AI Platform, 6 Specialized Companions, and the Interactive Wisdom Library.</p>
+      <p>Join our community of forward-thinkers bridging timeless ancient wisdom with cutting-edge technology.</p>
+      <a href="https://chat.whatsapp.com/HS6dVyedqtAKvGlkVjQSdJ" class="btn" target="_blank">Join Prajvaya Community</a>
     `
-    <p>Hello,</p>
-    <p>We received a request to subscribe this email address to the Prajvaya Newsletter updates log. To verify ownership, please input the following One-Time Password (OTP) verification code inside the signup panel:</p>
-    <div style="text-align: center;">
-      <div class="otp-code">${code}</div>
-    </div>
-    <p>If you did not sign up for this subscription, you can safely disregard this email.</p>
+    ),
+
+  adminNewUser: (name: string, email: string, date: string) =>
+    baseTemplate(
+      "New User Registered",
+      `
+      <h2 class="heading">New User Registration Alert</h2>
+      <p>A new user has joined the Prajvaya AI Platform!</p>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Date:</strong> ${date}</p>
     `
-  ),
-  newsletterWelcome: (): string => baseTemplate(
-    "Newsletter Subscribed 🌿",
-    `
-    <p>Hello,</p>
-    <p>This email is to confirm that your subscription to the <strong>Prajvaya Newsletter</strong> is officially verified and active.</p>
-    <p>You will receive updates on our technical projects, research publications, and community node events directly in your inbox.</p>
-    <div style="text-align: center;">
-      <a href="https://prajvaya.com" class="btn" target="_blank">Visit Site</a>
-    </div>
-    `
-  ),
-  adminNewSubscriber: (email: string, date: string): string => baseTemplate(
-    "New Subscriber Added",
-    `
-    <p><strong>System Log Alert: New Newsletter Subscriber</strong></p>
-    <hr style="border: 0; border-top: 1px solid rgba(194,157,102,0.2); margin: 20px 0;" />
-    <table style="width: 100%; font-size: 13px; color: #fbf9f4;">
-      <tr>
-        <td style="width: 35%; padding: 8px 0; color: #c29d66;"><strong>Subscriber Email:</strong></td>
-        <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #dec095;">${email}</a></td>
-      </tr>
-      <tr>
-        <td style="padding: 8px 0; color: #c29d66;"><strong>Timestamp:</strong></td>
-        <td style="padding: 8px 0;">${date}</td>
-      </tr>
-    </table>
-    `
-  ),
-  passwordResetCode: (code: string): string => baseTemplate(
-    "Reset Your Password",
-    `
-    <p>Hello,</p>
-    <p>A request was received to reset your Prajvaya account password. To authorize this reset, please use the following One-Time Password (OTP) recovery code:</p>
-    <div style="text-align: center;">
-      <div class="otp-code">${code}</div>
-    </div>
-    <p>This recovery code will expire in 15 minutes. If you did not make this request, we recommend checking your security logs or updating your account credentials immediately.</p>
-    `
-  ),
+    )
 };

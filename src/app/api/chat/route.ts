@@ -24,11 +24,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       reply: reasoningResult.reply,
-      activeCompanion: reasoningResult.activeCompanion,
+      activeCompanion: reasoningResult.assignedCompanion,
       collaboratingCompanions: reasoningResult.collaboratingCompanions,
-      emotionalProfile: reasoningResult.emotionalProfile,
+      emotionalProfile: reasoningResult.emotionalAnalysis,
       reasoningChain: reasoningResult.reasoningChain,
-      recalledMemoriesUsed: reasoningResult.recalledMemoriesUsed,
       evidenceBadge: reasoningResult.evidenceBadge,
       actionPlan: reasoningResult.actionPlan,
     });
