@@ -1,0 +1,47 @@
+{
+  "users": [
+    {
+      "name": "Survi Mukherjee",
+      "email": "survi.mukherjee09@gmail.com",
+      "passwordHash": "$2b$10$se3tiLMr0XJb7ouJwIa.zO337p9Wk.tG/RzyhuROIBFWOCPkAW6Sq",
+      "emailVerified": true,
+      "id": "ovruaxue4",
+      "registrationDate": "2026-07-27T06:23:30.439Z",
+      "lastLogin": "",
+      "role": "Admin",
+      "status": "Active"
+    },
+    {
+      "name": "Survi Mukherjee",
+      "email": "survimukherjee0905@gmail.com",
+      "passwordHash": "$2b$10$1xu83bNKXS2Iis2trAW56OCBvQqy4FU1UmnkFjrZ7TNe6DL1rJjf6",
+      "emailVerified": false,
+      "id": "eb7m8rjdp",
+      "registrationDate": "2026-07-27T06:32:31.405Z",
+      "lastLogin": "",
+      "role": "User",
+      "status": "Active"
+    },
+    {
+      "name": "Survi Mukherjee",
+      "email": "abcdx0624@gmail.com",
+      "passwordHash": "$2b$10$szF7I1qwdxS2sh5YMnuyWeKpclXPyLhvbhdPIHFRdjQnvK.NNeCau",
+      "emailVerified": true,
+      "id": "uxsqf0hxg",
+      "registrationDate": "2026-07-27T08:06:02.724Z",
+      "lastLogin": "",
+      "role": "User",
+      "status": "Active"
+    }
+  ],
+  "subscribers": [],
+  "tokens": [
+    {
+      "id": "80zpv9jpw",
+      "email": "survimukherjee0905@gmail.com",
+      "token": "486949",
+      "type": "verify",
+      "expiresAt": "2026-07-27T08:17:26.243Z"
+    }
+  ]
+}
