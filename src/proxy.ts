@@ -78,6 +78,12 @@ export function proxy(request: any) {
   return NextResponse.next();
 }
 
+export function middleware(request: NextRequest) {
+  return proxy(request);
+}
+
+export default proxy;
+
 export const config = {
   matcher: [
     "/dashboard/:path*",
