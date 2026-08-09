@@ -48,7 +48,11 @@ export default function Register() {
       if (!res.ok) {
         setError(data.error || "Failed to resend OTP.");
       } else {
-        setSuccessMsg(data.message || "New OTP dispatched successfully.");
+        if (data.debugOtp) {
+          setSuccessMsg(`${data.message || "New OTP dispatched successfully."} [Dev Mode Hint - Your OTP is: ${data.debugOtp}]`);
+        } else {
+          setSuccessMsg(data.message || "New OTP dispatched successfully. Please check your inbox and spam folder.");
+        }
         setResendCooldown(30);
       }
     } catch (err) {
@@ -99,7 +103,11 @@ export default function Register() {
       if (!res.ok) {
         setError(data.error || "Failed to register.");
       } else {
-        setSuccessMsg(data.message || "Registration successful!");
+        if (data.debugOtp) {
+          setSuccessMsg(`${data.message || "Registration successful!"} [Dev Mode Hint - Your OTP is: ${data.debugOtp}]`);
+        } else {
+          setSuccessMsg(data.message || "Registration successful! Please check your email inbox and spam folder.");
+        }
         setStep("verify");
       }
     } catch (err) {

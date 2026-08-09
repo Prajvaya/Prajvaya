@@ -89,6 +89,10 @@ export async function POST(request: Request) {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     await db.tokens.create(cleanEmail, otp, "verify", 15);
 
+    console.log(`\n==================================================`);
+    console.log(`[PRAJ VAYA AUTH] Registration OTP for ${cleanEmail}: ${otp}`);
+    console.log(`==================================================\n`);
+
     // 6. Safe email dispatch
     try {
       await sendEmail(cleanEmail, "Verify Your Prajvaya Account", templates.verificationCode(cleanName, otp));
@@ -97,8 +101,9 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      message: "Registration successful! Please verify your email with the 6-digit OTP code.",
+      message: "Registration successful! Please check your email inbox (and Spam folder) for the 6-digit OTP code.",
       email: cleanEmail,
+      ...(process.env.NODE_ENV !== "production" ? { debugOtp: otp } : {}),
     });
   } catch (err: any) {
     console.error("Registration error details:", err?.message || err);

@@ -23,6 +23,10 @@ export async function POST(request: Request) {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     await db.tokens.create(email, otp, type, 15); // Valid for 15 mins
 
+    console.log(`\n==================================================`);
+    console.log(`[PRAJ VAYA AUTH] Resend OTP (${type}) for ${email}: ${otp}`);
+    console.log(`==================================================\n`);
+
     // Determine corresponding template
     if (type === "verify") {
       const user = await db.users.findUnique({ email });
@@ -36,6 +40,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       message: "A new OTP verification code has been dispatched to your inbox.",
+      ...(process.env.NODE_ENV !== "production" ? { debugOtp: otp } : {}),
     });
   } catch (err: any) {
     console.error("Resend OTP error:", err);
