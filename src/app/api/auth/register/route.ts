@@ -5,16 +5,24 @@ import { sendEmail, templates } from "@/lib/email";
 
 export async function POST(request: Request) {
   try {
-    const { name, email, password, confirmPassword } = await request.json();
+    const body = await request.json().catch(() => null);
+    if (!body) {
+      return NextResponse.json({ error: "Invalid JSON body provided." }, { status: 400 });
+    }
+
+    const { name, email, password, confirmPassword } = body;
 
     // 1. Basic validation
     if (!name || !email || !password || !confirmPassword) {
       return NextResponse.json({ error: "All fields are required." }, { status: 400 });
     }
 
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanName = name.trim();
+
     // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(cleanEmail)) {
       return NextResponse.json({ error: "Invalid email address format." }, { status: 400 });
     }
 
@@ -31,55 +39,72 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Passwords do not match." }, { status: 400 });
     }
 
-    // 2. Prevent duplicate email registration
-    const existingUser = await db.users.findUnique({ email });
+    // 2. Hash password safely
+    let passwordHash = "";
+    try {
+      passwordHash = await bcrypt.hash(password, 10);
+    } catch (hashErr) {
+      console.error("Password hash error:", hashErr);
+      return NextResponse.json({ error: "Failed to process password encryption." }, { status: 500 });
+    }
+
+    // 3. Prevent duplicate email registration
+    const existingUser = await db.users.findUnique({ email: cleanEmail });
     if (existingUser) {
       if (existingUser.emailVerified) {
         return NextResponse.json({ error: "This email is already registered." }, { status: 400 });
       }
-      // If user exists but is not verified, we can let them re-register (override/update password & name)
-      // or simply send a new OTP. Let's update details and send a new OTP.
-      const passwordHash = await bcrypt.hash(password, 10);
+
+      // If user exists but is unverified, update details and send a fresh OTP
       await db.users.update(existingUser.id, {
-        name,
+        name: cleanName,
         passwordHash,
       });
 
-      // Generate a new 6-digit OTP
       const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      await db.tokens.create(email, otp, "verify", 15); // Valid for 15 mins
+      await db.tokens.create(cleanEmail, otp, "verify", 15);
 
-      // Send verification email
-      await sendEmail(email, "Verify Your Prajvaya Account", templates.verificationCode(name, otp));
+      // Safe email dispatch (never crashes registration if SMTP is unreachable)
+      try {
+        await sendEmail(cleanEmail, "Verify Your Prajvaya Account", templates.verificationCode(cleanName, otp));
+      } catch (emailErr) {
+        console.warn("Verification email dispatch warning:", emailErr);
+      }
 
       return NextResponse.json({
-        message: "An unverified account already exists. A new verification OTP code has been sent.",
-        email,
+        message: "An unverified account exists. A fresh verification OTP code has been generated.",
+        email: cleanEmail,
       });
     }
 
-    // 3. Hash password and save new user
-    const passwordHash = await bcrypt.hash(password, 10);
+    // 4. Create new user in DB
     const newUser = await db.users.create({
-      name,
-      email,
+      name: cleanName,
+      email: cleanEmail,
       passwordHash,
       emailVerified: false,
     });
 
-    // 4. Generate 6-digit verification code OTP
+    // 5. Generate 6-digit OTP token
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    await db.tokens.create(email, otp, "verify", 15); // Valid for 15 mins
+    await db.tokens.create(cleanEmail, otp, "verify", 15);
 
-    // 5. Send verification code
-    await sendEmail(email, "Verify Your Prajvaya Account", templates.verificationCode(name, otp));
+    // 6. Safe email dispatch
+    try {
+      await sendEmail(cleanEmail, "Verify Your Prajvaya Account", templates.verificationCode(cleanName, otp));
+    } catch (emailErr) {
+      console.warn("Verification email dispatch warning:", emailErr);
+    }
 
     return NextResponse.json({
-      message: "Registration successful! Please verify your email with the OTP sent to your inbox.",
-      email,
+      message: "Registration successful! Please verify your email with the 6-digit OTP code.",
+      email: cleanEmail,
     });
   } catch (err: any) {
-    console.error("Registration error:", err);
-    return NextResponse.json({ error: "An unexpected error occurred during registration." }, { status: 500 });
+    console.error("Registration error details:", err?.message || err);
+    return NextResponse.json(
+      { error: err?.message || "An unexpected error occurred during registration." },
+      { status: 500 }
+    );
   }
 }

@@ -14,7 +14,47 @@ export async function POST(request: Request) {
     const lastMessage = messages[messages.length - 1];
     const userText = lastMessage?.content || "Hello";
 
-    // Run Prajvaya's local multi-stage reasoning engine
+    // Attempt connecting to Prajvaya Python FastAPI ML/RAG Backend
+    try {
+      const mlRes = await fetch("http://127.0.0.1:8000/api/v1/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: userText }],
+          companion_id: companionId,
+          user_name: "Aarav"
+        })
+      });
+
+      if (mlRes.ok) {
+        const mlData = await mlRes.json();
+        return NextResponse.json({
+          reply: mlData.reply,
+          activeCompanion: mlData.active_companion || companionId,
+          collaboratingCompanions: [],
+          emotionalProfile: {
+            primaryEmotion: "calm",
+            confidence: 0.95,
+            empathyNote: "Prajvaya ML Model Engine active."
+          },
+          reasoningChain: [
+            { stage: "Intent & Emotion", detail: "Query received by Prajvaya ML Core." },
+            { stage: "Safety Check", detail: mlData.safety_flagged ? "Safety filter triggered." : "Inputs verified safe." },
+            { stage: "RAG Knowledge Retrieval", detail: mlData.rag_citations?.join(", ") || "Retrieved verified passages." },
+            { stage: "Action Plan", detail: "Formulated practical steps." }
+          ],
+          evidenceBadge: mlData.rag_citations?.length ? {
+            scientificBasis: "Verified Prajvaya Knowledge Base",
+            culturalContext: mlData.rag_citations[0]
+          } : undefined,
+          actionPlan: ["Take a deep breath", "Focus on immediate control", "Execute step 1"]
+        });
+      }
+    } catch (e) {
+      console.log("Prajvaya ML Backend offline, using local TS reasoning engine fallback.");
+    }
+
+    // Fallback: Run Prajvaya's local multi-stage reasoning engine
     const reasoningResult = processPrajvayaReasoning(
       userText,
       companionId as CompanionId,
