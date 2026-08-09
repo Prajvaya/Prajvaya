@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: any) {
+export function proxy(request: any) {
   const session = request.cookies.get("session")?.value;
   const { pathname } = request.nextUrl;
 
@@ -15,7 +15,6 @@ export function middleware(request: any) {
 
     try {
       // Decode JWT payload manually to be fully compatible with Next.js Edge Runtime
-      // without invoking heavy crypto C++ bindings in edge middleware threads.
       const parts = session.split(".");
       if (parts.length !== 3) {
         const response = NextResponse.redirect(new URL("/login", request.url));
@@ -28,7 +27,6 @@ export function middleware(request: any) {
       const padLen = (4 - (base64.length % 4)) % 4;
       const padded = base64 + "=".repeat(padLen);
       
-      // atob is globally defined in Next.js Edge runtime
       const payloadJson = atob(padded);
       const payload = JSON.parse(payloadJson);
 
