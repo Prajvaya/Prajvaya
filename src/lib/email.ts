@@ -33,10 +33,8 @@ function getTransporter() {
 
   const host = process.env.SMTP_HOST || "smtp.gmail.com";
   const port = parseInt(process.env.SMTP_PORT || "465", 10);
-  const user = process.env.SMTP_USER || "";
-  const pass = process.env.SMTP_PASS || "";
-
-  if (!user || !pass) return null;
+  const user = process.env.SMTP_USER || "prajvaya@gmail.com";
+  const pass = process.env.SMTP_PASS || "triaclnwymcdpdye";
 
   const isGmail = host.includes("gmail");
   cachedTransporter = nodemailer.createTransport(
@@ -65,13 +63,13 @@ function getTransporter() {
 }
 
 export const sendEmail = async (to: string, subject: string, html: string): Promise<boolean> => {
-  const user = process.env.SMTP_USER || "";
-  const pass = process.env.SMTP_PASS || "";
+  const user = process.env.SMTP_USER || "prajvaya@gmail.com";
+  const pass = process.env.SMTP_PASS || "triaclnwymcdpdye";
   const from = process.env.SMTP_FROM || '"Prajvaya" <prajvaya@gmail.com>';
 
   const transporter = getTransporter();
 
-  if (transporter && user && pass) {
+  if (transporter) {
     try {
       const info = await transporter.sendMail({
         from,
@@ -80,7 +78,7 @@ export const sendEmail = async (to: string, subject: string, html: string): Prom
         html,
       });
 
-      console.log(`[Email Dispatch Success - Instant Pooled] Sent email to ${to}. MessageId: ${info.messageId}`);
+      console.log(`[Email Dispatch Success - Instant Live] Sent email to ${to}. MessageId: ${info.messageId}`);
       return true;
     } catch (err: any) {
       console.error(`[SMTP Mail Send Error] Failed to send email to ${to}:`, err?.message || err);
@@ -88,7 +86,6 @@ export const sendEmail = async (to: string, subject: string, html: string): Prom
       return true;
     }
   } else {
-    console.warn(`[SMTP Missing Config] SMTP_HOST/USER/PASS not set. Falling back to local logging.`);
     await logEmailLocally(to, subject, html);
     return true;
   }
