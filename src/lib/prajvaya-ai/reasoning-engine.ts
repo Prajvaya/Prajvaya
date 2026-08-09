@@ -185,160 +185,46 @@ export function processPrajvayaReasoning(
   ];
 
   let reply = "";
-  let actionPlan: string[] = [];
+  let actionPlan: string[] | undefined = undefined;
   let evidenceBadge: PrajvayaAIResponse["evidenceBadge"] = undefined;
 
   const t = userText.toLowerCase();
 
-  // 1. EXAM PRESSURE, PLACEMENT STRESS & EXAM FEAR
-  if (t.includes("exam") || t.includes("placement") || t.includes("prep") || t.includes("fail") || t.includes("test") || t.includes("interview") || t.includes("0%") || t.includes("marks") || t.includes("imposter") || t.includes("syllabus")) {
-    reply = `I hear you loud and clear, and I want you to take a deep, slow breath right now.\n\nFeeling like you know "0%" or that you're completely unprepared right before an important placement exam is extremely common. It is a psychological stress response called **Hyper-Anxiety Freezing**—your brain is so overwhelmed by the high stakes that it temporarily hides what you've learned behind a wall of panic. It does NOT mean you know nothing.\n\nHere is how we can take back control step by step:\n\n1. **Acknowledge the Imposter Illusion**: Remind yourself that anxiety distorts memory. You have spent months in college and study sessions; that knowledge is inside your brain even if panic is clouding it right now.\n2. **The 80/20 Rule**: Stop trying to cover 100% of the syllabus in the last few days. Focus 80% of your remaining time on high-frequency core topics and core concepts you already know well.\n3. **Quick Formula / Concept Sheet**: Spend 30 minutes writing down key formulas, data structures, or concepts on 2 sheets of paper. Seeing them on paper physically proves to your brain that you are prepared.\n4. **Protect Your Sleep**: Do NOT pull an all-nighter before your placement exam. Sleep consolidates memory and restores rapid problem-solving speed during the test.\n\nRemember: a placement exam is a single doorway in a long, bright career. You are far bigger than one test result. Take it one question at a time. How can I best help you review right now?`;
-
-    actionPlan = [
-      "2-Page Brain Dump: Write down key formulas, core concepts, or code snippets on paper to anchor your confidence.",
-      "High-Weightage Focus: Pick the top 3 high-weightage topics and revise them comfortably instead of panicking.",
-      "7-Hour Sleep Lock: Ensure 7 hours of sleep before exam day so your brain stays sharp for logic questions.",
-      "Calm Exam Mindset: During the test, skip difficult questions first and solve easy ones to build momentum."
-    ];
-
-    evidenceBadge = {
-      scientificBasis: "Performance psychology shows that cognitive anxiety impairs working memory retrieval; structured micro-tasks and sleep restoration restore executive function under stress.",
-      culturalContext: "Reflects Abhaya (fearlessness) and Sthirata (steadiness) in high-stakes action."
-    };
+  // 1. COMPARISON & FEELING LEFT BEHIND
+  if (t.includes("everyone") && (t.includes("ahead") || t.includes("stuck") || t.includes("behind") || t.includes("succeeding"))) {
+    reply = `Maybe you're not really worried about everyone else moving ahead. Maybe you're wondering whether you're moving anywhere at all.\n\nThat feeling can hurt deeply—when it feels like everyone around you is reaching milestones while you're still in the same place. But another person's timeline doesn't decide the value of yours.\n\nTell me... what happened recently that makes you feel most stuck right now?`;
   }
-  // 2. RELATIONSHIPS & TRUST ISSUES
+  // 2. EXAM PRESSURE & PLACEMENT STRESS
+  else if (t.includes("exam") || t.includes("placement") || t.includes("prep") || t.includes("fail") || t.includes("test") || t.includes("interview") || t.includes("0%") || t.includes("marks") || t.includes("imposter") || t.includes("syllabus")) {
+    reply = `I know you probably don't need a clinical lecture about failure or exam tips right now. You've worked for this, and feeling like you know nothing right before a test can really hurt.\n\nWhen the stakes feel high, our minds tend to freeze up and hide what we've learned behind panic. Give yourself a moment. You don't have to solve your whole syllabus tonight.\n\nWhat part of your prep is weighing on your mind the most right now?`;
+  }
+  // 3. RELATIONSHIPS & TRUST ISSUES
   else if (t.includes("trust") || t.includes("relationship") || t.includes("special") || t.includes("partner") || t.includes("boyfriend") || t.includes("girlfriend") || t.includes("spouse") || t.includes("marriage") || t.includes("insecure") || t.includes("doubt")) {
-    reply = `I hear how deeply important this is to you. Navigating trust issues with someone special in your life can feel emotionally heavy, disorienting, and deeply vulnerable.\n\nTrust in a relationship is built slowly like a quiet garden—it is fragile when doubts arise, but it can be nurtured through clear, calm communication and mutual transparency. Often, when trust feels shaken, our minds get caught between fear of being hurt and the desire to stay close.\n\nHere are 3 foundational perspectives to help you navigate this with clarity:\n\n1. **Separate Fact from Anxiety**: Take a moment to distinguish between verified actions and internal anxieties or past wounds that might be projecting into the present.\n2. **Open, Non-Accusatory Communication**: Speak using 'I' statements (e.g., *"I've been feeling anxious lately about our communication and I want us to feel closer"*) rather than starting with accusations, which can cause the other person to become defensive.\n3. **Observe Mutual Willingness**: Trust cannot be rebuilt by one person alone. Notice whether your partner is willing to listen calmly, reassure you, and work together on transparency.\n\nTake a deep breath. You don't have to resolve everything tonight. Would you like to share a bit more about what specific situation triggered this doubt?`;
-
-    actionPlan = [
-      "Calm Self-Reflection: Write down the specific triggers causing doubt before starting a conversation.",
-      "Use 'I' Statements: Frame your feelings around your emotional needs rather than placing blame.",
-      "Set a Peaceful Environment: Choose a quiet, distraction-free time to talk openly with your partner.",
-      "Establish Clear Micro-Boundaries: Agree on small transparency habits that make both of you feel secure."
-    ];
-
-    evidenceBadge = {
-      scientificBasis: "Relationship psychology indicates that active listening, vulnerability, and non-defensive communication (Gottman framework) are essential for restoring attachment trust.",
-      culturalContext: "Reflects Satya (truthfulness) and Samvada (constructive dialogue) from classical Indian philosophy."
-    };
+    reply = `I hear how deeply important this is to you. Navigating trust issues with someone special can feel emotionally heavy, disorienting, and deeply vulnerable.\n\nTrust in a relationship is built slowly like a quiet garden—it is fragile when doubts arise, but it can be nurtured when both people speak openly without placing blame.\n\nYou don't have to resolve everything tonight. What specific situation triggered this doubt for you recently?`;
   }
-  // 2. STRESS, ANXIETY, BREAKUP, OVERWHELM
+  // 4. STRESS, ANXIETY, BREAKUP, OVERWHELM
   else if (t.includes("stress") || t.includes("burnout") || t.includes("overwhelmed") || t.includes("anxious") || t.includes("anxiety") || t.includes("exhausted") || t.includes("breakup") || t.includes("sad") || t.includes("lonely")) {
-    reply = `${emotion.empathyNote}\n\nWhen we go through intense periods of stress, anxiety, or emotional pain like a breakup, it can feel like our inner world is spinning out of control. Please know that feeling this way doesn't mean you're weak or broken—it simply means you're human, and your mind and body are dealing with a lot right now.\n\nOften, when anxiety or grief takes over, our nervous system gets stuck in high alert. Trying to force yourself to 'just stop worrying' rarely works. Instead, the kindest thing we can do is gently bring our attention back to the physical present moment.\n\nTake things one small step at a time today. Give yourself permission to rest without feeling guilty, drink a glass of warm water, and try one simple grounding practice. Is there a specific part of what you're experiencing that feels heaviest right now?`;
-
-    actionPlan = [
-      "5-4-3-2-1 Sensory Grounding: Notice 5 things you see, 4 you can touch, 3 you hear, 2 you smell, and 1 slow breath.",
-      "10-Minute Screen Break: Step away from notifications and rest your eyes in a quiet space.",
-      "Gentle Self-Compassion: Write down or speak out loud one gentle, reassuring thought to yourself.",
-      "Hydrate & Move Softly: Drink warm water or take a short 5-minute calm walk outside."
-    ];
-
-    evidenceBadge = {
-      scientificBasis: "Controlled slow breathing and sensory grounding lower sympathetic nervous system arousal and reduce acute stress metrics.",
-      culturalContext: "Reflects classical Vedic principles of Chitta-Prasadana (calming the mind-stream through gentleness and breath awareness)."
-    };
+    reply = `When we go through intense stress or emotional pain, it can feel like our inner world is spinning out of control. Please know that feeling this way doesn't mean you're weak—it simply means your mind and body have been carrying a lot right now.\n\nTrying to force yourself to 'just stop worrying' rarely works. Instead, take a slow breath, drink a glass of warm water, and give yourself permission to pause.\n\nWhat part of what you're experiencing feels heaviest right now?`;
   }
-  // 2. BHAGAVAD GITA & PHILOSOPHY
+  // 5. BHAGAVAD GITA & PHILOSOPHY
   else if (t.includes("gita") || t.includes("shloka") || t.includes("scripture") || t.includes("philosophy") || t.includes("ancient") || t.includes("upanishad")) {
-    reply = `It is wonderful to reflect on these timeless teachings with you.\n\nIn the Bhagavad Gita, when Prince Arjuna felt completely paralyzed by doubt and emotional crisis on the battlefield, Lord Krishna didn't judge him. Instead, he introduced a perspective that has helped humanity for thousands of years: *Nishkama Karma*—the practice of giving 100% of your heart and effort to what is right in front of you, while releasing anxiety about the future outcome.\n\nChapter 2, Verse 47 reminds us that we have a right to our work and effort, but worrying endlessly about the results only drains our present energy. When we focus purely on taking the next right step with sincerity, inner peace naturally follows.\n\nYou can also explore the complete public-domain text of **The Bhagavad Gita** and **The Upanishads** right inside Prajvaya's **Wisdom Library** on our homepage whenever you'd like to read further.`;
-
-    actionPlan = [
-      "Identify one task or effort where worrying about the outcome is causing you stress.",
-      "Focus 100% of your care on the effort itself today, letting go of future expectations.",
-      "Take 5 quiet minutes to reflect on what gives you true inner direction.",
-      "Explore Chapter 2 of the Bhagavad Gita in the Prajvaya Wisdom Library."
-    ];
-
-    evidenceBadge = {
-      scientificBasis: "Focusing on process goals rather than outcome goals significantly lowers performance anxiety and fosters psychological flow states.",
-      culturalContext: "Synthesized from classical Vedantic and Bhagavad Gita philosophy."
-    };
+    reply = `It is wonderful to reflect on these timeless teachings together.\n\nIn the Bhagavad Gita, when Prince Arjuna felt paralyzed by doubt on the battlefield, the guidance offered was not to abandon life, but to practice *Nishkama Karma*—focusing 100% of your care on the effort in front of you, while letting go of the constant anxiety about future outcomes.\n\nWhen we focus purely on taking the next right step with sincerity, inner peace naturally follows. What area of your life would you like to apply this clarity to today?`;
   }
-  // 3. SUSTAINABILITY & NATURE
+  // 6. HEALTH, SLEEP & WELLNESS
+  else if (t.includes("sleep") || t.includes("insomnia") || t.includes("health") || t.includes("yoga") || t.includes("diet") || t.includes("food") || t.includes("ayurveda")) {
+    reply = `That sounds exhausting. When the whole world becomes quiet at night, sometimes the mind becomes even louder.\n\nTrying to force yourself to fall asleep when your mind is racing often creates more friction. Give yourself permission to lay down the pressure of having to sleep right away.\n\nTell me... what's been running through your mind when you lay down to rest?`;
+  }
+  // 7. SUSTAINABILITY & NATURE
   else if (t.includes("waste") || t.includes("plastic") || t.includes("environment") || t.includes("sustainability") || t.includes("garden") || t.includes("water") || t.includes("tree")) {
-    reply = `Hello there! I'm **Prakriti**, and I love talking about living in harmony with nature.\n\nCaring for our earth doesn't require drastic or overwhelming changes overnight. In traditional Indian households, zero waste and resource reverence were natural daily habits—kitchen scraps nourished the garden soil, rainwater was saved with care, and single-use plastics didn't exist.\n\nWhen we make even one small shift—like keeping a reusable water bottle, composting organic kitchen waste, or bringing a cloth bag—we reconnect with the natural flow of life (*Rta*). Every small effort adds up to meaningful collective change. What is one green habit you'd love to try incorporating into your routine?`;
-
-    actionPlan = [
-      "Kitchen Composting: Start separating organic vegetable peels to nourish native balcony plants.",
-      "Single-Use Plastic Audit: Replace one plastic item in your daily routine with a durable alternative.",
-      "Hydration Habit: Carry a stainless steel or copper water vessel wherever you go.",
-      "Connect with Nature: Spend 10 calm minutes outdoors feeling the fresh air and greenery."
-    ];
-
-    evidenceBadge = {
-      scientificBasis: "Organic waste composting diverts municipal landfill waste and enriches soil organic carbon for micro-biomes.",
-      culturalContext: "Rooted in Prakriti-Seva (reverence for nature) expressed in the Atharva Veda Bhumi Sukta."
-    };
+    reply = `Caring for our earth doesn't require drastic or overwhelming changes overnight. In traditional households, reverence for natural resources was a quiet daily habit.\n\nWhen we make even one small shift—like bringing a reusable water bottle or keeping a balcony plant—we reconnect with the natural flow of life (*Rta*).\n\nWhat is one small green habit you'd love to explore incorporating into your space?`;
   }
-  // 4. HEALTH, YOGA & WELLNESS
-  else if (t.includes("yoga") || t.includes("health") || t.includes("sleep") || t.includes("diet") || t.includes("food") || t.includes("ayurveda") || t.includes("remedy")) {
-    reply = `Warm greetings! I'm **Arogya**, here to share peaceful ideas for everyday vitality.\n\nIn holistic wellness, true health isn't just about avoiding illness—it's about waking up with natural energy, clear digestion, and a tranquil mind. Our bodies thrive when we align our daily routines with natural rhythms.\n\nSimple habits make a world of difference: getting a few minutes of morning sunlight to set your sleep clock, drinking warm water in the morning, and giving your digestive system a break by keeping dinner light and early. How has your sleep and daily energy been feeling lately?`;
-
-    actionPlan = [
-      "Morning Sunlight: Enjoy 10 minutes of gentle morning sunlight within an hour of waking up.",
-      "Pranayama Breathing: Practice 5 minutes of calm Anulom Vilom (alternate nostril breathing).",
-      "Evening Wind-Down: Dim bright screen lights 1 hour before sleep to support deep rest.",
-      "Consistent Routine: Aim for a regular sleep schedule to support your circadian clock."
-    ];
-
-    evidenceBadge = {
-      scientificBasis: "Early morning sunlight exposure regulates circadian melatonin onset cycles, improving sleep depth and daytime alertness.",
-      culturalContext: "Inspired by Ayurvedic Dinacharya (daily natural routine) practices.",
-      safetyCaveat: "These suggestions are for general wellness education only. Please consult a licensed medical professional for personal health advice or medical conditions."
-    };
-  }
-  // 5. LEARNING, CODING & CAREER
-  else if (t.includes("learn") || t.includes("study") || t.includes("code") || t.includes("programming") || t.includes("career") || t.includes("science") || t.includes("engineering")) {
-    reply = `Hello! I'm **Vidya**, and I'm excited to explore learning and problem-solving with you.\n\nWhether you're mastering code, studying a complex subject, or working on your career, real progress happens when we build solid mental foundations rather than rushing to memorize facts. Break complex ideas down into simple building blocks, and try explaining them in plain words as if teaching a friend.\n\nRemember to balance focused effort with rest. Your brain consolidates new learning during calm breaks. What skill or project are you working on right now?`;
-
-    actionPlan = [
-      "Focus Block: Dedicate one 45-minute block of uninterrupted time to your primary learning task.",
-      "Feynman Technique: Explain what you learned today in simple 2-sentence summaries.",
-      "Hands-on Practice: Build a small working project or example rather than just reading passively.",
-      "Rest & Reflect: Take a short screen-free walk to allow your brain to synthesize new concepts."
-    ];
-
-    evidenceBadge = {
-      scientificBasis: "Active recall and deliberate practice create stronger neural connections than passive reading.",
-      culturalContext: "Draws from classical learning phases: Shravana (listening), Manana (reflection), and Nididhyasana (application)."
-    };
-  }
-  // 6. CREATIVITY & INNOVATION
-  else if (t.includes("create") || t.includes("write") || t.includes("art") || t.includes("business") || t.includes("idea") || t.includes("music") || t.includes("story")) {
-    reply = `Greetings! I'm **Srijan**, here to encourage your creative journey.\n\nCreativity is a natural human expression that flows best when we give ourselves permission to make drafts without immediate judgment. A common creative block happens when we try to critique our work at the exact same moment we're trying to create it.\n\nTry separating your **Creation Time** (where anything goes) from your **Editing Time** (where you refine). Let your ideas flow freely first, without worrying about perfection. What creative idea or project has been on your heart lately?`;
-
-    actionPlan = [
-      "Free Creation Window: Spend 20 minutes writing or sketching freely with zero editing.",
-      "Separate Editing: Review and refine your work only after your creative session is done.",
-      "Seek Inspiration: Spend time with art, nature, or music that lifts your spirit.",
-      "Share Freely: Show your draft to a supportive friend or community."
-    ];
-
-    evidenceBadge = {
-      scientificBasis: "Separating generative creative tasks from analytical evaluation reduces cognitive friction and boosts creative output.",
-      culturalContext: "Rooted in the concept of Pratibha (spontaneous creative intuition)."
-    };
-  }
-  // 7. HEALTH ANXIETY, MORTALITY OVERTHINKING & EXISTENTIAL FEAR
+  // 8. HEALTH ANXIETY, MORTALITY OVERTHINKING & EXISTENTIAL FEAR
   else if (t.includes("die") || t.includes("death") || t.includes("dying") || t.includes("overthinking") || t.includes("neurological") || t.includes("fidgeting") || t.includes("health issues") || t.includes("disease") || t.includes("panic")) {
-    reply = `I hear you, and I am right here with you. Take a slow, gentle breath. What you are describing is a very real, very human experience called **Health Anxiety and Existential Overthinking**.\n\nWhen our mind gets stuck in an intense anxiety loop, it can create terrifying thoughts like *"I'm going to die"* or *"something is horribly wrong with my health/brain"*. This can even cause real physical sensations—fidgeting, racing heartbeat, shortness of breath, or numbness—which then tricks the brain into panicking even more.\n\nI want to reassure you: **your mind is playing a high-anxiety trick on you right now**. Overthinking creates catastrophic scenarios that feel 100% real in the moment, but thoughts are not facts.\n\nHere is how we can bring your nervous system back to safety right now:\n\n1. **Name the Thought**: Say to yourself out loud: *"This is just my anxiety overthinking right now. I am physically safe in this room."*\n2. **Break the Fidget Loop**: Unclench your jaw, drop your shoulders, and press both feet flat onto the cold floor.\n3. **The 4-7-8 Calm Breath**: Inhale quietly through your nose for 4 seconds, hold for 7 seconds, and exhale slowly through your mouth for 8 seconds. Doing this 3 times physically signals your brain that there is no immediate danger.\n\nYou don't have to carry all these health, career, and life worries at once. I am right here listening. Would you like to tell me what triggered this heavy thought today?`;
-
-    actionPlan = [
-      "Physical Footing: Press both feet flat on the floor and unclench your hands and jaw.",
-      "4-7-8 Calm Breathing: Inhale 4s, Hold 7s, Exhale 8s to calm the nervous system.",
-      "Grounding Reality: Say out loud 'Thoughts are just thoughts, not predictions of the future.'",
-      "Drink Warm Water: Sip a glass of water slowly to soothe throat and stomach tension."
-    ];
+    reply = `I hear you, and I am right here with you. Take a slow, gentle breath.\n\nWhen our mind gets caught in an intense anxiety loop, it can create terrifying thoughts like *"I'm going to die"* or *"something is wrong with my body"*. Anxiety can even cause real physical sensations—fidgeting, racing heartbeat, or chest tightness—which then tricks the brain into panicking even more.\n\nPress both feet flat onto the cold floor, drop your shoulders, and take 3 slow breaths. You don't have to carry all these worries at once. Tell me... what specific thought started this heavy feeling today?`;
   }
   // DEFAULT NATURAL CONVERSATIONAL RESPONSE
   else {
-    reply = `${emotion.empathyNote}\n\nI am listening closely to everything you're sharing. Life brings so many heavy layers all at once—health concerns, career goals, relationships, loneliness, and daily stress. It is completely human to feel overwhelmed by all of it.\n\nPlease remember to treat yourself with patience and warmth. You don't have to figure out your whole life journey today—just focusing on one calm breath and one small step in front of you is more than enough.\n\nI am right here with you. What part of what you're feeling would you like to talk through first?`;
-
-    actionPlan = [
-      "Take a Deep Breath: Inhale deeply for 4 seconds, hold for 4, and exhale slowly for 6.",
-      "One Small Step: Focus on just ONE small, comfortable task for the next 15 minutes.",
-      "Hydrate & Rest: Drink a glass of water and rest your eyes in a peaceful spot."
-    ];
+    reply = `I am listening closely to everything you're sharing.\n\nLife brings so many heavy layers all at once—health concerns, career goals, relationships, loneliness, and daily stress. It is completely human to feel overwhelmed by all of it.\n\nPlease remember to treat yourself with patience and warmth. You don't have to figure out your whole life journey today—just focusing on one calm breath and one small step in front of you is more than enough.\n\nI am right here with you. What part of what you're feeling would you like to talk through first?`;
   }
 
   return {

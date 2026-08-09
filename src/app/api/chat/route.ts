@@ -47,7 +47,7 @@ export async function POST(request: Request) {
             scientificBasis: "Verified Prajvaya Knowledge Base",
             culturalContext: mlData.rag_citations[0]
           } : undefined,
-          actionPlan: ["Take a deep breath", "Focus on immediate control", "Execute step 1"]
+          actionPlan: undefined
         });
       }
     } catch (e) {

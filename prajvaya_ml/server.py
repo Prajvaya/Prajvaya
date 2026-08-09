@@ -86,80 +86,47 @@ def chat_endpoint(request: ChatRequest):
     system_prompt = get_system_prompt(companion_id)
     persona_info = PRAJVAYA_PERSONA_PROMPTS.get(companion_id, PRAJVAYA_PERSONA_PROMPTS["master"])
 
-    # Step 4: Dynamic Domain Synthesis
-    t = user_query.lower()
+    # Step 4: Human-Centered Prajvaya Response Synthesis
     rag_context_str = ""
     if rag_results:
         passages = [f"• {r['citation']}: {r['translation']}" for r in rag_results]
-        rag_context_str = "\n\n### Verified Wisdom Context (RAG)\n" + "\n".join(passages)
+        rag_context_str = "\n\n" + "\n".join(passages)
 
     if any(w in t for w in ["die", "death", "dying", "overthinking", "neurological", "fidgeting", "health issues", "disease", "panic"]):
-        insights = [
-            "1. **Thoughts Are Not Predictions**: High-anxiety loops trick the brain into creating catastrophic fears ('I am going to die'), but severe anxiety is a temporary false alarm.",
-            "2. **Physical Grounding**: Anxiety creates real physical sensations (fidgeting, racing heart, tightness)—re-anchor by pressing your feet flat on the floor and unclenching your body.",
-            "3. **De-escalate the Panic Loop**: Slow, quiet breathing signals your autonomic nervous system that you are physically safe right now."
-        ]
-        action_plan = [
-            "• **Step 1**: Press both feet flat on the cold floor and unclench your hands and jaw.",
-            "• **Step 2**: Practice 4-7-8 breathing (Inhale 4s, Hold 7s, Exhale 8s) to quiet the nervous system.",
-            "• **Step 3**: Sip a warm glass of water slowly and rest your eyes."
-        ]
-        greeting = f"Namaste {request.user_name}. I hear you, and I am right here with you. Take a slow, gentle breath—what you are experiencing is Health Anxiety and Overthinking, and your mind is playing an anxiety trick on you."
-        closing = "You are safe right now in this room. Would you like to talk through what heavy thought started this overthinking today?"
+        reply_content = (
+            f"Namaste {request.user_name}. I hear you, and I am right here with you. Take a slow, gentle breath.\n\n"
+            "What you're feeling right now is a very real, overwhelming anxiety loop. When anxiety spikes, it tricks the mind into catastrophic fears like 'I am going to die', and it can even create real physical sensations like fidgeting, racing heartbeat, or chest tightness. But thoughts are not facts, and your body is physically safe right now.\n\n"
+            "Press both feet flat on the cold floor, drop your shoulders, and take 3 slow, deep abdominal breaths. You don't have to carry all these health, career, and life worries at once. Tell me... what specific thought started this heavy feeling today?"
+            + rag_context_str
+        )
     elif any(w in t for w in ["exam", "placement", "prep", "fail", "test", "interview", "0%", "marks", "imposter", "syllabus"]):
-        insights = [
-            "1. **Imposter Illusion**: Feeling like you know 0% is high-anxiety freezing—your brain hides memory behind panic. You know far more than you think.",
-            "2. **80/20 Revision Focus**: Stop trying to cover 100% of new topics; focus 80% of remaining time on high-frequency core concepts you know well.",
-            "3. **Sleep & Memory Consolidation**: Never pull an all-nighter before a placement exam—sleep unlocks fast problem-solving speed."
-        ]
-        action_plan = [
-            "• **Step 1**: Write down key formulas or core code concepts on 2 sheets of paper to prove your prep to your brain.",
-            "• **Step 2**: Pick the top 3 high-weightage topics and revise them comfortably.",
-            "• **Step 3**: Ensure 7 hours of sleep before exam day so your logic stays sharp."
-        ]
-        greeting = f"Namaste {request.user_name}. I hear you loud and clear. Take a deep, slow breath right now—placement exam anxiety can feel overwhelming, but you are not starting from zero."
-        closing = "You are far bigger than one placement test. Take it one question at a time. How can I best help you review right now?"
+        reply_content = (
+            f"I hear you loud and clear, {request.user_name}, and I want you to take a deep, slow breath right now.\n\n"
+            "Feeling like you know '0%' right before an important placement exam is a classic stress response called Hyper-Anxiety Freezing—your brain gets so overwhelmed by the high stakes that it temporarily hides what you've learned behind panic. It does NOT mean you know nothing.\n\n"
+            "Stop trying to cover 100% of new topics right now. Focus on 2 or 3 core concepts you already know well, write them on paper to reassure your brain, and make sure you get 7 hours of sleep before the test. You are far bigger than one test result. What part of your prep is worrying you most?"
+            + rag_context_str
+        )
     elif any(w in t for w in ["trust", "relationship", "special", "partner", "boyfriend", "girlfriend", "spouse", "marriage", "insecure", "doubt"]):
-        insights = [
-            "1. **Distinguish Fact from Anxiety**: Separate verified partner actions from past emotional wounds or internal fears.",
-            "2. **Non-Accusatory 'I' Statements**: Communicate your emotional needs (e.g. *'I feel anxious about our distance'*) instead of placing blame.",
-            "3. **Evaluate Mutual Transparency**: Trust requires both partners to be willing to listen, reassure, and communicate openly."
-        ]
-        action_plan = [
-            "• **Step 1**: Write down the exact situation that triggered doubt before starting a conversation.",
-            "• **Step 2**: Schedule a quiet, distraction-free time to talk with your partner.",
-            "• **Step 3**: Focus on listening actively without becoming defensive."
-        ]
-        greeting = f"Namaste {request.user_name}. Navigating trust issues with someone special can feel emotionally heavy, but you don't have to carry this confusion alone."
-        closing = "Take a steady, calm breath. Would you like to share a bit more about what specific situation triggered this doubt?"
+        reply_content = (
+            f"I hear how deeply important this is to you, {request.user_name}. Navigating trust issues with someone special in your life can feel emotionally heavy, disorienting, and deeply vulnerable.\n\n"
+            "Trust in a relationship is built slowly like a quiet garden—it is fragile when doubts arise, but it can be nurtured through clear, calm communication and mutual transparency. Often, when trust feels shaken, our minds get caught between fear of being hurt and the desire to stay close.\n\n"
+            "Take a quiet moment to write down what specific situation triggered this doubt before speaking with your partner, and use 'I' statements to express your feelings without placing blame. Would you like to share a bit more about what happened?"
+            + rag_context_str
+        )
     elif any(w in t for w in ["stress", "burnout", "overwhelmed", "anxious", "anxiety", "exhausted"]):
-        insights = [
-            "1. **Acknowledge Without Judgment**: Feeling overwhelmed is your nervous system asking for rest, not a sign of weakness.",
-            "2. **Focus on Immediate Control**: Re-anchor your mind to what you can do in the present hour.",
-            "3. **Rest & Recovery**: Give yourself permission to disconnect from screens and recharge."
-        ]
-        action_plan = [
-            "• **Step 1**: Practice 5-4-3-2-1 sensory grounding (notice 5 things around you).",
-            "• **Step 2**: Step away from digital screens for 15 minutes.",
-            "• **Step 3**: Drink warm water and take 3 deep, abdominal breaths."
-        ]
-        greeting = f"Namaste {request.user_name}. I hear the weight in your words, and your feelings are completely valid."
-        closing = "What is one small thing you can lay down right now to give yourself peace of mind?"
+        reply_content = (
+            f"Namaste {request.user_name}. I hear the weight in your words, and your feelings are completely valid.\n\n"
+            "When we go through intense periods of stress or emotional pain, it can feel like our inner world is spinning out of control. Please know that feeling this way doesn't mean you're weak—it simply means your mind and body have been carrying a lot right now.\n\n"
+            "Step away from screens for a few minutes, drink a glass of warm water, and give yourself permission to rest. What is one small thing on your mind that feels heaviest right now?"
+            + rag_context_str
+        )
     else:
-        insights = [
-            "1. **Mindful Acknowledgment**: Recognize your current state without immediate self-judgment.",
-            "2. **Micro-Habit Execution**: Focus on ONE tiny, manageable action inside your immediate control today.",
-            "3. **Circadian & Rest Balance**: Ensure your body and mind have adequate space to recharge."
-        ]
-        action_plan = [
-            "• **Step 1**: Take 3 slow, deep abdominal breaths to stabilize focus.",
-            "• **Step 2**: Write down your top priority on paper.",
-            "• **Step 3**: Spend 15 minutes executing without distraction."
-        ]
-        greeting = f"Namaste {request.user_name}. I hear you, and I am here to guide you with care."
-        closing = "Take a steady step forward today. How does this path feel to you?"
-
-    reply_content = f"{greeting}\n\n### Companion Perspective\n{system_prompt}\n{rag_context_str}\n\n### Key Insights\n" + "\n".join(insights) + "\n\n### Actionable Steps\n" + "\n".join(action_plan) + f"\n\n{closing}"
+        reply_content = (
+            f"Namaste {request.user_name}. I am listening closely to everything you're sharing.\n\n"
+            "Life brings so many heavy layers all at once—health concerns, career goals, relationships, loneliness, and daily stress. It is completely human to feel overwhelmed by all of it.\n\n"
+            "Please remember to treat yourself with patience and warmth. You don't have to figure out your whole life journey today—just focusing on one calm breath and one small step in front of you is more than enough. What part of what you're feeling would you like to talk through first?"
+            + rag_context_str
+        )
 
     # Step 5: Post-inference Safety Sanitization
     final_reply = safety_engine.sanitize_output(reply_content, safety_meta)
