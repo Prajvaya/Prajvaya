@@ -219,8 +219,7 @@ export function processPrajvayaReasoning(
 
     evidenceBadge = {
       scientificBasis: "Controlled slow breathing and sensory grounding lower sympathetic nervous system arousal and reduce acute stress metrics.",
-      culturalContext: "Reflects classical Vedic principles of Chitta-Prasadana (calming the mind-stream through gentleness and breath awareness).",
-      safetyCaveat: "I am an AI companion here for supportive conversation and self-care ideas. If you are experiencing persistent mental health distress, please consider consulting a licensed therapist or healthcare professional."
+      culturalContext: "Reflects classical Vedic principles of Chitta-Prasadana (calming the mind-stream through gentleness and breath awareness)."
     };
   }
   // 2. BHAGAVAD GITA & PHILOSOPHY
