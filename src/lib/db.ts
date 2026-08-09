@@ -207,16 +207,28 @@ export const db = {
     },
     findUnique: async (criteria: { email: string; token: string; type: "verify" | "reset" | "subscribe" }): Promise<Token | null> => {
       const store = await readDb();
+      const targetEmail = String(criteria.email).trim().toLowerCase();
+      const targetToken = String(criteria.token).trim();
+
       const found = store.tokens.find(
-        (t) => t.email.toLowerCase() === criteria.email.toLowerCase() && t.token === criteria.token && t.type === criteria.type
+        (t) =>
+          t.email.toLowerCase() === targetEmail &&
+          String(t.token).trim() === targetToken &&
+          t.type === criteria.type
       );
       if (!found) return null;
       return found;
     },
     findValid: async (email: string, token: string, type: "verify" | "reset" | "subscribe"): Promise<Token | null> => {
       const store = await readDb();
+      const targetEmail = String(email).trim().toLowerCase();
+      const targetToken = String(token).trim();
+
       const found = store.tokens.find(
-        (t) => t.email.toLowerCase() === email.toLowerCase() && t.token === token && t.type === type
+        (t) =>
+          t.email.toLowerCase() === targetEmail &&
+          String(t.token).trim() === targetToken &&
+          t.type === type
       );
 
       if (!found) return null;

@@ -10,17 +10,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Email and verification token are required." }, { status: 400 });
     }
 
+    const cleanEmail = String(email).trim().toLowerCase();
+    const cleanToken = String(token).trim();
+
     // Find the token in the database
-    const dbToken = await db.tokens.findUnique({ email, token, type: "verify" });
+    const dbToken = await db.tokens.findUnique({ email: cleanEmail, token: cleanToken, type: "verify" });
     if (!dbToken) {
-      return NextResponse.json({ error: "Invalid verification code." }, { status: 400 });
+      return NextResponse.json({ error: "Invalid verification code. Please check your OTP and try again." }, { status: 400 });
     }
 
     // Check expiration
     const now = new Date().toISOString();
     if (dbToken.expiresAt < now) {
       await db.tokens.delete(dbToken.id);
-      return NextResponse.json({ error: "Verification code has expired. Please register again to get a new code." }, { status: 400 });
+      return NextResponse.json({ error: "Verification code has expired. Please click 'Resend OTP' to get a fresh code." }, { status: 400 });
     }
 
     // Find and update the user
