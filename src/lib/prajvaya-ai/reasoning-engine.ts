@@ -190,8 +190,24 @@ export function processPrajvayaReasoning(
 
   const t = userText.toLowerCase();
 
-  // 1. STRESS, ANXIETY, BREAKUP, OVERWHELM
-  if (t.includes("stress") || t.includes("burnout") || t.includes("overwhelmed") || t.includes("anxious") || t.includes("anxiety") || t.includes("exhausted") || t.includes("breakup") || t.includes("sad") || t.includes("lonely")) {
+  // 1. RELATIONSHIPS & TRUST ISSUES
+  if (t.includes("trust") || t.includes("relationship") || t.includes("special") || t.includes("partner") || t.includes("boyfriend") || t.includes("girlfriend") || t.includes("spouse") || t.includes("marriage") || t.includes("insecure") || t.includes("doubt")) {
+    reply = `I hear how deeply important this is to you. Navigating trust issues with someone special in your life can feel emotionally heavy, disorienting, and deeply vulnerable.\n\nTrust in a relationship is built slowly like a quiet garden—it is fragile when doubts arise, but it can be nurtured through clear, calm communication and mutual transparency. Often, when trust feels shaken, our minds get caught between fear of being hurt and the desire to stay close.\n\nHere are 3 foundational perspectives to help you navigate this with clarity:\n\n1. **Separate Fact from Anxiety**: Take a moment to distinguish between verified actions and internal anxieties or past wounds that might be projecting into the present.\n2. **Open, Non-Accusatory Communication**: Speak using 'I' statements (e.g., *"I've been feeling anxious lately about our communication and I want us to feel closer"*) rather than starting with accusations, which can cause the other person to become defensive.\n3. **Observe Mutual Willingness**: Trust cannot be rebuilt by one person alone. Notice whether your partner is willing to listen calmly, reassure you, and work together on transparency.\n\nTake a deep breath. You don't have to resolve everything tonight. Would you like to share a bit more about what specific situation triggered this doubt?`;
+
+    actionPlan = [
+      "Calm Self-Reflection: Write down the specific triggers causing doubt before starting a conversation.",
+      "Use 'I' Statements: Frame your feelings around your emotional needs rather than placing blame.",
+      "Set a Peaceful Environment: Choose a quiet, distraction-free time to talk openly with your partner.",
+      "Establish Clear Micro-Boundaries: Agree on small transparency habits that make both of you feel secure."
+    ];
+
+    evidenceBadge = {
+      scientificBasis: "Relationship psychology indicates that active listening, vulnerability, and non-defensive communication (Gottman framework) are essential for restoring attachment trust.",
+      culturalContext: "Reflects Satya (truthfulness) and Samvada (constructive dialogue) from classical Indian philosophy."
+    };
+  }
+  // 2. STRESS, ANXIETY, BREAKUP, OVERWHELM
+  else if (t.includes("stress") || t.includes("burnout") || t.includes("overwhelmed") || t.includes("anxious") || t.includes("anxiety") || t.includes("exhausted") || t.includes("breakup") || t.includes("sad") || t.includes("lonely")) {
     reply = `${emotion.empathyNote}\n\nWhen we go through intense periods of stress, anxiety, or emotional pain like a breakup, it can feel like our inner world is spinning out of control. Please know that feeling this way doesn't mean you're weak or broken—it simply means you're human, and your mind and body are dealing with a lot right now.\n\nOften, when anxiety or grief takes over, our nervous system gets stuck in high alert. Trying to force yourself to 'just stop worrying' rarely works. Instead, the kindest thing we can do is gently bring our attention back to the physical present moment.\n\nTake things one small step at a time today. Give yourself permission to rest without feeling guilty, drink a glass of warm water, and try one simple grounding practice. Is there a specific part of what you're experiencing that feels heaviest right now?`;
 
     actionPlan = [
