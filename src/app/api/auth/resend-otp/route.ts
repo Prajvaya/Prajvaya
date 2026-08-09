@@ -27,16 +27,15 @@ export async function POST(request: Request) {
     console.log(`[PRAJ VAYA AUTH] Resend OTP (${type}) for ${email}: ${otp}`);
     console.log(`==================================================\n`);
 
-    // Determine corresponding template and dispatch non-blockingly
+    // Determine corresponding template and dispatch reliably
     if (type === "verify") {
-      db.users.findUnique({ email }).then((user) => {
-        const name = user ? user.name : "User";
-        sendEmail(email, "Verify Your Prajvaya Account", templates.verificationCode(name, otp)).catch(() => {});
-      });
+      const user = await db.users.findUnique({ email });
+      const name = user ? user.name : "User";
+      await sendEmail(email, "Verify Your Prajvaya Account", templates.verificationCode(name, otp));
     } else if (type === "reset") {
-      sendEmail(email, "Reset Your Prajvaya Password", templates.passwordResetCode(otp)).catch(() => {});
+      await sendEmail(email, "Reset Your Prajvaya Password", templates.passwordResetCode(otp));
     } else if (type === "subscribe") {
-      sendEmail(email, "Confirm Your Prajvaya Subscription", templates.newsletterVerify(otp)).catch(() => {});
+      await sendEmail(email, "Confirm Your Prajvaya Subscription", templates.newsletterVerify(otp));
     }
 
     return NextResponse.json({

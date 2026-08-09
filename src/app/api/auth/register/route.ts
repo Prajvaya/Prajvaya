@@ -93,10 +93,12 @@ export async function POST(request: Request) {
     console.log(`[PRAJ VAYA AUTH] Registration OTP for ${cleanEmail}: ${otp}`);
     console.log(`==================================================\n`);
 
-    // 6. Fast non-blocking email dispatch (fires immediately in parallel)
-    sendEmail(cleanEmail, "Verify Your Prajvaya Account", templates.verificationCode(cleanName, otp)).catch((emailErr) => {
+    // 6. Reliable email dispatch (awaited so Next.js serverless execution context stays active)
+    try {
+      await sendEmail(cleanEmail, "Verify Your Prajvaya Account", templates.verificationCode(cleanName, otp));
+    } catch (emailErr) {
       console.warn("Verification email dispatch warning:", emailErr);
-    });
+    }
 
     return NextResponse.json({
       message: "Registration successful! Please check your email inbox (and Spam folder) for the 6-digit OTP code.",
