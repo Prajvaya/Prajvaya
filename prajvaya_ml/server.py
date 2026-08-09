@@ -93,7 +93,20 @@ def chat_endpoint(request: ChatRequest):
         passages = [f"• {r['citation']}: {r['translation']}" for r in rag_results]
         rag_context_str = "\n\n### Verified Wisdom Context (RAG)\n" + "\n".join(passages)
 
-    if any(w in t for w in ["exam", "placement", "prep", "fail", "test", "interview", "0%", "marks", "imposter", "syllabus"]):
+    if any(w in t for w in ["die", "death", "dying", "overthinking", "neurological", "fidgeting", "health issues", "disease", "panic"]):
+        insights = [
+            "1. **Thoughts Are Not Predictions**: High-anxiety loops trick the brain into creating catastrophic fears ('I am going to die'), but severe anxiety is a temporary false alarm.",
+            "2. **Physical Grounding**: Anxiety creates real physical sensations (fidgeting, racing heart, tightness)—re-anchor by pressing your feet flat on the floor and unclenching your body.",
+            "3. **De-escalate the Panic Loop**: Slow, quiet breathing signals your autonomic nervous system that you are physically safe right now."
+        ]
+        action_plan = [
+            "• **Step 1**: Press both feet flat on the cold floor and unclench your hands and jaw.",
+            "• **Step 2**: Practice 4-7-8 breathing (Inhale 4s, Hold 7s, Exhale 8s) to quiet the nervous system.",
+            "• **Step 3**: Sip a warm glass of water slowly and rest your eyes."
+        ]
+        greeting = f"Namaste {request.user_name}. I hear you, and I am right here with you. Take a slow, gentle breath—what you are experiencing is Health Anxiety and Overthinking, and your mind is playing an anxiety trick on you."
+        closing = "You are safe right now in this room. Would you like to talk through what heavy thought started this overthinking today?"
+    elif any(w in t for w in ["exam", "placement", "prep", "fail", "test", "interview", "0%", "marks", "imposter", "syllabus"]):
         insights = [
             "1. **Imposter Illusion**: Feeling like you know 0% is high-anxiety freezing—your brain hides memory behind panic. You know far more than you think.",
             "2. **80/20 Revision Focus**: Stop trying to cover 100% of new topics; focus 80% of remaining time on high-frequency core concepts you know well.",

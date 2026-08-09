@@ -319,22 +319,26 @@ export function processPrajvayaReasoning(
       culturalContext: "Rooted in the concept of Pratibha (spontaneous creative intuition)."
     };
   }
+  // 7. HEALTH ANXIETY, MORTALITY OVERTHINKING & EXISTENTIAL FEAR
+  else if (t.includes("die") || t.includes("death") || t.includes("dying") || t.includes("overthinking") || t.includes("neurological") || t.includes("fidgeting") || t.includes("health issues") || t.includes("disease") || t.includes("panic")) {
+    reply = `I hear you, and I am right here with you. Take a slow, gentle breath. What you are describing is a very real, very human experience called **Health Anxiety and Existential Overthinking**.\n\nWhen our mind gets stuck in an intense anxiety loop, it can create terrifying thoughts like *"I'm going to die"* or *"something is horribly wrong with my health/brain"*. This can even cause real physical sensations—fidgeting, racing heartbeat, shortness of breath, or numbness—which then tricks the brain into panicking even more.\n\nI want to reassure you: **your mind is playing a high-anxiety trick on you right now**. Overthinking creates catastrophic scenarios that feel 100% real in the moment, but thoughts are not facts.\n\nHere is how we can bring your nervous system back to safety right now:\n\n1. **Name the Thought**: Say to yourself out loud: *"This is just my anxiety overthinking right now. I am physically safe in this room."*\n2. **Break the Fidget Loop**: Unclench your jaw, drop your shoulders, and press both feet flat onto the cold floor.\n3. **The 4-7-8 Calm Breath**: Inhale quietly through your nose for 4 seconds, hold for 7 seconds, and exhale slowly through your mouth for 8 seconds. Doing this 3 times physically signals your brain that there is no immediate danger.\n\nYou don't have to carry all these health, career, and life worries at once. I am right here listening. Would you like to tell me what triggered this heavy thought today?`;
+
+    actionPlan = [
+      "Physical Footing: Press both feet flat on the floor and unclench your hands and jaw.",
+      "4-7-8 Calm Breathing: Inhale 4s, Hold 7s, Exhale 8s to calm the nervous system.",
+      "Grounding Reality: Say out loud 'Thoughts are just thoughts, not predictions of the future.'",
+      "Drink Warm Water: Sip a glass of water slowly to soothe throat and stomach tension."
+    ];
+  }
   // DEFAULT NATURAL CONVERSATIONAL RESPONSE
   else {
-    reply = `${emotion.empathyNote}\n\nI'm listening closely to what you've shared. Life has a way of bringing unexpected situations, and taking a moment to pause, reflect, and speak about it is a wonderful step.\n\nWhatever you're navigating right now, remember to treat yourself with patience and kindness. You don't have to figure out the whole journey at once—just focusing on one calm, positive step in front of you is enough.\n\nWould you like to tell me a little more about what's on your mind? I'm right here to support you.`;
+    reply = `${emotion.empathyNote}\n\nI am listening closely to everything you're sharing. Life brings so many heavy layers all at once—health concerns, career goals, relationships, loneliness, and daily stress. It is completely human to feel overwhelmed by all of it.\n\nPlease remember to treat yourself with patience and warmth. You don't have to figure out your whole life journey today—just focusing on one calm breath and one small step in front of you is more than enough.\n\nI am right here with you. What part of what you're feeling would you like to talk through first?`;
 
     actionPlan = [
       "Take a Deep Breath: Inhale deeply for 4 seconds, hold for 4, and exhale slowly for 6.",
-      "One Small Step: Pick one tiny positive action you can do in the next 15 minutes.",
-      "Stay Grounded: Drink some water and take a moment to rest your mind.",
-      "Keep Exploring: Feel free to ask me about habits, philosophy, wellness, or learning anytime."
+      "One Small Step: Focus on just ONE small, comfortable task for the next 15 minutes.",
+      "Hydrate & Rest: Drink a glass of water and rest your eyes in a peaceful spot."
     ];
-
-    evidenceBadge = {
-      scientificBasis: "Empathy, active listening, and simple actionable steps lower acute stress markers and support emotional self-regulation.",
-      culturalContext: "Prajvaya companion architecture: combining warm human dialogue with zero-RAM local performance.",
-      safetyCaveat: "I am an AI companion designed to provide supportive dialogue and guidance, not licensed medical or psychological advice."
-    };
   }
 
   return {
