@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       reply: reasoningResult.reply,
-      activeCompanion: reasoningResult.assignedCompanion,
+      activeCompanion: reasoningResult.activeCompanion,
       collaboratingCompanions: reasoningResult.collaboratingCompanions,
       emotionalProfile: reasoningResult.emotionalAnalysis,
       reasoningChain: reasoningResult.reasoningChain,
