@@ -26,32 +26,53 @@ ${html}`;
   }
 };
 
-export const sendEmail = async (to: string, subject: string, html: string): Promise<boolean> => {
-  const host = process.env.SMTP_HOST || "";
+let cachedTransporter: nodemailer.Transporter | null = null;
+
+function getTransporter() {
+  if (cachedTransporter) return cachedTransporter;
+
+  const host = process.env.SMTP_HOST || "smtp.gmail.com";
   const port = parseInt(process.env.SMTP_PORT || "465", 10);
+  const user = process.env.SMTP_USER || "";
+  const pass = process.env.SMTP_PASS || "";
+
+  if (!user || !pass) return null;
+
+  const isGmail = host.includes("gmail");
+  cachedTransporter = nodemailer.createTransport(
+    isGmail
+      ? {
+          service: "gmail",
+          pool: true,
+          maxConnections: 5,
+          maxMessages: 100,
+          auth: { user, pass },
+          tls: { rejectUnauthorized: false },
+        }
+      : ({
+          host,
+          port,
+          secure: port === 465,
+          pool: true,
+          maxConnections: 5,
+          maxMessages: 100,
+          auth: { user, pass },
+          tls: { rejectUnauthorized: false },
+        } as any)
+  );
+
+  return cachedTransporter;
+}
+
+export const sendEmail = async (to: string, subject: string, html: string): Promise<boolean> => {
   const user = process.env.SMTP_USER || "";
   const pass = process.env.SMTP_PASS || "";
   const from = process.env.SMTP_FROM || '"Prajvaya" <prajvaya@gmail.com>';
 
-  if (host && user && pass) {
-    try {
-      const isGmail = host.includes("gmail");
-      const transporter = nodemailer.createTransport(
-        isGmail
-          ? {
-              service: "gmail",
-              auth: { user, pass },
-              tls: { rejectUnauthorized: false },
-            }
-          : ({
-              host,
-              port,
-              secure: port === 465,
-              auth: { user, pass },
-              tls: { rejectUnauthorized: false },
-            } as any)
-      );
+  const transporter = getTransporter();
 
+  if (transporter && user && pass) {
+    try {
       const info = await transporter.sendMail({
         from,
         to,
@@ -59,7 +80,7 @@ export const sendEmail = async (to: string, subject: string, html: string): Prom
         html,
       });
 
-      console.log(`[Email Dispatch Success] Sent email to ${to}. MessageId: ${info.messageId}`);
+      console.log(`[Email Dispatch Success - Instant Pooled] Sent email to ${to}. MessageId: ${info.messageId}`);
       return true;
     } catch (err: any) {
       console.error(`[SMTP Mail Send Error] Failed to send email to ${to}:`, err?.message || err);
