@@ -28,36 +28,46 @@ ${html}`;
 
 export const sendEmail = async (to: string, subject: string, html: string): Promise<boolean> => {
   const host = process.env.SMTP_HOST || "";
-  const port = parseInt(process.env.SMTP_PORT || "587", 10);
+  const port = parseInt(process.env.SMTP_PORT || "465", 10);
   const user = process.env.SMTP_USER || "";
   const pass = process.env.SMTP_PASS || "";
-  const from = process.env.SMTP_FROM || '"Prajvaya" <noreply@prajvaya.com>';
+  const from = process.env.SMTP_FROM || '"Prajvaya" <prajvaya@gmail.com>';
 
   if (host && user && pass) {
     try {
-      const transporter = nodemailer.createTransport({
-        host,
-        port,
-        secure: port === 465,
-        auth: {
-          user,
-          pass,
-        },
-      } as any);
+      const isGmail = host.includes("gmail");
+      const transporter = nodemailer.createTransport(
+        isGmail
+          ? {
+              service: "gmail",
+              auth: { user, pass },
+              tls: { rejectUnauthorized: false },
+            }
+          : ({
+              host,
+              port,
+              secure: port === 465,
+              auth: { user, pass },
+              tls: { rejectUnauthorized: false },
+            } as any)
+      );
 
-      await transporter.sendMail({
+      const info = await transporter.sendMail({
         from,
         to,
         subject,
         html,
       });
+
+      console.log(`[Email Dispatch Success] Sent email to ${to}. MessageId: ${info.messageId}`);
       return true;
-    } catch (err) {
-      console.error("SMTP Mail Send Failed. Falling back to local file logging.", err);
+    } catch (err: any) {
+      console.error(`[SMTP Mail Send Error] Failed to send email to ${to}:`, err?.message || err);
       await logEmailLocally(to, subject, html);
       return true;
     }
   } else {
+    console.warn(`[SMTP Missing Config] SMTP_HOST/USER/PASS not set. Falling back to local logging.`);
     await logEmailLocally(to, subject, html);
     return true;
   }
