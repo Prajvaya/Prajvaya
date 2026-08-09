@@ -93,7 +93,20 @@ def chat_endpoint(request: ChatRequest):
         passages = [f"• {r['citation']}: {r['translation']}" for r in rag_results]
         rag_context_str = "\n\n### Verified Wisdom Context (RAG)\n" + "\n".join(passages)
 
-    if any(w in t for w in ["trust", "relationship", "special", "partner", "boyfriend", "girlfriend", "spouse", "marriage", "insecure", "doubt"]):
+    if any(w in t for w in ["exam", "placement", "prep", "fail", "test", "interview", "0%", "marks", "imposter", "syllabus"]):
+        insights = [
+            "1. **Imposter Illusion**: Feeling like you know 0% is high-anxiety freezing—your brain hides memory behind panic. You know far more than you think.",
+            "2. **80/20 Revision Focus**: Stop trying to cover 100% of new topics; focus 80% of remaining time on high-frequency core concepts you know well.",
+            "3. **Sleep & Memory Consolidation**: Never pull an all-nighter before a placement exam—sleep unlocks fast problem-solving speed."
+        ]
+        action_plan = [
+            "• **Step 1**: Write down key formulas or core code concepts on 2 sheets of paper to prove your prep to your brain.",
+            "• **Step 2**: Pick the top 3 high-weightage topics and revise them comfortably.",
+            "• **Step 3**: Ensure 7 hours of sleep before exam day so your logic stays sharp."
+        ]
+        greeting = f"Namaste {request.user_name}. I hear you loud and clear. Take a deep, slow breath right now—placement exam anxiety can feel overwhelming, but you are not starting from zero."
+        closing = "You are far bigger than one placement test. Take it one question at a time. How can I best help you review right now?"
+    elif any(w in t for w in ["trust", "relationship", "special", "partner", "boyfriend", "girlfriend", "spouse", "marriage", "insecure", "doubt"]):
         insights = [
             "1. **Distinguish Fact from Anxiety**: Separate verified partner actions from past emotional wounds or internal fears.",
             "2. **Non-Accusatory 'I' Statements**: Communicate your emotional needs (e.g. *'I feel anxious about our distance'*) instead of placing blame.",

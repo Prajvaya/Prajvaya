@@ -190,8 +190,24 @@ export function processPrajvayaReasoning(
 
   const t = userText.toLowerCase();
 
-  // 1. RELATIONSHIPS & TRUST ISSUES
-  if (t.includes("trust") || t.includes("relationship") || t.includes("special") || t.includes("partner") || t.includes("boyfriend") || t.includes("girlfriend") || t.includes("spouse") || t.includes("marriage") || t.includes("insecure") || t.includes("doubt")) {
+  // 1. EXAM PRESSURE, PLACEMENT STRESS & EXAM FEAR
+  if (t.includes("exam") || t.includes("placement") || t.includes("prep") || t.includes("fail") || t.includes("test") || t.includes("interview") || t.includes("0%") || t.includes("marks") || t.includes("imposter") || t.includes("syllabus")) {
+    reply = `I hear you loud and clear, and I want you to take a deep, slow breath right now.\n\nFeeling like you know "0%" or that you're completely unprepared right before an important placement exam is extremely common. It is a psychological stress response called **Hyper-Anxiety Freezing**—your brain is so overwhelmed by the high stakes that it temporarily hides what you've learned behind a wall of panic. It does NOT mean you know nothing.\n\nHere is how we can take back control step by step:\n\n1. **Acknowledge the Imposter Illusion**: Remind yourself that anxiety distorts memory. You have spent months in college and study sessions; that knowledge is inside your brain even if panic is clouding it right now.\n2. **The 80/20 Rule**: Stop trying to cover 100% of the syllabus in the last few days. Focus 80% of your remaining time on high-frequency core topics and core concepts you already know well.\n3. **Quick Formula / Concept Sheet**: Spend 30 minutes writing down key formulas, data structures, or concepts on 2 sheets of paper. Seeing them on paper physically proves to your brain that you are prepared.\n4. **Protect Your Sleep**: Do NOT pull an all-nighter before your placement exam. Sleep consolidates memory and restores rapid problem-solving speed during the test.\n\nRemember: a placement exam is a single doorway in a long, bright career. You are far bigger than one test result. Take it one question at a time. How can I best help you review right now?`;
+
+    actionPlan = [
+      "2-Page Brain Dump: Write down key formulas, core concepts, or code snippets on paper to anchor your confidence.",
+      "High-Weightage Focus: Pick the top 3 high-weightage topics and revise them comfortably instead of panicking.",
+      "7-Hour Sleep Lock: Ensure 7 hours of sleep before exam day so your brain stays sharp for logic questions.",
+      "Calm Exam Mindset: During the test, skip difficult questions first and solve easy ones to build momentum."
+    ];
+
+    evidenceBadge = {
+      scientificBasis: "Performance psychology shows that cognitive anxiety impairs working memory retrieval; structured micro-tasks and sleep restoration restore executive function under stress.",
+      culturalContext: "Reflects Abhaya (fearlessness) and Sthirata (steadiness) in high-stakes action."
+    };
+  }
+  // 2. RELATIONSHIPS & TRUST ISSUES
+  else if (t.includes("trust") || t.includes("relationship") || t.includes("special") || t.includes("partner") || t.includes("boyfriend") || t.includes("girlfriend") || t.includes("spouse") || t.includes("marriage") || t.includes("insecure") || t.includes("doubt")) {
     reply = `I hear how deeply important this is to you. Navigating trust issues with someone special in your life can feel emotionally heavy, disorienting, and deeply vulnerable.\n\nTrust in a relationship is built slowly like a quiet garden—it is fragile when doubts arise, but it can be nurtured through clear, calm communication and mutual transparency. Often, when trust feels shaken, our minds get caught between fear of being hurt and the desire to stay close.\n\nHere are 3 foundational perspectives to help you navigate this with clarity:\n\n1. **Separate Fact from Anxiety**: Take a moment to distinguish between verified actions and internal anxieties or past wounds that might be projecting into the present.\n2. **Open, Non-Accusatory Communication**: Speak using 'I' statements (e.g., *"I've been feeling anxious lately about our communication and I want us to feel closer"*) rather than starting with accusations, which can cause the other person to become defensive.\n3. **Observe Mutual Willingness**: Trust cannot be rebuilt by one person alone. Notice whether your partner is willing to listen calmly, reassure you, and work together on transparency.\n\nTake a deep breath. You don't have to resolve everything tonight. Would you like to share a bit more about what specific situation triggered this doubt?`;
 
     actionPlan = [

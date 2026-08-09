@@ -392,25 +392,7 @@ export const PrajvayaAIModal: React.FC<PrajvayaAIModalProps> = ({ isOpen, onClos
                 >
                   {msg.content}
 
-                  {/* Evidence & Safety Demarcation Badge */}
-                  {msg.evidenceBadge && (
-                    <div className="mt-4 pt-3 border-t border-gold/15 flex flex-col gap-2 bg-charcoal/40 p-3 rounded-xl">
-                      <div className="flex items-center gap-1.5 text-emerald-400 font-outfit text-xs font-bold uppercase tracking-wider">
-                        <ShieldCheck size={14} />
-                        <span>Evidence & Tradition Demarcation</span>
-                      </div>
 
-                      <div className="text-xs text-cream/80 space-y-1 font-light">
-                        <p><strong className="text-gold">🔬 Scientific Basis:</strong> {msg.evidenceBadge.scientificBasis}</p>
-                        <p><strong className="text-amber-400">📜 Heritage Context:</strong> {msg.evidenceBadge.culturalContext}</p>
-                        {msg.evidenceBadge.safetyCaveat && (
-                          <p className="text-rose-300 bg-rose-950/40 p-2 rounded-lg border border-rose-800/30 mt-1">
-                            <strong className="text-rose-400">⚠️ Disclaimer:</strong> {msg.evidenceBadge.safetyCaveat}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
 
                   {/* Interactive Action Plan Checklist */}
                   {msg.actionPlan && msg.actionPlan.length > 0 && (
