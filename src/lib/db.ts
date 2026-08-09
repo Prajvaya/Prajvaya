@@ -168,6 +168,14 @@ export const db = {
       await writeDb(store);
       return newSubscriber;
     },
+    update: async (email: string, data: Partial<Subscriber>): Promise<Subscriber | null> => {
+      const store = await readDb();
+      const index = store.subscribers.findIndex((s) => s.email.toLowerCase() === email.toLowerCase());
+      if (index === -1) return null;
+      store.subscribers[index] = { ...store.subscribers[index], ...data };
+      await writeDb(store);
+      return store.subscribers[index];
+    },
     delete: async (id: string): Promise<boolean> => {
       const store = await readDb();
       const initialLength = store.subscribers.length;

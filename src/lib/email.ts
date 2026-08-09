@@ -259,5 +259,25 @@ export const templates = {
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Date:</strong> ${date}</p>
     `
+    ),
+
+  newsletterWelcome: () =>
+    baseTemplate(
+      "Welcome to Prajvaya Updates Log",
+      `
+      <h2 class="heading">Subscription Confirmed! 🌿</h2>
+      <p>Thank you for subscribing to the Prajvaya Journal. You will receive curated perspectives on Vedic philosophy, AI architecture, and sustainable tech.</p>
+    `
+    ),
+
+  adminNewSubscriber: (email: string, date: string) =>
+    baseTemplate(
+      "New Newsletter Subscriber",
+      `
+      <h2 class="heading">New Subscriber Alert</h2>
+      <p>A new user has subscribed to the Prajvaya Journal!</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Date:</strong> ${date}</p>
+    `
     )
 };
