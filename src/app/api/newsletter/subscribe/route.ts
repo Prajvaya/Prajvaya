@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     }
 
     // Create subscriber (unverified)
-    await db.subscribers.create(email, false);
+    await db.subscribers.create(email);
 
     // Generate a 6-digit subscriber confirmation OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
