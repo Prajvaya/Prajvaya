@@ -66,7 +66,7 @@ export async function POST(request: Request) {
       reply: reasoningResult.reply,
       activeCompanion: reasoningResult.activeCompanion,
       collaboratingCompanions: reasoningResult.collaboratingCompanions,
-      emotionalProfile: reasoningResult.emotionalAnalysis,
+      emotionalProfile: reasoningResult.emotionalProfile,
       reasoningChain: reasoningResult.reasoningChain,
       evidenceBadge: reasoningResult.evidenceBadge,
       actionPlan: reasoningResult.actionPlan,
