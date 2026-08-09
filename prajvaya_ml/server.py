@@ -92,7 +92,14 @@ def chat_endpoint(request: ChatRequest):
         passages = [f"• {r['citation']}: {r['translation']}" for r in rag_results]
         rag_context_str = "\n\n" + "\n".join(passages)
 
-    if any(w in t for w in ["die", "death", "dying", "overthinking", "neurological", "fidgeting", "health issues", "disease", "panic"]):
+    if any(w in t for w in ["good", "bad", "fight", "conflict", "decide", "decision", "confused", "duality"]):
+        reply_content = (
+            f"Namaste {request.user_name}. That internal struggle is one of the heaviest things a person can carry—when it feels like two different voices inside you are fighting over every choice, leaving you feeling confused and unable to make decisions.\n\n"
+            "First, please know that having conflicting impulses doesn't mean you're a 'bad' person. Human beings are complex, and our minds often pull us between immediate fear, self-protection, and our higher values. The very fact that you care about finding the right path shows where your true heart lies.\n\n"
+            "When decision paralysis strikes, try not to force a final verdict in the middle of the confusion. What is one specific decision you're facing right now that feels most conflicting?"
+            + rag_context_str
+        )
+    elif any(w in t for w in ["die", "death", "dying", "overthinking", "neurological", "fidgeting", "health issues", "disease", "panic"]):
         reply_content = (
             f"Namaste {request.user_name}. I hear you, and I am right here with you. Take a slow, gentle breath.\n\n"
             "What you're feeling right now is a very real, overwhelming anxiety loop. When anxiety spikes, it tricks the mind into catastrophic fears like 'I am going to die', and it can even create real physical sensations like fidgeting, racing heartbeat, or chest tightness. But thoughts are not facts, and your body is physically safe right now.\n\n"
@@ -121,8 +128,9 @@ def chat_endpoint(request: ChatRequest):
             + rag_context_str
         )
     else:
+        snippet = user_query[:50] + "..." if len(user_query) > 50 else user_query
         reply_content = (
-            f"Namaste {request.user_name}. I am listening closely to everything you're sharing.\n\n"
+            f"Namaste {request.user_name}. I am listening closely to what you've shared about '{snippet}'.\n\n"
             "Life brings so many heavy layers all at once—health concerns, career goals, relationships, loneliness, and daily stress. It is completely human to feel overwhelmed by all of it.\n\n"
             "Please remember to treat yourself with patience and warmth. You don't have to figure out your whole life journey today—just focusing on one calm breath and one small step in front of you is more than enough. What part of what you're feeling would you like to talk through first?"
             + rag_context_str

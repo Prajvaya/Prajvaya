@@ -152,7 +152,7 @@ export function processPrajvayaReasoning(
 
   const emotion = analyzeEmotion(userText);
   const { primary, collaborators } = determineCompanions(userText, selectedCompanion);
-  const activeComp = COMPANIONS[primary];
+  const activeComp = COMPANIONS[primary] || COMPANIONS["jeevan"];
 
   const recalledMemories: string[] = [];
   if (memoryEnabled && userMemories.length > 0) {
@@ -190,41 +190,46 @@ export function processPrajvayaReasoning(
 
   const t = userText.toLowerCase();
 
-  // 1. COMPARISON & FEELING LEFT BEHIND
-  if (t.includes("everyone") && (t.includes("ahead") || t.includes("stuck") || t.includes("behind") || t.includes("succeeding"))) {
+  // 1. INNER CONFLICT & DECISION PARALYSIS (GOOD VS BAD ME)
+  if ((t.includes("fight") || t.includes("conflict") || t.includes("good") || t.includes("bad")) && (t.includes("inside") || t.includes("me") || t.includes("decide") || t.includes("decision") || t.includes("confused"))) {
+    reply = `That internal struggle is one of the heaviest things a person can carry—when it feels like two different voices inside you are fighting over every choice, leaving you feeling confused and unable to make decisions.\n\nFirst, please know that having conflicting impulses doesn't mean you're a 'bad' person. Human beings are complex, and our minds often pull us between immediate fear, self-protection, and our higher values. The very fact that you care about finding the right path shows where your true heart lies.\n\nWhen decision paralysis strikes, try not to force a final verdict in the middle of the confusion. Take one quiet step back.\n\nTell me... what is one specific decision you're facing right now that feels most conflicting?`;
+  }
+  // 2. COMPARISON & FEELING LEFT BEHIND
+  else if (t.includes("everyone") && (t.includes("ahead") || t.includes("stuck") || t.includes("behind") || t.includes("succeeding"))) {
     reply = `Maybe you're not really worried about everyone else moving ahead. Maybe you're wondering whether you're moving anywhere at all.\n\nThat feeling can hurt deeply—when it feels like everyone around you is reaching milestones while you're still in the same place. But another person's timeline doesn't decide the value of yours.\n\nTell me... what happened recently that makes you feel most stuck right now?`;
   }
-  // 2. EXAM PRESSURE & PLACEMENT STRESS
+  // 3. EXAM PRESSURE & PLACEMENT STRESS
   else if (t.includes("exam") || t.includes("placement") || t.includes("prep") || t.includes("fail") || t.includes("test") || t.includes("interview") || t.includes("0%") || t.includes("marks") || t.includes("imposter") || t.includes("syllabus")) {
     reply = `I know you probably don't need a clinical lecture about failure or exam tips right now. You've worked for this, and feeling like you know nothing right before a test can really hurt.\n\nWhen the stakes feel high, our minds tend to freeze up and hide what we've learned behind panic. Give yourself a moment. You don't have to solve your whole syllabus tonight.\n\nWhat part of your prep is weighing on your mind the most right now?`;
   }
-  // 3. RELATIONSHIPS & TRUST ISSUES
+  // 4. RELATIONSHIPS & TRUST ISSUES
   else if (t.includes("trust") || t.includes("relationship") || t.includes("special") || t.includes("partner") || t.includes("boyfriend") || t.includes("girlfriend") || t.includes("spouse") || t.includes("marriage") || t.includes("insecure") || t.includes("doubt")) {
     reply = `I hear how deeply important this is to you. Navigating trust issues with someone special can feel emotionally heavy, disorienting, and deeply vulnerable.\n\nTrust in a relationship is built slowly like a quiet garden—it is fragile when doubts arise, but it can be nurtured when both people speak openly without placing blame.\n\nYou don't have to resolve everything tonight. What specific situation triggered this doubt for you recently?`;
   }
-  // 4. STRESS, ANXIETY, BREAKUP, OVERWHELM
+  // 5. STRESS, ANXIETY, BREAKUP, OVERWHELM
   else if (t.includes("stress") || t.includes("burnout") || t.includes("overwhelmed") || t.includes("anxious") || t.includes("anxiety") || t.includes("exhausted") || t.includes("breakup") || t.includes("sad") || t.includes("lonely")) {
     reply = `When we go through intense stress or emotional pain, it can feel like our inner world is spinning out of control. Please know that feeling this way doesn't mean you're weak—it simply means your mind and body have been carrying a lot right now.\n\nTrying to force yourself to 'just stop worrying' rarely works. Instead, take a slow breath, drink a glass of warm water, and give yourself permission to pause.\n\nWhat part of what you're experiencing feels heaviest right now?`;
   }
-  // 5. BHAGAVAD GITA & PHILOSOPHY
+  // 6. BHAGAVAD GITA & PHILOSOPHY
   else if (t.includes("gita") || t.includes("shloka") || t.includes("scripture") || t.includes("philosophy") || t.includes("ancient") || t.includes("upanishad")) {
     reply = `It is wonderful to reflect on these timeless teachings together.\n\nIn the Bhagavad Gita, when Prince Arjuna felt paralyzed by doubt on the battlefield, the guidance offered was not to abandon life, but to practice *Nishkama Karma*—focusing 100% of your care on the effort in front of you, while letting go of the constant anxiety about future outcomes.\n\nWhen we focus purely on taking the next right step with sincerity, inner peace naturally follows. What area of your life would you like to apply this clarity to today?`;
   }
-  // 6. HEALTH, SLEEP & WELLNESS
+  // 7. HEALTH, SLEEP & WELLNESS
   else if (t.includes("sleep") || t.includes("insomnia") || t.includes("health") || t.includes("yoga") || t.includes("diet") || t.includes("food") || t.includes("ayurveda")) {
     reply = `That sounds exhausting. When the whole world becomes quiet at night, sometimes the mind becomes even louder.\n\nTrying to force yourself to fall asleep when your mind is racing often creates more friction. Give yourself permission to lay down the pressure of having to sleep right away.\n\nTell me... what's been running through your mind when you lay down to rest?`;
   }
-  // 7. SUSTAINABILITY & NATURE
+  // 8. SUSTAINABILITY & NATURE
   else if (t.includes("waste") || t.includes("plastic") || t.includes("environment") || t.includes("sustainability") || t.includes("garden") || t.includes("water") || t.includes("tree")) {
     reply = `Caring for our earth doesn't require drastic or overwhelming changes overnight. In traditional households, reverence for natural resources was a quiet daily habit.\n\nWhen we make even one small shift—like bringing a reusable water bottle or keeping a balcony plant—we reconnect with the natural flow of life (*Rta*).\n\nWhat is one small green habit you'd love to explore incorporating into your space?`;
   }
-  // 8. HEALTH ANXIETY, MORTALITY OVERTHINKING & EXISTENTIAL FEAR
+  // 9. HEALTH ANXIETY, MORTALITY OVERTHINKING & EXISTENTIAL FEAR
   else if (t.includes("die") || t.includes("death") || t.includes("dying") || t.includes("overthinking") || t.includes("neurological") || t.includes("fidgeting") || t.includes("health issues") || t.includes("disease") || t.includes("panic")) {
     reply = `I hear you, and I am right here with you. Take a slow, gentle breath.\n\nWhen our mind gets caught in an intense anxiety loop, it can create terrifying thoughts like *"I'm going to die"* or *"something is wrong with my body"*. Anxiety can even cause real physical sensations—fidgeting, racing heartbeat, or chest tightness—which then tricks the brain into panicking even more.\n\nPress both feet flat onto the cold floor, drop your shoulders, and take 3 slow breaths. You don't have to carry all these worries at once. Tell me... what specific thought started this heavy feeling today?`;
   }
-  // DEFAULT NATURAL CONVERSATIONAL RESPONSE
+  // DEFAULT DYNAMIC REFLECTION CONVERSATIONAL RESPONSE
   else {
-    reply = `I am listening closely to everything you're sharing.\n\nLife brings so many heavy layers all at once—health concerns, career goals, relationships, loneliness, and daily stress. It is completely human to feel overwhelmed by all of it.\n\nPlease remember to treat yourself with patience and warmth. You don't have to figure out your whole life journey today—just focusing on one calm breath and one small step in front of you is more than enough.\n\nI am right here with you. What part of what you're feeling would you like to talk through first?`;
+    const snippet = userText.length > 50 ? userText.substring(0, 50) + "..." : userText;
+    reply = `I am listening closely to what you've shared about "${snippet}".\n\nWhen thoughts get tangled up and life feels heavy, it is completely human to feel overwhelmed and unsure of which direction to take.\n\nPlease remember to treat yourself with patience and warmth. You don't have to figure out your whole life journey today—just focusing on one calm breath and one small step in front of you is more than enough.\n\nI am right here with you. What part of this would you like to talk through first?`;
   }
 
   return {
